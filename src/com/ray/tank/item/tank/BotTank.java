@@ -46,14 +46,14 @@ public class BotTank extends Tank {
 	
 	public void fire() {
 		if((int)(Math.random()*Const.aiShootRate)==1)		//百分之一的几率开枪
-			battleField.add(new Bullet(this, location,direction,color));
+			battleField.addBullet(new Bullet(this, location,direction,color));
 	}
 	public int getType() {
 		return Collision.BOT_TANK;
 	}
 
 	public void lifeEnd() {
-		battleField.add(Explode.get(location));
+		battleField.createExplode(location);
 		alive = false;
 	}
 

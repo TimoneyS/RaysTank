@@ -8,9 +8,8 @@ import com.ray.tank.item.base.Arrow;
 import com.ray.tank.item.base.Listenable;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.other.Bullet;
-import com.ray.tank.item.other.Explode;
 
-public class PlayerTank extends Tank implements Listenable {
+public class PlaTank extends Tank implements Listenable {
 
     private boolean fire = false;
 
@@ -20,7 +19,7 @@ public class PlayerTank extends Tank implements Listenable {
     private boolean a    = false;
     private boolean d    = false;
 
-    public PlayerTank(double x, double y, double direction, Color teamColor, int group) {
+    public PlaTank(double x, double y, double direction, Color teamColor, int group) {
         super(x, y, direction, teamColor, group);
         tankMove.setMoveSpeed(Const.manmoveSpeed);
     }
@@ -34,7 +33,7 @@ public class PlayerTank extends Tank implements Listenable {
 	//生命周期结束
 	public void lifeEnd() {
 		alive = !Const.canPlayerBeKill;
-		battleField.add(Explode.get(location));
+		battleField.createExplode(location);
 	}
 	//移动操作
 	public void move() {
@@ -59,7 +58,7 @@ public class PlayerTank extends Tank implements Listenable {
 	public void fire() {
 		if(alive&&fire) {
 		    for (int i = -3; i < 3; i += 1) {
-		        battleField.add(new Bullet(this, location, Math.toRadians(5 * i) + direction, color));
+		        battleField.addBullet(new Bullet(this, location, Math.toRadians(5 * i) + direction, color));
             }
 //			battleField.add(new Bullet(this, location, direction, color));
 			fire = false;

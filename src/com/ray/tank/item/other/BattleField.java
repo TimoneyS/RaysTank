@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.util.*;
 
 import com.ray.tank.item.base.BaseItem;
+import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.tank.BotTank;
 import com.ray.tank.item.tank.Tank;
@@ -30,10 +31,10 @@ public class BattleField {
 	public BattleField(int x) {
 		this();
 		for(int i = 50; i < 600; i += 50) {
-			add(new BotTank(50, i, 90, Color.YELLOW, 2));		//黄色方
-			add(new BotTank(550, i, 270, Color.CYAN, 2));		//青色方
-			add(new BotTank(i, 550, 0, Color.RED, 2));		//红色方
-	        add(new BotTank(i, 50, 180, Color.BLUE, 2));        //蓝色方
+			addTank(new BotTank(50, i, 90, Color.YELLOW, 2));		//黄色方
+			addTank(new BotTank(550, i, 270, Color.CYAN, 2));		//青色方
+			addTank(new BotTank(i, 550, 0, Color.RED, 2));		    //红色方
+	        addTank(new BotTank(i, 50, 180, Color.BLUE, 2));        //蓝色方
 		}
 	}
 	//绘制方法
@@ -49,10 +50,11 @@ public class BattleField {
 		upDate(tanks);
 		upDate(bullets);
 		upDate(explodes);
-		
-		
-
-		// 清理
+		cleanDeadItem();
+	}
+	
+	public void cleanDeadItem() {
+	       // 清理
         for (Iterator<Collision> iterator = bulletCollisional.iterator(); iterator.hasNext();) {
             Collision collisional = iterator.next();
             if (!collisional.isAlive())
@@ -65,8 +67,8 @@ public class BattleField {
             if (!collisional.isAlive())
                 iterator.remove();
         }
-		
 	}
+	
 	//绘制列表
 	private synchronized void draw(List<? extends BaseItem> list,Graphics2D g2){
 		Iterator<? extends BaseItem> i = list.iterator();
@@ -83,21 +85,24 @@ public class BattleField {
 		}
 	}
 	//添加方法
-	public synchronized void add(Explode e){
-		explodes.add(e);
+	public synchronized void createExplode(Location location){
+		explodes.add(Explode.get(location));
 	}
+	
 	//添加方法
-	public synchronized void add(Tank t){
+	public synchronized void addTank(Tank t){
 		tanks.add(t);
 		tankCollisional.add(t.getCollision());
 		t.setBattleField(this);
 	}
+	
 	//添加方法
-	public synchronized void add(Bullet b){
+	public synchronized void addBullet(Bullet b){
 		bullets.add(b);
 		bulletCollisional.add(b.getCollision());
 		b.setBattleField(this);
 	}
+	
 	//获取相关数值，输入有误时，将返回-1
 	public int getNumbers(int i) { 				
 		if(i==0) return tanks.size();

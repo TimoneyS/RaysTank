@@ -36,4 +36,9 @@ public class Location {
         return y;
     }
     
+    @Override
+    public Location clone() {
+        return new Location(x, y);
+    }
+    
 }

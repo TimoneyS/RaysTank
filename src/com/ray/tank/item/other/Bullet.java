@@ -49,12 +49,9 @@ public class Bullet extends CollisionalItem {
 	//子弹生命周期结束 
 	public void lifeEnd() {
 		alive = false;									
-		battleField.add(Explode.get(location));
+		battleField.createExplode(location);
 	}
 
-	public boolean isAlive() {
-		return alive;
-	}
 	@Override
     public Collision getCollision() {
         return bulletCollision;

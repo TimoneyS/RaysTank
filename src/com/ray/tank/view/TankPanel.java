@@ -11,20 +11,20 @@ import javax.swing.JPanel;
 
 import com.ray.tank.config.Const;
 import com.ray.tank.item.other.BattleField;
-import com.ray.tank.item.tank.PlayerTank;
+import com.ray.tank.item.tank.PlaTank;
 @SuppressWarnings("serial")
 public class TankPanel extends JPanel {
 	JFrame frame;
 	
 	BattleField battleField;
-	PlayerTank playerTank;
+	PlaTank playerTank;
 	
 	int flag = 1;
 	
 	//构造方法
 	public TankPanel(JFrame frame) {
 		battleField = new BattleField(0);
-		playerTank = new PlayerTank(400, 300, 0, Const.playerColor, 1);
+		playerTank = new PlaTank(400, 300, 0, Const.playerColor, 1);
 		this.frame = frame;
 		setBackground(Color.GREEN);
 		setPreferredSize(new Dimension(Const.D_WIDTH,Const.D_HEIGTH));
@@ -71,17 +71,17 @@ public class TankPanel extends JPanel {
 		});
 		
 		battleField.setBounds(Const.D_WIDTH,Const.D_HEIGTH);
-		battleField.add(playerTank);
+		battleField.addTank(playerTank);
 		
 		new Thread(new PanelTask()).start();
 	}
-	public void setPlayerTank(PlayerTank tank) {
+	public void setPlayerTank(PlaTank tank) {
 		playerTank = tank;
 	}
 	public BattleField getBattleField() {
 		return battleField;
 	}
-	public PlayerTank getPlayerTank() {
+	public PlaTank getPlayerTank() {
 		return playerTank;
 	}
 	

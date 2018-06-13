@@ -26,7 +26,7 @@ public class Explode extends BaseItem {
     private int            state;                                  // 状态，描述动画进行到何种程度的标志
 
 	private Explode(Location location) {
-	    setLocation(location.X(), location.Y());
+	    this.location = location.clone();
 	    state = 0;
 	    size = Const.size;
     }
