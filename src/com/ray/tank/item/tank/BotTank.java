@@ -6,7 +6,6 @@ import com.ray.tank.config.Const;
 import com.ray.tank.item.base.Arrow;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.other.Bullet;
-import com.ray.tank.item.other.Explode;
 
 public class BotTank extends Tank {
     
