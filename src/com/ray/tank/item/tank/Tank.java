@@ -10,19 +10,16 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.ray.tank.common.DrawUtil;
 import com.ray.tank.config.Const;
-import com.ray.tank.item.base.BaseItemImpl;
+import com.ray.tank.item.base.CollisionalItem;
 import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.base.crash.CollisionalSupport;
 import com.ray.tank.item.base.move.MoveSupport;
 import com.ray.tank.item.other.BattleField;
 
-public abstract class Tank extends BaseItemImpl {
-    
-    protected BattleField battleField;                        // 持有的BattleField对象
+public abstract class Tank extends CollisionalItem {
 
     protected double      direction;
-    protected double      moveSpeed;    // 移动速度
     protected double      weelState;    // 履带动态效果
     protected int         score;        // 得分
     protected int         group;
@@ -111,10 +108,6 @@ public abstract class Tank extends BaseItemImpl {
         return score;
     }
     
-    public void setBattleField(BattleField battleField) {
-        this.battleField = battleField;
-    }
-    
     public void moveStateChange() {
         weelState -= 1;
         weelState = weelState%10;
@@ -136,19 +129,13 @@ public abstract class Tank extends BaseItemImpl {
         }
 
         @Override
-        public double getMoveSpeed() {
-            return moveSpeed;
+        public Location getLocation() {
+            return location;
         }
 
         @Override
         public BattleField getBattfield() {
-            
             return battleField;
-        }
-
-        @Override
-        public Location getLocation() {
-            return location;
         }
         
     }

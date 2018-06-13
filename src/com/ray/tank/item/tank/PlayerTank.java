@@ -22,7 +22,7 @@ public class PlayerTank extends Tank implements Listenable {
 
     public PlayerTank(double x, double y, double direction, Color teamColor, int group) {
         super(x, y, direction, teamColor, group);
-        moveSpeed = Const.manmoveSpeed;
+        tankMove.setMoveSpeed(Const.manmoveSpeed);
     }
     
 	//提交数据变化

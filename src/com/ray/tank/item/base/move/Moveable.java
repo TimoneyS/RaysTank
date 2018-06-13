@@ -6,18 +6,21 @@ import com.ray.tank.item.other.BattleField;
 public interface Moveable {
     
     /**
+     * 移动越界处理
+     */
+    public abstract void doOutBound();
+    
+    /**
      * 方向
      * @return
      */
     public abstract double getDirection();
-    
-    public abstract void doOutBound();
-    
+
     /**
      * 移动速度
      * @return
      */
-    public abstract double getMoveSpeed();
+    public abstract void setMoveSpeed(double speed);
     
     /**
      * 坐标
@@ -30,5 +33,7 @@ public interface Moveable {
      * @return
      */
     public abstract BattleField getBattfield();
+    
+    
     
 }

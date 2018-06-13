@@ -2,7 +2,7 @@ package com.ray.tank.item.base;
 
 import java.awt.Graphics2D;
 
-public abstract class BaseItemImpl implements HasLife {
+public abstract class BaseItem implements HasLife {
     
     protected boolean alive;
     protected Location location;

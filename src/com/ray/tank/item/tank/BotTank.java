@@ -14,7 +14,7 @@ public class BotTank extends Tank {
 	
 	public BotTank(double x, double y, double direction,Color color, int group) {
 	    super(x, y, direction, color, group);
-	    moveSpeed = Const.botmoveSpeed;
+	    tankMove.setMoveSpeed(Const.botmoveSpeed);
 	}
 	public void update() {
 		

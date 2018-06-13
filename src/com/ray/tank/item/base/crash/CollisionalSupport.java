@@ -3,6 +3,11 @@ package com.ray.tank.item.base.crash;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * 碰撞检测辅助类
+ * @author rays1
+ *
+ */
 public abstract class CollisionalSupport implements Collision {
 
     // 集合碰撞处理
@@ -23,9 +28,9 @@ public abstract class CollisionalSupport implements Collision {
     
     @Override
     public boolean isCrash(Collision target) {
-        //碰撞检测本身不区分队伍颜色等
+        // 碰撞检测本身
         if(target.hashCode()== hashCode()) {
-            return false;                                                 //目标是当前对象自身
+            return false; //目标是当前对象自身
         } else {
             //距离
             double d = target.getRadius() + getRadius() - 2;

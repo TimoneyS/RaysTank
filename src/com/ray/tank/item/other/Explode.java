@@ -4,10 +4,10 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 import com.ray.tank.config.Const;
-import com.ray.tank.item.base.BaseItemImpl;
+import com.ray.tank.item.base.BaseItem;
 import com.ray.tank.item.base.Location;
 
-public class Explode extends BaseItemImpl {
+public class Explode extends BaseItem {
     
     /**
      * 依次表示各阶段的颜色

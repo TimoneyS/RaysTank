@@ -5,28 +5,31 @@ import java.awt.geom.Ellipse2D;
 
 import com.ray.tank.common.DrawUtil;
 import com.ray.tank.config.Const;
-import com.ray.tank.item.base.BaseItemImpl;
+import com.ray.tank.item.base.CollisionalItem;
 import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.base.crash.CollisionalSupport;
 import com.ray.tank.item.base.move.MoveSupport;
 import com.ray.tank.item.tank.Tank;
 
-public class Bullet extends BaseItemImpl {
+public class Bullet extends CollisionalItem {
     
-	private BattleField battleField;		//持有的BattleField对象,自动指向
-	private Tank master;
-	private final double direction;			//方向
-	private final Color color;			    //颜色标志
-	private Collision bulletCollision = new BulletCollision();
-	double size = Const.size;
-	BulletMove bulletMove = new BulletMove();
+    private Tank       master;
+    private double     direction;        // 方向
+    private Color      color;            // 颜色标志
+    private Collision  bulletCollision;
+    private double     size = Const.size;
+    private BulletMove bulletMove;
 	
-	public Bullet(Tank tank, Location location2, double direction2, Color color2) {
+	public Bullet(Tank tank, Location location, double direction, Color color) {
 	    this.master = tank;
-        this.direction = direction2;
-        location = new Location(location2.X() + Math.sin(direction) * size * 8, location2.Y() - Math.cos(direction) * size * 8);
-        this.color = color2;   
+        this.direction = direction;
+        this.location = new Location(location.X() + Math.sin(direction) * size * 8, 
+                location.Y() - Math.cos(direction) * size * 8);
+        this.color = color;
+        bulletMove = new BulletMove();
+        bulletCollision = new BulletCollision();
+        bulletMove.setMoveSpeed(Const.bulletSpeed);
     }
 	
     //绘制方法
@@ -52,10 +55,7 @@ public class Bullet extends BaseItemImpl {
 	public boolean isAlive() {
 		return alive;
 	}
-	public void setBattleField(BattleField battleField) {
-		this.battleField = battleField;
-	}
-	
+	@Override
     public Collision getCollision() {
         return bulletCollision;
     }
@@ -70,11 +70,6 @@ public class Bullet extends BaseItemImpl {
         @Override
         public double getDirection() {
             return direction;
-        }
-
-        @Override
-        public double getMoveSpeed() {
-            return Const.bulletSpeed;
         }
 
         @Override

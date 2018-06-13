@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.*;
 
-import com.ray.tank.item.base.BaseItemImpl;
+import com.ray.tank.item.base.BaseItem;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.tank.BotTank;
 import com.ray.tank.item.tank.Tank;
@@ -68,16 +68,16 @@ public class BattleField {
 		
 	}
 	//绘制列表
-	private synchronized void draw(List<? extends BaseItemImpl> list,Graphics2D g2){
-		Iterator<? extends BaseItemImpl> i = list.iterator();
+	private synchronized void draw(List<? extends BaseItem> list,Graphics2D g2){
+		Iterator<? extends BaseItem> i = list.iterator();
 		while(i.hasNext())
 			i.next().draw(g2);
 	}
 	//更新表
-	private synchronized void upDate(List<? extends BaseItemImpl> list) {
-		Iterator<? extends BaseItemImpl> i = list.iterator();
+	private synchronized void upDate(List<? extends BaseItem> list) {
+		Iterator<? extends BaseItem> i = list.iterator();
 		while(i.hasNext()) {
-		    BaseItemImpl u = i.next();
+		    BaseItem u = i.next();
 			if(!u.isAlive()) i.remove();
 			else u.update();
 		}
