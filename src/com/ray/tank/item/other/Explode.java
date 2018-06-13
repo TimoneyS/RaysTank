@@ -4,56 +4,52 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 import com.ray.tank.config.Const;
-import com.ray.tank.item.base.BaseItem;
+import com.ray.tank.item.base.BaseItemImpl;
 import com.ray.tank.item.base.Location;
 
-public class Explode implements BaseItem{
-	private boolean alive;				//生存标志
-	private double state = 1;			//状态，描述动画进行到何种程度的标志
-	private	final double x,y;			//爆炸的中心位置
+public class Explode extends BaseItemImpl {
+    
+    /**
+     * 依次表示各阶段的颜色
+     */
+    private static Color[] STATE_COLORS = {
+            Color.CYAN,
+            Color.WHITE,
+            Color.YELLOW,
+            Color.ORANGE,
+            Color.RED,
+    };
+    private static int     radius         = Const.MaxExplodRadius; // 爆炸持续帧数
+    private static int     EXPLOADE_SPEED = Const.explodSpeed;
+
+    private double         size;
+    private int            state;                                  // 状态，描述动画进行到何种程度的标志
 
 	private Explode(Location location) {
-	    this.x = location.X();
-        this.y = location.Y();
-        alive = true;
+	    setLocation(location.X(), location.Y());
+	    state = 0;
+	    size = Const.size;
     }
 	
 	public static Explode get(Location location) {
 	    return new Explode(location);
 	}
 	
-    //绘画
-	public void draw(Graphics2D g2) {	
-		int radius = Const.MaxExplodRadius;								
-		if(state>(radius*4/5)) g2.setColor(Color.RED);					//爆炸阶段5颜色
-			else if(state>(radius*3/5)) g2.setColor(Color.ORANGE);		//爆炸阶段4颜色	
-			else if(state>(radius*2/5)) g2.setColor(Color.YELLOW);		//爆炸阶段3颜色
-			else if(state>(radius*1/5)) g2.setColor(Color.WHITE);		//爆炸阶段2颜色
-			else g2.setColor(Color.CYAN);								//爆炸阶段1颜色
-		double size = Const.size;
+    // 绘制
+	public void draw(Graphics2D g2) {
+	    int stateIdx = state / EXPLOADE_SPEED;
+	    if (stateIdx > STATE_COLORS.length) stateIdx = STATE_COLORS.length;	    
+	    
+	    g2.setColor(STATE_COLORS[stateIdx]);
 		Ellipse2D s = new Ellipse2D.Double(								//建立形状
-				x-state*size/5, y-state*size/5, state*size/2.5, state*size/2.5);
-		
+				location.X()-state*size/5, location.Y()-state*size/5, state*size/2.5, state*size/2.5);
 		g2.fill(s);														//填充形状
-		
-	}
-	//更新，将状态递进
-	public void update() {
-		state = state + Const.explodSpeed;
-		if(state > Const.MaxExplodRadius)
-			lifeEnd();
-	}
-	//死亡
-	public void lifeEnd() {
-		alive = false;
-	}
-	//返回生存标志
-	public boolean isAlive() {
-		return alive;
-	}
-
-	//添加战场
-	public void setBattleField(BattleField battlefield) {
 	}
 	
+	// 更新，将状态递进
+	public void update() {
+		state += EXPLOADE_SPEED;
+		if(state >= radius) lifeEnd();
+	}
+
 }

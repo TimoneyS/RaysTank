@@ -5,24 +5,22 @@ import java.awt.geom.Ellipse2D;
 
 import com.ray.tank.common.DrawUtil;
 import com.ray.tank.config.Const;
-import com.ray.tank.item.base.BaseItem;
+import com.ray.tank.item.base.BaseItemImpl;
 import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.base.crash.CollisionalSupport;
 import com.ray.tank.item.base.move.MoveSupport;
 import com.ray.tank.item.tank.Tank;
 
-public class Bullet implements BaseItem {
-	private boolean alive = true;			//生存标志
+public class Bullet extends BaseItemImpl {
+    
 	private BattleField battleField;		//持有的BattleField对象,自动指向
 	private Tank master;
 	private final double direction;			//方向
 	private final Color color;			    //颜色标志
-	private Location location;
 	private Collision bulletCollision = new BulletCollision();
 	double size = Const.size;
 	BulletMove bulletMove = new BulletMove();
-	
 	
 	public Bullet(Tank tank, Location location2, double direction2, Color color2) {
 	    this.master = tank;

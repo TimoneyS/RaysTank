@@ -10,20 +10,18 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.ray.tank.common.DrawUtil;
 import com.ray.tank.config.Const;
-import com.ray.tank.item.base.BaseItem;
+import com.ray.tank.item.base.BaseItemImpl;
 import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.base.crash.CollisionalSupport;
 import com.ray.tank.item.base.move.MoveSupport;
 import com.ray.tank.item.other.BattleField;
 
-public abstract class Tank implements BaseItem {
+public abstract class Tank extends BaseItemImpl {
     
     protected BattleField battleField;                        // 持有的BattleField对象
 
     protected double      direction;
-    protected boolean     alive;        // 生存标志
-    protected Location    location;
     protected double      moveSpeed;    // 移动速度
     protected double      weelState;    // 履带动态效果
     protected int         score;        // 得分
@@ -32,9 +30,7 @@ public abstract class Tank implements BaseItem {
     protected Collision   tankCollision;
     protected TankMove    tankMove;
     
-    public abstract void update();                                     //更新
     public abstract void fire();
-    public abstract void lifeEnd();
     public abstract int getType();
     
     public Tank(double x, double y, double direction,Color teamColor, int group) {
@@ -105,10 +101,6 @@ public abstract class Tank implements BaseItem {
         moveStateChange();                                          // 履带变化
         location.save();
         tankMove.move();
-    }
-    
-    public boolean isAlive() {
-        return alive;
     }
     
     public void scoreAdd(int point) {
