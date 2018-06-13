@@ -13,7 +13,7 @@ public class BotTank extends Tank {
 	private double time = 30; //坦克更改方向的帧数
 	
 	public BotTank(double x, double y, double direction,Color color, int group) {
-	    super(x, y, direction, color, group);
+	    super(x, y, Math.toRadians(direction), color, group);
 	    tankMove.setMoveSpeed(Const.botmoveSpeed);
 	}
 	public void update() {

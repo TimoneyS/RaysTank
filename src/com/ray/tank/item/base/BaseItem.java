@@ -7,6 +7,10 @@ public abstract class BaseItem implements HasLife {
     protected boolean alive;
     protected Location location;
 
+    public BaseItem() {
+        alive = true;
+    }
+    
     public abstract void draw(Graphics2D g);
 
     public abstract void update();

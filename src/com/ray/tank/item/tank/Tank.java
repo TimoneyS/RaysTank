@@ -35,7 +35,6 @@ public abstract class Tank extends CollisionalItem {
         this.direction = direction;
         this.color = teamColor;
         this.group = group;
-        alive     = true;
         tankCollision = new TankCollision();
         tankMove      = new TankMove();
         weelState = 0;

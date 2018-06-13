@@ -30,7 +30,7 @@ public class BattleField {
 	}
 	public BattleField(int x) {
 		this();
-		for(int i = 50; i < 600; i += 50) {
+		for(int i = 100; i < 500; i += 50) {
 			addTank(new BotTank(50, i, 90, Color.YELLOW, 2));		//黄色方
 			addTank(new BotTank(550, i, 270, Color.CYAN, 2));		//青色方
 			addTank(new BotTank(i, 550, 0, Color.RED, 2));		    //红色方
@@ -47,10 +47,15 @@ public class BattleField {
 	}
 	//更新方法
 	public void upDate() {
+	    
 		upDate(tanks);
 		upDate(bullets);
 		upDate(explodes);
 		cleanDeadItem();
+		
+		if (tanks.size() < 5) {
+		    addTank(new BotTank(550, 200, 270, Color.RED, 2));
+		}
 	}
 	
 	public void cleanDeadItem() {

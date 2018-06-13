@@ -38,7 +38,7 @@ public class Explode extends BaseItem {
     // 绘制
 	public void draw(Graphics2D g2) {
 	    int stateIdx = state / EXPLOADE_SPEED;
-	    if (stateIdx > STATE_COLORS.length) stateIdx = STATE_COLORS.length;	    
+	    if (stateIdx >= STATE_COLORS.length) stateIdx = STATE_COLORS.length-1;	    
 	    
 	    g2.setColor(STATE_COLORS[stateIdx]);
 		Ellipse2D s = new Ellipse2D.Double(								//建立形状
