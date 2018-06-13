@@ -11,7 +11,7 @@ public interface Moveable {
      */
     public abstract double getDirection();
     
-    public abstract void outBoundHandle();
+    public abstract void doOutBound();
     
     /**
      * ÒÆ¶¯ËÙ¶È

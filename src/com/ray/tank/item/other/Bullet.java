@@ -65,7 +65,7 @@ public class Bullet implements BaseItem {
     private class BulletMove extends MoveSupport {
         
         @Override
-        public void outBoundHandle() {
+        public void doOutBound() {
             lifeEnd();
         }
         

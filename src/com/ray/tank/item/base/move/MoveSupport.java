@@ -16,14 +16,14 @@ public abstract class MoveSupport implements Moveable {
         if (getBattfield().isInBounds(tx, ty)) {
             l.set(tx, ty);
         } else {
-            outBoundHandle();   
+            doOutBound();   
         }
         
     }
     
     @Override
-    public void outBoundHandle() {
-        // 默认不错任何事
+    public void doOutBound() {
+        // 默认不做任何事
     }
     
 }
