@@ -53,9 +53,9 @@ public class BattleField {
 		upDate(explodes);
 		cleanDeadItem();
 		
-		if (tanks.size() < 5) {
-		    addTank(new BotTank(550, 200, 270, Color.RED, 2));
-		}
+//		if (tanks.size() < 5) {
+//		    addTank(new BotTank(550, 200, 270, Color.RED, 2));
+//		}
 	}
 	
 	public void cleanDeadItem() {

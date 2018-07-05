@@ -57,10 +57,10 @@ public class PlaTank extends Tank implements Listenable {
 	//·¢Éä×Óµ¯
 	public void fire() {
 		if(alive&&fire) {
-		    for (int i = -3; i < 3; i += 1) {
-		        battleField.addBullet(new Bullet(this, location, Math.toRadians(5 * i) + direction, color));
-            }
-//			battleField.add(new Bullet(this, location, direction, color));
+//		    for (int i = -3; i < 3; i += 1) {
+//		        battleField.addBullet(new Bullet(this, location, Math.toRadians(5 * i) + direction, color));
+//            }
+			battleField.addBullet(new Bullet(this, location, direction, color));
 			fire = false;
 		}
 	}
