@@ -61,19 +61,14 @@ public class Bullet extends CollisionalItem {
     private class BulletMove extends MoveSupport {
         
         @Override
-        public void doOutBound() {
-            lifeEnd();
+        public void doOutBound() { lifeEnd();
         }
         
         @Override
-        public double getDirection() {
-            return direction;
-        }
+        public double getDirection() { return direction; }
 
         @Override
-        public Location getLocation() {
-            return location;
-        }
+        public Location getLocation() { return location; }
         
     }
     

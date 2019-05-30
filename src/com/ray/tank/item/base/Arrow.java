@@ -23,7 +23,7 @@ public class Arrow {
     public static Arrow S = new Arrow(0, -1);
     public static Arrow A = new Arrow(-1, 0);
     public static Arrow D = new Arrow(1, 0);
-    public static Arrow ZEOR = new Arrow(0, 0);
+    public static Arrow ZERO = new Arrow(0, 0);
     
     private int         x;
     private int         y;
@@ -67,7 +67,7 @@ public class Arrow {
     }
     
     /**
-     * ÏòÁ¿±äÎª½Ç¶È
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ç¶ï¿½
      * @return
      */
     public double toDrgree() {
@@ -76,7 +76,7 @@ public class Arrow {
     }
     
     /**
-     * ÏòÁ¿±äÎª»¡¶È
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
      * @return
      */
     public double toRadians() {
@@ -96,27 +96,27 @@ public class Arrow {
         String dir = "";
         if (x == 0) {
             if (y > 0) {
-                dir = "¡ü";
+                dir = "ï¿½ï¿½";
             } else if (y < 0){
-                dir = "¡ý";
+                dir = "ï¿½ï¿½";
             } else {
                 dir = "O";
             }
         } else if (x > 0){
             if (y > 0) {
-                dir = "¨J";
+                dir = "ï¿½J";
             } else if (y < 0){
-                dir = "¨K";
+                dir = "ï¿½K";
             } else {
-                dir = "¡ú";
+                dir = "ï¿½ï¿½";
             }
         } else {
             if (y > 0) {
-                dir = "¨I";
+                dir = "ï¿½I";
             } else if (y < 0){
-                dir = "¨L";
+                dir = "ï¿½L";
             } else {
-                dir = "¡û";
+                dir = "ï¿½ï¿½";
             }
         }
         

@@ -9,7 +9,7 @@ public class Const {
     public static final boolean canPlayerBeKill = false;      // ���̹�˿�������
     public static final Color   playerColor     = Color.pink; // ���̹����ɫ
 
-    public static final double  bulletSpeed     = 15;         // �����ӵ��ٶ�
+    public static final double  bulletSpeed     = 45;         // �����ӵ��ٶ�
     public static final double  manmoveSpeed    = 8;          // �ƶ��ٶ�
     public static final double  botmoveSpeed    = 3;          // �ƶ��ٶ�
     

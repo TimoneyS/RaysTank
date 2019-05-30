@@ -49,7 +49,6 @@ public class PlaTank extends Tank {
         };
         
         Global.frame.addKeyListener(keyListner);
-        Global.battleField.addTank(this);
     }
     
 	//�ύ���ݱ仯
@@ -62,7 +61,8 @@ public class PlaTank extends Tank {
 	public void lifeEnd() {
 		alive = !Const.canPlayerBeKill;
 		Global.battleField.createExplode(location);
-		Global.frame.removeKeyListener(keyListner);
+        if (!alive)
+            Global.frame.removeKeyListener(keyListner);
 	}
 	//�ƶ�����
 	public void move() {
@@ -74,8 +74,9 @@ public class PlaTank extends Tank {
         if (a) arrow.plus(Arrow.A);
         if (d) arrow.plus(Arrow.D);
         
-        if (arrow.equals(Arrow.ZEOR)) {
-            // ���ƶ������������
+        if (arrow.equals(Arrow.ZERO)) {
+            // 停止
+            
         } else {
             // direction
             direction = arrow.toRadians();
