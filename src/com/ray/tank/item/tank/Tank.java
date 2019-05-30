@@ -15,7 +15,6 @@ import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.base.crash.CollisionalSupport;
 import com.ray.tank.item.base.move.MoveSupport;
-import com.ray.tank.item.other.BattleField;
 
 public abstract class Tank extends CollisionalItem {
 
