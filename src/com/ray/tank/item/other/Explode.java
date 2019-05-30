@@ -3,14 +3,14 @@ package com.ray.tank.item.other;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-import com.ray.tank.config.Const;
+import com.ray.tank.common.Const;
 import com.ray.tank.item.base.BaseItem;
 import com.ray.tank.item.base.Location;
 
 public class Explode extends BaseItem {
     
     /**
-     * ÒÀ´Î±íÊ¾¸÷½×¶ÎµÄÑÕÉ«
+     * ä¾æ¬¡è¡¨ç¤ºå„é˜¶æ®µçš„é¢œè‰²
      */
     private static Color[] STATE_COLORS = {
             Color.CYAN,
@@ -19,37 +19,37 @@ public class Explode extends BaseItem {
             Color.ORANGE,
             Color.RED,
     };
-    private static int     radius         = Const.MaxExplodRadius; // ±¬Õ¨³ÖĞøÖ¡Êı
+    private static int     radius         = Const.MaxExplodRadius; // çˆ†ç‚¸æŒç»­å¸§æ•°
     private static int     EXPLOADE_SPEED = Const.explodSpeed;
 
     private double         size;
-    private int            state;                                  // ×´Ì¬£¬ÃèÊö¶¯»­½øĞĞµ½ºÎÖÖ³Ì¶ÈµÄ±êÖ¾
+    private int            state;                                  // çŠ¶æ€ï¼Œæè¿°åŠ¨ç”»è¿›è¡Œåˆ°ä½•ç§ç¨‹åº¦çš„æ ‡å¿—
 
-	private Explode(Location location) {
-	    this.location = location.clone();
-	    state = 0;
-	    size = Const.size;
+    private Explode(Location location) {
+        this.location = location.clone();
+        state = 0;
+        size = Const.size;
     }
-	
-	public static Explode get(Location location) {
-	    return new Explode(location);
-	}
-	
-    // »æÖÆ
-	public void draw(Graphics2D g2) {
-	    int stateIdx = state / EXPLOADE_SPEED;
-	    if (stateIdx >= STATE_COLORS.length) stateIdx = STATE_COLORS.length-1;	    
-	    
-	    g2.setColor(STATE_COLORS[stateIdx]);
-		Ellipse2D s = new Ellipse2D.Double(								//½¨Á¢ĞÎ×´
-				location.X()-state*size/5, location.Y()-state*size/5, state*size/2.5, state*size/2.5);
-		g2.fill(s);														//Ìî³äĞÎ×´
-	}
-	
-	// ¸üĞÂ£¬½«×´Ì¬µİ½ø
-	public void update() {
-		state += EXPLOADE_SPEED;
-		if(state >= radius) lifeEnd();
-	}
+    
+    public static Explode get(Location location) {
+        return new Explode(location);
+    }
+    
+    // ç»˜åˆ¶
+    public void draw(Graphics2D g2) {
+        int stateIdx = state / EXPLOADE_SPEED;
+        if (stateIdx >= STATE_COLORS.length) stateIdx = STATE_COLORS.length-1;      
+        
+        g2.setColor(STATE_COLORS[stateIdx]);
+        Ellipse2D s = new Ellipse2D.Double(                             //å»ºç«‹å½¢çŠ¶
+                location.X()-state*size/5, location.Y()-state*size/5, state*size/2.5, state*size/2.5);
+        g2.fill(s);                                                     //å¡«å……å½¢çŠ¶
+    }
+    
+    // æ›´æ–°ï¼Œå°†çŠ¶æ€é€’è¿›
+    public void update() {
+        state += EXPLOADE_SPEED;
+        if(state >= radius) lifeEnd();
+    }
 
 }

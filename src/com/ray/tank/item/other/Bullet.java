@@ -3,8 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
+import com.ray.tank.common.Const;
 import com.ray.tank.common.DrawUtil;
-import com.ray.tank.config.Const;
+import com.ray.tank.common.Global;
 import com.ray.tank.item.base.CollisionalItem;
 import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
@@ -15,8 +16,8 @@ import com.ray.tank.item.tank.Tank;
 public class Bullet extends CollisionalItem {
     
     private Tank       master;
-    private double     direction;        // ·½Ïò
-    private Color      color;            // ÑÕÉ«±êÖ¾
+    private double     direction;        // ï¿½ï¿½ï¿½ï¿½
+    private Color      color;            // ï¿½ï¿½É«ï¿½ï¿½Ö¾
     private Collision  bulletCollision;
     private double     size = Const.size;
     private BulletMove bulletMove;
@@ -32,24 +33,24 @@ public class Bullet extends CollisionalItem {
         bulletMove.setMoveSpeed(Const.bulletSpeed);
     }
 	
-    //»æÖÆ·½·¨
+    //ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
 	public void draw(Graphics2D g2) {
-		Ellipse2D shape = //ÐÎ×´£¬Ô²ÐÎ
+		Ellipse2D shape = //ï¿½ï¿½×´ï¿½ï¿½Ô²ï¿½ï¿½
 				new Ellipse2D.Double(location.X()-Const.size, location.Y()-Const.size, 2.5*Const.size, 2.5*Const.size);
 		DrawUtil.drawShape(g2, color, shape);
 	}
 	
-	//¸üÐÂ·½·¨
+	//ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
 	public void update() {
 		bulletMove.move();
-		bulletCollision.crash(battleField.getTanks());
-		bulletCollision.crash(battleField.getBullets());
+		bulletCollision.crash(Global.battleField.getTanks());
+		bulletCollision.crash(Global.battleField.getBullets());
 	}
 	
-	//×Óµ¯ÉúÃüÖÜÆÚ½áÊø 
+	//ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ 
 	public void lifeEnd() {
 		alive = false;									
-		battleField.createExplode(location);
+		Global.battleField.createExplode(location);
 	}
 
 	@Override
@@ -72,11 +73,6 @@ public class Bullet extends CollisionalItem {
         @Override
         public Location getLocation() {
             return location;
-        }
-
-        @Override
-        public BattleField getBattfield() {
-            return battleField;
         }
         
     }

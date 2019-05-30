@@ -13,13 +13,13 @@ import com.ray.tank.item.tank.Tank;
 
 public class BattleField {
     
-    public Rectangle      bounds;   // ±ß½ç
+    public Rectangle      bounds;   // ï¿½ß½ï¿½
 
-    private List<Bullet>      bullets;     // ËùÓÐµÄ×Óµ¯¼¯ºÏ
-    private List<Explode>     explodes;    // ËùÓÐµÄ±¬Õ¨¼¯ºÏ
-    private List<Tank>        tanks;       // ËùÓÐÌ¹¿Ë¼¯ºÏ
-    private List<Collision> tankCollisional; // Åö×²¼ì²â¼¯ºÏ
-    private List<Collision> bulletCollisional; // Åö×²¼ì²â¼¯ºÏ
+    private List<Bullet>      bullets;     // ï¿½ï¿½ï¿½Ðµï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½
+    private List<Explode>     explodes;    // ï¿½ï¿½ï¿½ÐµÄ±ï¿½Õ¨ï¿½ï¿½ï¿½ï¿½
+    private List<Tank>        tanks;       // ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½Ë¼ï¿½ï¿½ï¿½
+    private List<Collision> tankCollisional; // ï¿½ï¿½×²ï¿½ï¿½â¼¯ï¿½ï¿½
+    private List<Collision> bulletCollisional; // ï¿½ï¿½×²ï¿½ï¿½â¼¯ï¿½ï¿½
     
 	public BattleField() {
 		tanks = new LinkedList<Tank>();
@@ -31,13 +31,14 @@ public class BattleField {
 	public BattleField(int x) {
 		this();
 		for(int i = 100; i < 500; i += 50) {
-			addTank(new BotTank(50, i, 90, Color.YELLOW, 2));		//»ÆÉ«·½
-			addTank(new BotTank(550, i, 270, Color.CYAN, 2));		//ÇàÉ«·½
-			addTank(new BotTank(i, 550, 0, Color.RED, 2));		    //ºìÉ«·½
-	        addTank(new BotTank(i, 50, 180, Color.BLUE, 2));        //À¶É«·½
+			addTank(new BotTank(50, i, 90, Color.YELLOW, 2));		//ï¿½ï¿½É«ï¿½ï¿½
+			addTank(new BotTank(550, i, 270, Color.CYAN, 2));		//ï¿½ï¿½É«ï¿½ï¿½
+			addTank(new BotTank(i, 550, 0, Color.RED, 2));		    //ï¿½ï¿½É«ï¿½ï¿½
+	        addTank(new BotTank(i, 50, 180, Color.BLUE, 2));        //ï¿½ï¿½É«ï¿½ï¿½
 		}
+		
 	}
-	//»æÖÆ·½·¨
+	//ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
 	public void draw(Graphics2D g2) {
 		java.awt.Color c = g2.getColor();
 		draw(tanks, g2);
@@ -45,7 +46,7 @@ public class BattleField {
 		draw(explodes, g2);
 		g2.setColor(c);
 	}
-	//¸üÐÂ·½·¨
+	//ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
 	public void upDate() {
 	    
 		upDate(tanks);
@@ -59,14 +60,14 @@ public class BattleField {
 	}
 	
 	public void cleanDeadItem() {
-	       // ÇåÀí
+	       // ï¿½ï¿½ï¿½ï¿½
         for (Iterator<Collision> iterator = bulletCollisional.iterator(); iterator.hasNext();) {
             Collision collisional = iterator.next();
             if (!collisional.isAlive())
                 iterator.remove();
         }
         
-        // ÇåÀí
+        // ï¿½ï¿½ï¿½ï¿½
         for (Iterator<Collision> iterator = tankCollisional.iterator(); iterator.hasNext();) {
             Collision collisional = iterator.next();
             if (!collisional.isAlive())
@@ -74,13 +75,13 @@ public class BattleField {
         }
 	}
 	
-	//»æÖÆÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	private synchronized void draw(List<? extends BaseItem> list,Graphics2D g2){
 		Iterator<? extends BaseItem> i = list.iterator();
 		while(i.hasNext())
 			i.next().draw(g2);
 	}
-	//¸üÐÂ±í
+	//ï¿½ï¿½ï¿½Â±ï¿½
 	private synchronized void upDate(List<? extends BaseItem> list) {
 		Iterator<? extends BaseItem> i = list.iterator();
 		while(i.hasNext()) {
@@ -89,26 +90,24 @@ public class BattleField {
 			else u.update();
 		}
 	}
-	//Ìí¼Ó·½·¨
+	//ï¿½ï¿½Ó·ï¿½ï¿½ï¿½
 	public synchronized void createExplode(Location location){
 		explodes.add(Explode.get(location));
 	}
 	
-	//Ìí¼Ó·½·¨
+	//ï¿½ï¿½Ó·ï¿½ï¿½ï¿½
 	public synchronized void addTank(Tank t){
 		tanks.add(t);
 		tankCollisional.add(t.getCollision());
-		t.setBattleField(this);
 	}
 	
-	//Ìí¼Ó·½·¨
+	//ï¿½ï¿½Ó·ï¿½ï¿½ï¿½
 	public synchronized void addBullet(Bullet b){
 		bullets.add(b);
 		bulletCollisional.add(b.getCollision());
-		b.setBattleField(this);
 	}
 	
-	//»ñÈ¡Ïà¹ØÊýÖµ£¬ÊäÈëÓÐÎóÊ±£¬½«·µ»Ø-1
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1
 	public int getNumbers(int i) { 				
 		if(i==0) return tanks.size();
 		if(i==2) return bullets.size();
@@ -129,7 +128,7 @@ public class BattleField {
 	}
 	
 	/**
-	 * ÅÐ¶ÏÎïÌåÊÇ·ñ³¬¹ý±ß½ç
+	 * ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ³¬¹ï¿½ï¿½ß½ï¿½
 	 * @param x
 	 * @param y
 	 * @return

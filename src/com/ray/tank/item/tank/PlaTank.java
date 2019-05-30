@@ -1,44 +1,73 @@
 package com.ray.tank.item.tank;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import com.ray.tank.config.Const;
+import com.ray.tank.common.Const;
+import com.ray.tank.common.Global;
 import com.ray.tank.item.base.Arrow;
-import com.ray.tank.item.base.Listenable;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.other.Bullet;
 
-public class PlaTank extends Tank implements Listenable {
+public class PlaTank extends Tank {
 
     private boolean fire = false;
 
-    // ÔË¶¯±êÖ¾
+    // ï¿½Ë¶ï¿½ï¿½ï¿½Ö¾
     private boolean w    = false;
     private boolean s    = false;
     private boolean a    = false;
     private boolean d    = false;
+    private KeyListener keyListner;
 
     public PlaTank(double x, double y, double direction, Color teamColor, int group) {
         super(x, y, direction, teamColor, group);
         tankMove.setMoveSpeed(Const.manmoveSpeed);
+        
+        keyListner = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                switch(e.getKeyCode()) {
+                    case KeyEvent.VK_W : w = true;break;
+                    case KeyEvent.VK_S : s = true;break;
+                    case KeyEvent.VK_D : d = true;break;
+                    case KeyEvent.VK_A : a = true;break;
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                switch(e.getKeyCode()) {
+                    case KeyEvent.VK_W : w = false;break;
+                    case KeyEvent.VK_S : s = false;break;
+                    case KeyEvent.VK_D : d = false;break;
+                    case KeyEvent.VK_A : a = false;break;
+                    case KeyEvent.VK_J : fire = true;break;
+                }
+            }
+        };
+        
+        Global.frame.addKeyListener(keyListner);
+        Global.battleField.addTank(this);
     }
     
-	//Ìá½»Êý¾Ý±ä»¯
+	//ï¿½á½»ï¿½ï¿½ï¿½Ý±ä»¯
 	public void update() {
 		move();
-		tankCollision.crash(battleField.getTanks());
+		tankCollision.crash(Global.battleField.getTanks());
 		fire();
 	}
-	//ÉúÃüÖÜÆÚ½áÊø
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½
 	public void lifeEnd() {
 		alive = !Const.canPlayerBeKill;
-		battleField.createExplode(location);
+		Global.battleField.createExplode(location);
+		Global.frame.removeKeyListener(keyListner);
 	}
-	//ÒÆ¶¯²Ù×÷
+	//ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void move() {
 	    
-	    // Ê×ÏÈÅÐ¶¨·½Ïò
+	    // ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	    Arrow arrow = new Arrow();
 	    if (w) arrow.plus(Arrow.W);
         if (s) arrow.plus(Arrow.S);
@@ -46,7 +75,7 @@ public class PlaTank extends Tank implements Listenable {
         if (d) arrow.plus(Arrow.D);
         
         if (arrow.equals(Arrow.ZEOR)) {
-            // ²»ÒÆ¶¯£¬²»±ä¸ü·½Ïò
+            // ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         } else {
             // direction
             direction = arrow.toRadians();
@@ -54,39 +83,19 @@ public class PlaTank extends Tank implements Listenable {
         }
         
 	}
-	//·¢Éä×Óµ¯
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½
 	public void fire() {
 		if(alive&&fire) {
 //		    for (int i = -3; i < 3; i += 1) {
 //		        battleField.addBullet(new Bullet(this, location, Math.toRadians(5 * i) + direction, color));
 //            }
-			battleField.addBullet(new Bullet(this, location, direction, color));
+		    Global.battleField.addBullet(new Bullet(this, location, direction, color));
 			fire = false;
 		}
 	}
-	
-	public void keyPress(KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case KeyEvent.VK_W : w = true;break;
-			case KeyEvent.VK_S : s = true;break;
-			case KeyEvent.VK_D : d = true;break;
-			case KeyEvent.VK_A : a = true;break;
-		}
-	}
-	
-	public void keyReleased(KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case KeyEvent.VK_W : w = false;break;
-			case KeyEvent.VK_S : s = false;break;
-			case KeyEvent.VK_D : d = false;break;
-			case KeyEvent.VK_A : a = false;break;
-			case KeyEvent.VK_J : fire = true;break;			//µã·¢
-		}
-		
-	}
-	
+
 	public int getType() {
 		return Collision.PLAYER_TANK;
 	}
-
+	
 }

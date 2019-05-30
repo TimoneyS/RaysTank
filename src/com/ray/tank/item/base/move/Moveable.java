@@ -1,39 +1,30 @@
 package com.ray.tank.item.base.move;
 
 import com.ray.tank.item.base.Location;
-import com.ray.tank.item.other.BattleField;
 
 public interface Moveable {
     
     /**
-     * ÒÆ¶¯Ô½½ç´¦Àí
+     * ï¿½Æ¶ï¿½Ô½ï¿½ç´¦ï¿½ï¿½
      */
     public abstract void doOutBound();
     
     /**
-     * ·½Ïò
+     * ï¿½ï¿½ï¿½ï¿½
      * @return
      */
     public abstract double getDirection();
 
     /**
-     * ÒÆ¶¯ËÙ¶È
+     * ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
      * @return
      */
     public abstract void setMoveSpeed(double speed);
     
     /**
-     * ×ø±ê
+     * ï¿½ï¿½ï¿½ï¿½
      * @return
      */
     public Location getLocation();
    
-    /**
-     * Õ½³¡±ß½ç
-     * @return
-     */
-    public abstract BattleField getBattfield();
-    
-    
-    
 }

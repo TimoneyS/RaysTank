@@ -1,25 +1,26 @@
 package com.ray.tank.item.base.move;
 
+import com.ray.tank.common.Global;
 import com.ray.tank.item.base.Location;
 
 /**
- * ÎïÌåÒÆ¶¯¸¨ÖúÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author rays1
  *
  */
 public abstract class MoveSupport implements Moveable {
     
-    protected double      moveSpeed;    // ÒÆ¶¯ËÙ¶È
+    protected double      moveSpeed;    // ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
     
     public void move() {
         
         double direction = getDirection();
         Location l = getLocation();
         
-        double tx = l.X() + Math.sin(direction)*moveSpeed;         // ºá×ø±ê±ä»¯
-        double ty = l.Y() - Math.cos(direction)*moveSpeed;         // ×Ý×ø±ê±ä»¯
+        double tx = l.X() + Math.sin(direction)*moveSpeed;         // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä»¯
+        double ty = l.Y() - Math.cos(direction)*moveSpeed;         // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä»¯
         
-        if (getBattfield().isInBounds(tx, ty)) {
+        if (Global.battleField.isInBounds(tx, ty)) {
             l.set(tx, ty);
         } else {
             doOutBound();   
@@ -29,7 +30,7 @@ public abstract class MoveSupport implements Moveable {
     
     @Override
     public void doOutBound() {
-        // Ä¬ÈÏ²»×öÈÎºÎÊÂ
+        // Ä¬ï¿½Ï²ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½
     }
     
     public void setMoveSpeed(double moveSpeed) {

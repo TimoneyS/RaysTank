@@ -2,14 +2,15 @@ package com.ray.tank.item.tank;
 
 import java.awt.Color;
 
-import com.ray.tank.config.Const;
+import com.ray.tank.common.Const;
+import com.ray.tank.common.Global;
 import com.ray.tank.item.base.Arrow;
 import com.ray.tank.item.base.crash.Collision;
 import com.ray.tank.item.other.Bullet;
 
 public class BotTank extends Tank {
     
-	private double time = 30; //Ì¹¿Ë¸ü¸Ä·½ÏòµÄÖ¡Êý
+	private double time = 30; //Ì¹ï¿½Ë¸ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½
 	
 	public BotTank(double x, double y, double direction,Color color, int group) {
 	    super(x, y, Math.toRadians(direction), color, group);
@@ -20,7 +21,7 @@ public class BotTank extends Tank {
 	    if(Const.aiMove) 
 		    randomMove();
 		
-	    tankCollision.crash(battleField.getTanks());
+	    tankCollision.crash(Global.battleField.getTanks());
 		
 		if(Const.aiFire)
 		    fire();
@@ -33,7 +34,7 @@ public class BotTank extends Tank {
 		time = time%30;
 	}
 
-	//Ñ¡Ôñ·½Ïò
+	//Ñ¡ï¿½ï¿½ï¿½ï¿½
 	public void chooseDirection() {
 		switch((int)(Math.random()*4)) {
 			case 0 : direction = Arrow.W.toRadians();break;
@@ -44,15 +45,15 @@ public class BotTank extends Tank {
 	}
 	
 	public void fire() {
-		if((int)(Math.random()*Const.aiShootRate)==1)		//°Ù·ÖÖ®Ò»µÄ¼¸ÂÊ¿ªÇ¹
-			battleField.addBullet(new Bullet(this, location,direction,color));
+		if((int)(Math.random()*Const.aiShootRate)==1)		//ï¿½Ù·ï¿½Ö®Ò»ï¿½Ä¼ï¿½ï¿½Ê¿ï¿½Ç¹
+			Global.battleField.addBullet(new Bullet(this, location,direction,color));
 	}
 	public int getType() {
 		return Collision.BOT_TANK;
 	}
 
 	public void lifeEnd() {
-		battleField.createExplode(location);
+	    Global.battleField.createExplode(location);
 		alive = false;
 	}
 

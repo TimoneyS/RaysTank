@@ -8,8 +8,8 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
+import com.ray.tank.common.Const;
 import com.ray.tank.common.DrawUtil;
-import com.ray.tank.config.Const;
 import com.ray.tank.item.base.CollisionalItem;
 import com.ray.tank.item.base.Location;
 import com.ray.tank.item.base.crash.Collision;
@@ -20,10 +20,10 @@ import com.ray.tank.item.other.BattleField;
 public abstract class Tank extends CollisionalItem {
 
     protected double      direction;
-    protected double      weelState;    // ÂÄ´ø¶¯Ì¬Ð§¹û
-    protected int         score;        // µÃ·Ö
+    protected double      weelState;    // ï¿½Ä´ï¿½ï¿½ï¿½Ì¬Ð§ï¿½ï¿½
+    protected int         score;        // ï¿½Ã·ï¿½
     protected int         group;
-    protected Color       color;        // ÑÕÉ«
+    protected Color       color;        // ï¿½ï¿½É«
     protected Collision   tankCollision;
     protected TankMove    tankMove;
     
@@ -41,8 +41,8 @@ public abstract class Tank extends CollisionalItem {
     }
 
     @Override
-    public void draw(Graphics2D g2){                        //»æÖÆ
-        AffineTransform odlTramsform = g2.getTransform();   //Ðý×ª²ÎÊý±¸·Ý
+    public void draw(Graphics2D g2){                        //ï¿½ï¿½ï¿½ï¿½
+        AffineTransform odlTramsform = g2.getTransform();   //ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         
         double x = location.X();
         double y = location.Y();
@@ -50,23 +50,23 @@ public abstract class Tank extends CollisionalItem {
         double size = Const.size;
         double rad = direction;
         
-        // Ãû³ÆºÍµÃ·Ö
+        // ï¿½ï¿½ï¿½ÆºÍµÃ·ï¿½
         g2.drawString("tank kill " + getScore(), (int)x, (int)y);
         
-        g2.rotate(rad, x, y);                               //ÉèÖÃÐý×ªµÄ½Ç¶ÈºÍÖÐÐÄµã
+        g2.rotate(rad, x, y);                               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½Ä½Ç¶Èºï¿½ï¿½ï¿½ï¿½Äµï¿½
         
-        //Ö÷²ÕÊÒ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         RoundRectangle2D rbody = new  RoundRectangle2D.Double(
                  x-3*size, y-3*size, 6*size, 6*size, 1*size, 1*size);
         DrawUtil.drawShape(g2, color, rbody);
         
-        // ÂÖ×Ó
+        // ï¿½ï¿½ï¿½ï¿½
         Rectangle2D rweell = new Rectangle2D.Double(x-5*size, y-5*size, 2*size, 10*size);
         Rectangle2D rweelr = new Rectangle2D.Double(x+3*size, y-5*size, 2*size, 10*size);
         DrawUtil.drawShape(g2, Color.LIGHT_GRAY, rweelr);
         DrawUtil.drawShape(g2, Color.LIGHT_GRAY, rweell);
         
-        // ÂÄ´ø
+        // ï¿½Ä´ï¿½
         double y2;
         for(int i = 0; i < 10; i += 2) {
             // y2 = y + size*(weelState/10 + 2*i);
@@ -75,26 +75,26 @@ public abstract class Tank extends CollisionalItem {
             g2.draw(new Line2D.Double(x+5*size, y2, x+3*size, y2));
         }
         
-        // ÅÚ¹Ü
+        // ï¿½Ú¹ï¿½
         g2.setColor(Color.DARK_GRAY);
         Rectangle2D rfire = new Rectangle2D.Double(x-0.4*size, y-8*size, 1*size, 8*size);
         g2.fill(rfire);
         
-        // ÅÚÌ¨
+        // ï¿½ï¿½Ì¨
         g2.setColor(Color.DARK_GRAY);
         Ellipse2D rfilePlat = new Ellipse2D.Double(x-1.5*size, y-1.5*size, 3*size, 3*size);
         
         g2.fill(rfilePlat);
         
-        g2.setTransform(odlTramsform); //»Ö¸´±¸·ÝµÄÐý×ª²ÎÊý
+        g2.setTransform(odlTramsform); //ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½
     }
     
     /**
-     * Ì¹¿ËÒÆ¶¯
+     * Ì¹ï¿½ï¿½ï¿½Æ¶ï¿½
      * @param moveSpeed
      */
     public void move() {
-        moveStateChange();                                          // ÂÄ´ø±ä»¯
+        moveStateChange();                                          // ï¿½Ä´ï¿½ï¿½ä»¯
         location.save();
         tankMove.move();
     }
@@ -112,6 +112,7 @@ public abstract class Tank extends CollisionalItem {
         weelState = weelState%10;
     }
     
+    @Override
     public Collision getCollision() {
         return tankCollision;
     }
@@ -132,14 +133,9 @@ public abstract class Tank extends CollisionalItem {
             return location;
         }
 
-        @Override
-        public BattleField getBattfield() {
-            return battleField;
-        }
-        
     }
     
-    // Åö×²´¦Àí
+    // ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½
     protected class TankCollision extends CollisionalSupport {
 
         @Override
