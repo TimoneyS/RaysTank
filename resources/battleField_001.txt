@@ -1,0 +1,9 @@
+[BOT]
+    bot=i, 50, 180, Color.BLUE, 2
+    bot=i, 50, 180, Color.BLUE, 2
+    bot=i, 50, 180, Color.BLUE, 2
+    bot=i, 50, 180, Color.BLUE, 2
+    bot=i, 50, 180, Color.BLUE, 2
+    bot=i, 50, 180, Color.BLUE, 2
+    
+[PLAYER]
