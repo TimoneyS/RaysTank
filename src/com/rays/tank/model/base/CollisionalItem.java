@@ -1,6 +1,6 @@
-package com.rays.tank.item.base;
+package com.rays.tank.model.base;
 
-import com.rays.tank.item.base.crash.Collision;
+import com.rays.tank.model.base.crash.Collision;
 
 public abstract class CollisionalItem extends BaseItem {
     

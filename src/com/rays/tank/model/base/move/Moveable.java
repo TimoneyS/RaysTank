@@ -1,6 +1,6 @@
-package com.rays.tank.item.base.move;
+package com.rays.tank.model.base.move;
 
-import com.rays.tank.item.base.Location;
+import com.rays.tank.model.base.Location;
 
 public interface Moveable {
     

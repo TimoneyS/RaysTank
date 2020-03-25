@@ -1,9 +1,9 @@
-package com.rays.tank.item.base.crash;
+package com.rays.tank.model.base.crash;
 
 import java.util.List;
 
-import com.rays.tank.item.base.HasLife;
-import com.rays.tank.item.base.Location;
+import com.rays.tank.model.base.HasLife;
+import com.rays.tank.model.base.Location;
 
 /**
  * ��ײ���ӿ�

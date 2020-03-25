@@ -1,4 +1,4 @@
-package com.rays.tank.item.base.crash;
+package com.rays.tank.model.base.crash;
 
 import java.util.Iterator;
 import java.util.List;

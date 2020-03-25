@@ -1,14 +1,14 @@
-package com.rays.tank.item.other;
+package com.rays.tank.model.other;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import com.rays.tank.common.DrawUtil;
-import com.rays.tank.item.base.CollisionalItem;
-import com.rays.tank.item.base.Location;
-import com.rays.tank.item.base.crash.Collision;
-import com.rays.tank.item.base.crash.CollisionalSupport;
+import com.rays.tank.model.base.CollisionalItem;
+import com.rays.tank.model.base.Location;
+import com.rays.tank.model.base.crash.Collision;
+import com.rays.tank.model.base.crash.CollisionalSupport;
 
 public class Wall extends CollisionalItem {
 

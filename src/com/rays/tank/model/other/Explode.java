@@ -1,11 +1,11 @@
-package com.rays.tank.item.other;
+package com.rays.tank.model.other;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 import com.rays.tank.common.Const;
-import com.rays.tank.item.base.BaseItem;
-import com.rays.tank.item.base.Location;
+import com.rays.tank.model.base.BaseItem;
+import com.rays.tank.model.base.Location;
 
 public class Explode extends BaseItem {
     

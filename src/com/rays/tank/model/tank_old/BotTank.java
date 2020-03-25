@@ -1,12 +1,12 @@
-package com.rays.tank.item.tank;
+package com.rays.tank.model.tank_old;
 
 import java.awt.Color;
 
 import com.rays.tank.common.Const;
 import com.rays.tank.common.Global;
-import com.rays.tank.item.base.Arrow;
-import com.rays.tank.item.base.crash.Collision;
-import com.rays.tank.item.other.Bullet;
+import com.rays.tank.model.base.Arrow;
+import com.rays.tank.model.base.crash.Collision;
+import com.rays.tank.model.other.Bullet;
 
 public class BotTank extends Tank {
     
@@ -21,7 +21,7 @@ public class BotTank extends Tank {
 	    if(Const.aiMove) 
 		    randomMove();
 		
-	    tankCollision.crash(Global.battleField.getTanks());
+//	    tankCollision.crash(Global.battleField.getTanks());
 		
 		if(Const.aiFire)
 		    fire();
@@ -45,15 +45,15 @@ public class BotTank extends Tank {
 	}
 	
 	public void fire() {
-		if((int)(Math.random()*Const.aiShootRate)==1)		//�ٷ�֮һ�ļ��ʿ�ǹ
-			Global.battleField.addBullet(new Bullet(this, location,direction,color));
+//		if((int)(Math.random()*Const.aiShootRate)==1)		//�ٷ�֮һ�ļ��ʿ�ǹ
+//			Global.battleField.addBullet(new Bullet(this, location,direction,color));
 	}
 	public int getType() {
 		return Collision.BOT_TANK;
 	}
 
 	public void lifeEnd() {
-	    Global.battleField.createExplode(location);
+//	    Global.battleField.createExplode(location);
 		alive = false;
 	}
 

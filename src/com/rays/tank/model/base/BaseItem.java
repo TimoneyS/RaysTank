@@ -1,4 +1,4 @@
-package com.rays.tank.item.base;
+package com.rays.tank.model.base;
 
 import java.awt.Graphics2D;
 

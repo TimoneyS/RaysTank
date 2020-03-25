@@ -1,4 +1,4 @@
-package com.rays.tank.item.other;
+package com.rays.tank.model.other;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -6,12 +6,12 @@ import java.awt.geom.Ellipse2D;
 import com.rays.tank.common.Const;
 import com.rays.tank.common.DrawUtil;
 import com.rays.tank.common.Global;
-import com.rays.tank.item.base.CollisionalItem;
-import com.rays.tank.item.base.Location;
-import com.rays.tank.item.base.crash.Collision;
-import com.rays.tank.item.base.crash.CollisionalSupport;
-import com.rays.tank.item.base.move.MoveSupport;
-import com.rays.tank.item.tank.Tank;
+import com.rays.tank.model.base.CollisionalItem;
+import com.rays.tank.model.base.Location;
+import com.rays.tank.model.base.crash.Collision;
+import com.rays.tank.model.base.crash.CollisionalSupport;
+import com.rays.tank.model.base.move.MoveSupport;
+import com.rays.tank.model.tank_old.Tank;
 
 public class Bullet extends CollisionalItem {
     
@@ -43,14 +43,14 @@ public class Bullet extends CollisionalItem {
 	//���·���
 	public void update() {
 		bulletMove.move();
-		bulletCollision.crash(Global.battleField.getTanks());
-		bulletCollision.crash(Global.battleField.getBullets());
+//		bulletCollision.crash(Global.battleField.getTanks());
+//		bulletCollision.crash(Global.battleField.getBullets());
 	}
 	
 	//�ӵ��������ڽ��� 
 	public void lifeEnd() {
 		alive = false;									
-		Global.battleField.createExplode(location);
+//		Global.battleField.createExplode(location);
 	}
 
 	@Override

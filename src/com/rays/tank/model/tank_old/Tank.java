@@ -1,4 +1,4 @@
-package com.rays.tank.item.tank;
+package com.rays.tank.model.tank_old;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -10,11 +10,11 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.rays.tank.common.Const;
 import com.rays.tank.common.DrawUtil;
-import com.rays.tank.item.base.CollisionalItem;
-import com.rays.tank.item.base.Location;
-import com.rays.tank.item.base.crash.Collision;
-import com.rays.tank.item.base.crash.CollisionalSupport;
-import com.rays.tank.item.base.move.MoveSupport;
+import com.rays.tank.model.base.CollisionalItem;
+import com.rays.tank.model.base.Location;
+import com.rays.tank.model.base.crash.Collision;
+import com.rays.tank.model.base.crash.CollisionalSupport;
+import com.rays.tank.model.base.move.MoveSupport;
 
 public abstract class Tank extends CollisionalItem {
 

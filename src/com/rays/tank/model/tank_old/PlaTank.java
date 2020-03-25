@@ -1,4 +1,4 @@
-package com.rays.tank.item.tank;
+package com.rays.tank.model.tank_old;
 
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
@@ -7,9 +7,9 @@ import java.awt.event.KeyListener;
 
 import com.rays.tank.common.Const;
 import com.rays.tank.common.Global;
-import com.rays.tank.item.base.Arrow;
-import com.rays.tank.item.base.crash.Collision;
-import com.rays.tank.item.other.Bullet;
+import com.rays.tank.model.base.Arrow;
+import com.rays.tank.model.base.crash.Collision;
+import com.rays.tank.model.other.Bullet;
 
 public class PlaTank extends Tank {
 
@@ -54,13 +54,13 @@ public class PlaTank extends Tank {
 	//�ύ���ݱ仯
 	public void update() {
 		move();
-		tankCollision.crash(Global.battleField.getTanks());
+//		tankCollision.crash(Global.battleField.getTanks());
 		fire();
 	}
 	//�������ڽ���
 	public void lifeEnd() {
 		alive = !Const.canPlayerBeKill;
-		Global.battleField.createExplode(location);
+//		Global.battleField.createExplode(location);
         if (!alive)
             Global.frame.removeKeyListener(keyListner);
 	}
@@ -90,7 +90,7 @@ public class PlaTank extends Tank {
 //		    for (int i = -3; i < 3; i += 1) {
 //		        battleField.addBullet(new Bullet(this, location, Math.toRadians(5 * i) + direction, color));
 //            }
-		    Global.battleField.addBullet(new Bullet(this, location, direction, color));
+//		    Global.battleField.addBullet(new Bullet(this, location, direction, color));
 			fire = false;
 		}
 	}
