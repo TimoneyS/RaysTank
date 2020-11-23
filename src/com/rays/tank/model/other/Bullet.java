@@ -5,7 +5,6 @@ import java.awt.geom.Ellipse2D;
 
 import com.rays.tank.common.Const;
 import com.rays.tank.common.DrawUtil;
-import com.rays.tank.common.Global;
 import com.rays.tank.model.base.CollisionalItem;
 import com.rays.tank.model.base.Location;
 import com.rays.tank.model.base.crash.Collision;

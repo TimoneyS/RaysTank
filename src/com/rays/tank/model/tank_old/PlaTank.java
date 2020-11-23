@@ -6,10 +6,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import com.rays.tank.common.Const;
-import com.rays.tank.common.Global;
+import com.rays.tank.common.Context;
 import com.rays.tank.model.base.Arrow;
 import com.rays.tank.model.base.crash.Collision;
-import com.rays.tank.model.other.Bullet;
 
 public class PlaTank extends Tank {
 
@@ -48,7 +47,7 @@ public class PlaTank extends Tank {
             }
         };
         
-        Global.frame.addKeyListener(keyListner);
+        Context.frame.addKeyListener(keyListner);
     }
     
 	//�ύ���ݱ仯
@@ -62,7 +61,7 @@ public class PlaTank extends Tank {
 		alive = !Const.canPlayerBeKill;
 //		Global.battleField.createExplode(location);
         if (!alive)
-            Global.frame.removeKeyListener(keyListner);
+            Context.frame.removeKeyListener(keyListner);
 	}
 	//�ƶ�����
 	public void move() {

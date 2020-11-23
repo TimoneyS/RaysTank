@@ -1,9 +1,9 @@
 [BOT]
-    bot=i, 50, 180, Color.BLUE, 2
-    bot=i, 50, 180, Color.BLUE, 2
-    bot=i, 50, 180, Color.BLUE, 2
-    bot=i, 50, 180, Color.BLUE, 2
-    bot=i, 50, 180, Color.BLUE, 2
-    bot=i, 50, 180, Color.BLUE, 2
-    
-[PLAYER]
+    tank=[110, 50, 180]
+    tank=[210, 50, 180]
+    tank=[310, 50, 180]
+    tank=[410, 50, 180]
+    tank=[510, 50, 180]
+    tank=[610, 50, 180]
+
+[PLA]

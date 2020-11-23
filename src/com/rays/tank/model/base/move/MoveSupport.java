@@ -1,6 +1,5 @@
 package com.rays.tank.model.base.move;
 
-import com.rays.tank.common.Global;
 import com.rays.tank.model.base.Location;
 
 /**

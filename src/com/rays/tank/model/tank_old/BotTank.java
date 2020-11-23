@@ -3,10 +3,8 @@ package com.rays.tank.model.tank_old;
 import java.awt.Color;
 
 import com.rays.tank.common.Const;
-import com.rays.tank.common.Global;
 import com.rays.tank.model.base.Arrow;
 import com.rays.tank.model.base.crash.Collision;
-import com.rays.tank.model.other.Bullet;
 
 public class BotTank extends Tank {
     

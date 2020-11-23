@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.main.Game;
 
-public class Global {
+public class Context {
         
     public static JFrame frame = null;
     public static BattleField battleField = null;
