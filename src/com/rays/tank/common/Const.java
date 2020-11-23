@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public interface Const {
     
-    double  size            = 5;          // 尺寸
+    double  size            = 10;          // 尺寸
 
     boolean canPlayerBeKill = false;      // 玩家是否无敌
     Color   playerColor     = Color.pink; // 玩家颜色
