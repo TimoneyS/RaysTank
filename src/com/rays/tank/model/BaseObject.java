@@ -3,8 +3,8 @@ package com.rays.tank.model;
 public class BaseObject {
 
     private int id;
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private int radius;
     private int size;
 
@@ -16,19 +16,19 @@ public class BaseObject {
         this.id = id;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 

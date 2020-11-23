@@ -5,23 +5,23 @@ import java.awt.*;
 
 public class Tank extends BaseObject {
 
-    private double direction;
-    private double weelState;
+    private int direction;
+    private int weelState;
     private Color color;
 
-    public double getDirection() {
+    public int getDirection() {
         return direction;
     }
 
-    public void setDirection(double direction) {
+    public void setDirection(int direction) {
         this.direction = direction;
     }
 
-    public double getWeelState() {
+    public int getWeelState() {
         return weelState;
     }
 
-    public void setWeelState(double weelState) {
+    public void setWeelState(int weelState) {
         this.weelState = weelState;
     }
 
