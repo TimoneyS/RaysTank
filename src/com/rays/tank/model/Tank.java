@@ -32,4 +32,9 @@ public class Tank extends BaseObject {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public void move() {
+        weelState ++;
+        weelState %= 10;
+    }
 }

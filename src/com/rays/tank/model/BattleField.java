@@ -2,6 +2,7 @@ package com.rays.tank.model;
 
 import com.rays.tank.common.Const;
 import com.rays.tank.common.DrawUtil;
+import com.rays.tank.view.Images;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -74,49 +75,20 @@ public class BattleField {
     }
 
     private void drawTank(Tank tank) {
-
+        tank.move();
         int x = tank.getX();
         int y = tank.getY();
         int rad = tank.getDirection();
-        double size = Const.size;
+        int size = Const.size;
         Color c = graphics.getColor();
 
         Graphics2D g2 = (Graphics2D)graphics;
         AffineTransform odlTramsform = g2.getTransform();
         g2.rotate(rad * Math.PI * 2 / 360, x, y);
 
-        //������
-        RoundRectangle2D rbody = new  RoundRectangle2D.Double(
-                x-3*size, y-3*size, 6*size, 6*size, 1*size, 1*size);
-        DrawUtil.drawShape(g2, Color.ORANGE, rbody);
+        g2.drawImage(Images.imgTankPla, x-size*3, y - size*3, size*3, size*3, null);
 
-        // ����
-        Rectangle2D rweell = new Rectangle2D.Double(x-5*size, y-5*size, 2*size, 10*size);
-        Rectangle2D rweelr = new Rectangle2D.Double(x+3*size, y-5*size, 2*size, 10*size);
-        DrawUtil.drawShape(g2, Color.LIGHT_GRAY, rweelr);
-        DrawUtil.drawShape(g2, Color.LIGHT_GRAY, rweell);
-
-        int weelState = (int) (System.currentTimeMillis() % 10);
-        double y2;
-        for(int i = 0; i < 10; i += 2) {
-            // y2 = y + size*(weelState/10 + 2*i);
-            y2 = y + size*i + weelState/5*size - 3 * size;
-            g2.draw(new Line2D.Double(x-5*size, y2, x-3*size, y2));
-            g2.draw(new Line2D.Double(x+5*size, y2, x+3*size, y2));
-        }
-
-        // �ڹ�
-        g2.setColor(Color.DARK_GRAY);
-        Rectangle2D rfire = new Rectangle2D.Double(x-0.4*size, y-8*size, 1*size, 8*size);
-        g2.fill(rfire);
-
-        // ��̨
-        g2.setColor(Color.DARK_GRAY);
-        Ellipse2D rfilePlat = new Ellipse2D.Double(x-1.5*size, y-1.5*size, 3*size, 3*size);
-
-        g2.fill(rfilePlat);
-
-        g2.setTransform(odlTramsform); //�ָ����ݵ���ת����
+        g2.setTransform(odlTramsform);
         graphics.setColor(c);
     }
 }
