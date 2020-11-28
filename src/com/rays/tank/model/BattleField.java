@@ -74,11 +74,8 @@ public class BattleField {
 
     private void drawTank(Tank tank) {
         tank.move();
-        int x = tank.getX();
-        int y = tank.getY();
-        int rad = tank.getDirection();
-        int size = Const.size;
-        int blockSize = size * 10;
-        graphics.drawImage(Images.imgTankPlaArr[tank.getMoveStatus() % 6], x, y, 140, 140,null);
+        graphics.drawImage(
+                Images.imgTankPlaArr[tank.getMoveStatus() % 6],
+                tank.getX(), tank.getY(), Const.blockSize, Const.blockSize,null);
     }
 }

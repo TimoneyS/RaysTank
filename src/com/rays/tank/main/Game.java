@@ -22,7 +22,7 @@ public class Game extends JFrame {
         setResizable(false);
 
         gamePanel = new GamePanel();
-        gamePanel.setPreferredSize(new Dimension(Const.D_WIDTH * 4 / 5 , Const.D_HEIGTH));
+        gamePanel.setPreferredSize(new Dimension(Const.D_WIDTH, Const.D_HEIGTH));
         setContentPane(gamePanel);
         scheduledExecutor = Executors.newScheduledThreadPool(1);
     }
@@ -50,8 +50,6 @@ class GamePanel extends JPanel {
                     Context.battleField.getImage(),
                     0,
                     0,
-                    getWidth(),
-                    getHeight(),
                     null);
         }
     }
