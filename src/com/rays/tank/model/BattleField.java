@@ -41,6 +41,7 @@ public class BattleField {
                     }
                 } else if (tag == 2) {
                     Tank tank = parse(line);
+                    tank.setBot(false);
                     map.put(0, tank);
                 }
             }
@@ -74,8 +75,14 @@ public class BattleField {
 
     private void drawTank(Tank tank) {
         tank.move();
-        graphics.drawImage(
-                Images.imgTankPlaArr[tank.getMoveStatus() % 6],
-                tank.getX(), tank.getY(), Const.blockSize, Const.blockSize,null);
+        if (tank.isBot()) {
+            graphics.drawImage(
+                    Images.imgTankEmyArr[tank.getMoveStatus() % 6],
+                    tank.getX(), tank.getY(), Const.blockSize, Const.blockSize, null);
+        } else {
+            graphics.drawImage(
+                    Images.imgTankPlaArr[tank.getMoveStatus() % 6],
+                    tank.getX(), tank.getY(), Const.blockSize, Const.blockSize, null);
+        }
     }
 }

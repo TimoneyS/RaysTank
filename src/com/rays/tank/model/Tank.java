@@ -4,9 +4,9 @@ package com.rays.tank.model;
 import java.awt.*;
 
 public class Tank extends BaseObject {
-
     private int direction;
     private int moveStatus;
+    private boolean isBot = true;
     private Color color;
 
     public int getDirection() {
@@ -31,6 +31,14 @@ public class Tank extends BaseObject {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public boolean isBot() {
+        return isBot;
+    }
+
+    public void setBot(boolean bot) {
+        isBot = bot;
     }
 
     public void move() {
