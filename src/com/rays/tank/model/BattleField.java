@@ -34,15 +34,16 @@ public class BattleField {
                     continue;
                 }
 
-                if (tag == 1) {
-                    Tank tank = parse(line);
-                    if (tank != null) {
-                        map.put(id ++, tank);
+                Tank tank = parse(line);
+                if (tank != null) {
+                    if (tag == 1) {
+                        tank.setId(id ++);
+                        map.put(tank.getId(), tank);
+                    } else {
+                        tank.setBot(false);
+                        tank.setId(0);
+                        map.put(0, tank);
                     }
-                } else if (tag == 2) {
-                    Tank tank = parse(line);
-                    tank.setBot(false);
-                    map.put(0, tank);
                 }
             }
         } catch (IOException e) {

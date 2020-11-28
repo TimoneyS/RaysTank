@@ -1,11 +1,9 @@
 package com.rays.tank.common;
 
-import javax.swing.JFrame;
-
-import com.rays.tank.model.BattleField;
 import com.rays.tank.main.Game;
+import com.rays.tank.model.BattleField;
 
-import java.util.concurrent.atomic.AtomicLong;
+import javax.swing.*;
 
 public class Context {
     public static JFrame frame = null;
