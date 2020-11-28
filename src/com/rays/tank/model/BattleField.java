@@ -1,12 +1,9 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.Const;
-import com.rays.tank.common.Context;
-import com.rays.tank.common.DrawUtil;
 import com.rays.tank.view.Images;
 
 import java.awt.*;
-import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
