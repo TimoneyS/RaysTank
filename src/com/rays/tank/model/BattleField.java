@@ -1,6 +1,7 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.Const;
+import com.rays.tank.common.Context;
 import com.rays.tank.common.DrawUtil;
 import com.rays.tank.view.Images;
 
@@ -80,15 +81,7 @@ public class BattleField {
         int y = tank.getY();
         int rad = tank.getDirection();
         int size = Const.size;
-        Color c = graphics.getColor();
-
-        Graphics2D g2 = (Graphics2D)graphics;
-        AffineTransform odlTramsform = g2.getTransform();
-        g2.rotate(rad * Math.PI * 2 / 360, x, y);
-
-        g2.drawImage(Images.imgTankPla, x-size*3, y - size*3, size*3, size*3, null);
-
-        g2.setTransform(odlTramsform);
-        graphics.setColor(c);
+        int blockSize = size * 10;
+        graphics.drawImage(Images.imgTankPlaArr[tank.getMoveStatus() % 6], x, y, 140, 140,null);
     }
 }

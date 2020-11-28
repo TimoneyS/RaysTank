@@ -6,7 +6,7 @@ import java.awt.*;
 public class Tank extends BaseObject {
 
     private int direction;
-    private int weelState;
+    private int moveStatus;
     private Color color;
 
     public int getDirection() {
@@ -17,12 +17,12 @@ public class Tank extends BaseObject {
         this.direction = direction;
     }
 
-    public int getWeelState() {
-        return weelState;
+    public int getMoveStatus() {
+        return moveStatus;
     }
 
-    public void setWeelState(int weelState) {
-        this.weelState = weelState;
+    public void setMoveStatus(int moveStatus) {
+        this.moveStatus = moveStatus;
     }
 
     public Color getColor() {
@@ -34,7 +34,7 @@ public class Tank extends BaseObject {
     }
 
     public void move() {
-        weelState ++;
-        weelState %= 10;
+        moveStatus ++;
+        moveStatus %= 360;
     }
 }

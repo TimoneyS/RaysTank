@@ -3,11 +3,9 @@ package com.rays.tank.main;
 import com.rays.tank.common.Const;
 import com.rays.tank.common.Context;
 import com.rays.tank.model.BattleField;
-import com.rays.tank.view.TankMenuBar;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileInputStream;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -25,9 +23,7 @@ public class Game extends JFrame {
 
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(Const.D_WIDTH * 4 / 5 , Const.D_HEIGTH));
-        setJMenuBar(new TankMenuBar());
         setContentPane(gamePanel);
-
         scheduledExecutor = Executors.newScheduledThreadPool(1);
     }
 

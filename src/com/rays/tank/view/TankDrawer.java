@@ -1,6 +1,5 @@
 package com.rays.tank.view;
 
-import com.rays.tank.common.Const;
 import com.rays.tank.common.DrawUtil;
 import com.rays.tank.model.Tank;
 
@@ -26,7 +25,7 @@ public class TankDrawer {
         // 绘制履带
         for(int i = 0; i < 10; i += 2) {
             // y2 = y + size*(weelState/10 + 2*i);
-            double y2 = y + size*i + tank.getWeelState()/5*size - 3 * size;
+            double y2 = y + size*i + tank.getMoveStatus()/5*size - 3 * size;
             g2.draw(new Line2D.Double(x-5*size, y2, x-3*size, y2));
             g2.draw(new Line2D.Double(x+5*size, y2, x+3*size, y2));
         }
