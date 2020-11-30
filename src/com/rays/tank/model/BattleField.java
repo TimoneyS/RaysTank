@@ -6,10 +6,7 @@ import com.rays.tank.view.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,104 +18,19 @@ public class BattleField {
     private Map<Integer, Boom>   boomMap = new HashMap<>();
 
     public BattleField(InputStream inputStream) {
-        parse(inputStream);
+        BattleFieldLoader.load(inputStream, this);
     }
 
-    private void parse(InputStream inputStream) {
-        try(BufferedReader bis = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            int tag = 0;
-            int id = 2;
-            while ((line = bis.readLine()) != null) {
-                if (line.contains("[BOT]")) {
-                    tag = 1;
-                    continue;
-                } else if (line.contains("[PLA]")) {
-                    tag = 2;
-                    continue;
-                } else if (line.contains("[BULLET]")) {
-                    tag = 3;
-                    continue;
-                } else if (line.contains("[BOOM]")) {
-                    tag = 4;
-                    continue;
-                }
-                if (tag == 1 || tag == 2) {
-                    Tank tank = parse(line);
-                    if (tank != null) {
-                        if (tag == 1) {
-                            tank.setId(id ++);
-                            tankMap.put(tank.getId(), tank);
-                        } else {
-                            tank.setBot(false);
-                            tank.setId(0);
-                            tankMap.put(0, tank);
-                        }
-                    }
-                } else if (tag == 3) {
-                    Bullet bullet = parseBullet(line);
-                    if (bullet != null) {
-                        bullet.setId(id++);
-                        bulletMap.put(bullet.getId(), bullet);
-                    }
-                } else if (tag == 4) {
-                    Boom boom = parseBoom(line);
-                    if (boom != null) {
-                        boom.setId(id++);
-                        boomMap.put(boom.getId(), boom);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Map<Integer, Tank> getTankMap() {
+        return tankMap;
     }
 
-    private Boom parseBoom(String line) {
-        String[] arr = lineToArray(line);
-        if (arr == null) {
-            return null;
-        }
-        Boom boom = new Boom();
-        boom.setX(Integer.parseInt(arr[0].trim()));
-        boom.setY(Integer.parseInt(arr[1].trim()));
-        boom.setDirection(Integer.parseInt(arr[2].trim()));
-        boom.setStatus(Integer.parseInt(arr[3].trim()));
-        return boom;
+    public Map<Integer, Bullet> getBulletMap() {
+        return bulletMap;
     }
 
-    private Bullet parseBullet(String line) {
-        String[] arr = lineToArray(line);
-        if (arr == null) {
-            return null;
-        }
-        Bullet bullet = new Bullet();
-        bullet.setX(Integer.parseInt(arr[0].trim()));
-        bullet.setY(Integer.parseInt(arr[1].trim()));
-        bullet.setDirection(Integer.parseInt(arr[2].trim()));
-        return bullet;
-    }
-
-    private String[] lineToArray(String line) {
-        int start = line.indexOf('[');
-        int end = line.indexOf(']');
-        if (start >= end) {
-            return null;
-        }
-        String data = line.substring(start + 1, end);
-        return data.trim().split(",");
-    }
-
-    private Tank parse(String line) {
-        String[] arr = lineToArray(line);
-        if (arr == null) {
-            return null;
-        }
-        Tank t = new Tank();
-        t.setX(Integer.parseInt(arr[0].trim()));
-        t.setY(Integer.parseInt(arr[1].trim()));
-        t.setDirection(Integer.parseInt(arr[2].trim()));
-        return t;
+    public Map<Integer, Boom> getBoomMap() {
+        return boomMap;
     }
 
     public synchronized Image getImage() {
@@ -127,25 +39,21 @@ public class BattleField {
         drawTanks();
         drawBullets();
         drawGridLine();
+        drawBooms();
         graphics.setColor(c);
         return image;
+    }
+
+    private void drawBooms() {
+        for (Boom bullet : boomMap.values()) {
+            drawBoom(bullet);
+        }
     }
 
     private void drawBullets() {
         for (Bullet bullet : bulletMap.values()) {
             drawBullet(bullet);
         }
-    }
-
-    private void drawBullet(Bullet bullet) {
-        Graphics2D g2 = (Graphics2D) graphics;
-        AffineTransform affineTransform = g2.getTransform();
-        g2.rotate(Math.PI * 2 * bullet.getDirection() * 90 / 360, bullet.getX(), bullet.getY());
-        int diff = Context.blockSize / 2;
-            graphics.drawImage(
-                    Images.imgBullet,
-                    bullet.getX() - diff, bullet.getY() - diff, Context.blockSize, Context.blockSize, null);
-        g2.setTransform(affineTransform);
     }
 
     private void drawTanks() {
@@ -164,6 +72,28 @@ public class BattleField {
                 graphics.drawLine(0, i, Context.D_WIDTH, i);
             }
         }
+    }
+
+    private void drawBoom(Boom boom) {
+        Graphics2D g2 = (Graphics2D) graphics;
+        AffineTransform affineTransform = g2.getTransform();
+        g2.rotate(Math.PI * 2 * boom.getDirection() * 90 / 360, boom.getX(), boom.getY());
+        int diff = Context.blockSize / 2;
+        graphics.drawImage(
+                Images.imgBoomArr[boom.getStatus() % Images.imgBoomArr.length],
+                boom.getX() - diff, boom.getY() - diff, Context.blockSize, Context.blockSize, null);
+        g2.setTransform(affineTransform);
+    }
+
+    private void drawBullet(Bullet bullet) {
+        Graphics2D g2 = (Graphics2D) graphics;
+        AffineTransform affineTransform = g2.getTransform();
+        g2.rotate(Math.PI * 2 * bullet.getDirection() * 90 / 360, bullet.getX(), bullet.getY());
+        int diff = Context.blockSize / 2;
+        graphics.drawImage(
+                Images.imgBullet,
+                bullet.getX() - diff, bullet.getY() - diff, Context.blockSize, Context.blockSize, null);
+        g2.setTransform(affineTransform);
     }
 
     private void drawTank(Tank tank) {

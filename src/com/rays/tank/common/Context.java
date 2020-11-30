@@ -5,6 +5,7 @@ import com.rays.tank.model.BattleField;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Context {
     public static final int DIR_UP    = 0;
@@ -37,6 +38,7 @@ public class Context {
     public static final boolean debug = true;
     public static JFrame frame = null;
     public static BattleField battleField = null;
+    public static AtomicInteger sequence = new AtomicInteger(2);
 
     public static void regFrame(Game tankFrame) {
        frame = tankFrame;
@@ -45,5 +47,8 @@ public class Context {
     public static void regBattleField(BattleField bf) {
         battleField = bf;
     }
-    
+
+    public static int nextSeq() {
+        return sequence.getAndIncrement();
+    }
 }
