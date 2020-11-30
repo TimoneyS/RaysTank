@@ -4,7 +4,7 @@ import com.rays.tank.common.Context;
 
 public class Tank extends BaseObject {
     private int moveStatus;
-    private int speed = 5;
+    private int speed = 0;
     private boolean isBot = true;
 
     public int getDirection() {
