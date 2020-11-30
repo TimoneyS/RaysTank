@@ -38,4 +38,5 @@ public interface Const {
     int BF_ST_INIT  = 0; // 战场状态 - 初始
     int BF_ST_OPEN  = 1; // 战场状态 - 运行
     int BF_ST_CLOSE = 2; // 战场状态 - 关闭
+    boolean debug = true;
 }

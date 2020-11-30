@@ -74,16 +74,21 @@ public class BattleField {
             drawTank(tank);
         }
 
-        graphics.setColor(Color.BLACK);
-        for (int i = 0; i < Const.D_WIDTH; i += Const.blockSize) {
-            graphics.drawLine(i,0, i, Const.D_HEIGTH);
-        }
-        for (int i = 0; i < Const.D_HEIGTH; i += Const.blockSize) {
-            graphics.drawLine(0, i, Const.D_WIDTH, i);
-        }
-
+        drawGridLine();
         graphics.setColor(c);
         return image;
+    }
+
+    private void drawGridLine() {
+        if (Const.debug) {
+            graphics.setColor(Color.BLACK);
+            for (int i = 0; i < Const.D_WIDTH; i += Const.blockSize) {
+                graphics.drawLine(i, 0, i, Const.D_HEIGTH);
+            }
+            for (int i = 0; i < Const.D_HEIGTH; i += Const.blockSize) {
+                graphics.drawLine(0, i, Const.D_WIDTH, i);
+            }
+        }
     }
 
     private void drawTank(Tank tank) {
