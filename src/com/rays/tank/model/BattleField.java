@@ -100,11 +100,11 @@ public class BattleField {
                 tank.getY() + Context.blockSize / 2);
         if (tank.isBot()) {
             graphics.drawImage(
-                    Images.imgTankEmyArr[tank.getMoveStatus() % 6],
+                    Images.imgTankEmyArr[tank.getMoveStatus() % Images.imgTankEmyArr.length],
                     tank.getX(), tank.getY(), Context.blockSize, Context.blockSize, null);
         } else {
             graphics.drawImage(
-                    Images.imgTankPlaArr[tank.getMoveStatus() % 6],
+                    Images.imgTankPlaArr[tank.getMoveStatus() % Images.imgTankPlaArr.length],
                     tank.getX(), tank.getY(), Context.blockSize, Context.blockSize, null);
         }
         g2.setTransform(affineTransform);
