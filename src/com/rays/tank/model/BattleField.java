@@ -18,6 +18,7 @@ public class BattleField {
     private Graphics graphics = image.createGraphics();
     private Map<Integer, Tank> tankMap = new HashMap<>();
     private Map<Integer, Bullet> bulletMap = new HashMap<>();
+    private Map<Integer, Boom>   boomMap = new HashMap<>();
 
     public BattleField(InputStream inputStream) {
         parse(inputStream);
@@ -61,9 +62,11 @@ public class BattleField {
                         bulletMap.put(bullet.getId(), bullet);
                     }
                 } else if (tag == 4) {
-
-
-
+                    Boom boom = parseBoom(line);
+                    if (boom != null) {
+                        boom.setId(id++);
+                        boomMap.put(boom.getId(), boom);
+                    }
                 }
             }
         } catch (IOException e) {
@@ -71,14 +74,24 @@ public class BattleField {
         }
     }
 
-    private Bullet parseBullet(String line) {
-        int start = line.indexOf('[');
-        int end = line.indexOf(']');
-        if (start >= end) {
+    private Boom parseBoom(String line) {
+        String[] arr = lineToArray(line);
+        if (arr == null) {
             return null;
         }
-        String data = line.substring(start+1, end);
-        String[] arr = data.trim().split(",");
+        Boom boom = new Boom();
+        boom.setX(Integer.parseInt(arr[0].trim()));
+        boom.setY(Integer.parseInt(arr[1].trim()));
+        boom.setDirection(Integer.parseInt(arr[2].trim()));
+        boom.setStatus(Integer.parseInt(arr[3].trim()));
+        return boom;
+    }
+
+    private Bullet parseBullet(String line) {
+        String[] arr = lineToArray(line);
+        if (arr == null) {
+            return null;
+        }
         Bullet bullet = new Bullet();
         bullet.setX(Integer.parseInt(arr[0].trim()));
         bullet.setY(Integer.parseInt(arr[1].trim()));
@@ -86,14 +99,21 @@ public class BattleField {
         return bullet;
     }
 
-    private Tank parse(String line) {
+    private String[] lineToArray(String line) {
         int start = line.indexOf('[');
         int end = line.indexOf(']');
         if (start >= end) {
             return null;
         }
-        String data = line.substring(start+1, end);
-        String[] arr = data.trim().split(",");
+        String data = line.substring(start + 1, end);
+        return data.trim().split(",");
+    }
+
+    private Tank parse(String line) {
+        String[] arr = lineToArray(line);
+        if (arr == null) {
+            return null;
+        }
         Tank t = new Tank();
         t.setX(Integer.parseInt(arr[0].trim()));
         t.setY(Integer.parseInt(arr[1].trim()));
