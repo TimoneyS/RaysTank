@@ -3,7 +3,18 @@ package com.rays.tank.common;
 import java.awt.Color;
 
 public interface Const {
-    
+    int DIR_UP    = 0;
+    int DIR_DOWN  = 2;
+    int DIR_RIGHT = 1;
+    int DIR_LEFT  = 3;
+
+    int[][] DIRS = new int[][] {
+            { 0, -1},
+            { 1,  0},
+            { 0,  1},
+            {-1,  0}
+    };
+
     int  size               = 10;          // 尺寸
     int  blockSize         = 50;          // 区块大小
 
@@ -21,8 +32,8 @@ public interface Const {
     int     MaxExplodRadius = 30;         // 最大爆炸半径
     int     explodSpeed     = 3;          // 爆炸扩展速度
 
-    int     D_HEIGTH        = 768;
-    int     D_WIDTH         = 1366;
+    int     D_HEIGTH        = 600;
+    int     D_WIDTH         = 800;
 
     int BF_ST_INIT  = 0; // 战场状态 - 初始
     int BF_ST_OPEN  = 1; // 战场状态 - 运行

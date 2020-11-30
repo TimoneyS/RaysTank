@@ -4,6 +4,7 @@ import com.rays.tank.common.Const;
 import com.rays.tank.view.Images;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,15 +68,31 @@ public class BattleField {
     }
 
     public synchronized Image getImage() {
+        Color c = graphics.getColor();
         graphics.fillRect(0,0, image.getWidth(), image.getHeight());
         for (Tank tank : map.values()) {
             drawTank(tank);
         }
+
+        graphics.setColor(Color.BLACK);
+        for (int i = 0; i < Const.D_WIDTH; i += Const.blockSize) {
+            graphics.drawLine(i,0, i, Const.D_HEIGTH);
+        }
+        for (int i = 0; i < Const.D_HEIGTH; i += Const.blockSize) {
+            graphics.drawLine(0, i, Const.D_WIDTH, i);
+        }
+
+        graphics.setColor(c);
         return image;
     }
 
     private void drawTank(Tank tank) {
-        tank.move();
+        Graphics2D g2 = (Graphics2D) graphics;
+
+        AffineTransform affineTransform = g2.getTransform();
+        g2.rotate(Math.PI * 2 * tank.getDirection() * 90 / 360,
+                tank.getX() + Const.blockSize / 2,
+                tank.getY() + Const.blockSize / 2);
         if (tank.isBot()) {
             graphics.drawImage(
                     Images.imgTankEmyArr[tank.getMoveStatus() % 6],
@@ -85,5 +102,6 @@ public class BattleField {
                     Images.imgTankPlaArr[tank.getMoveStatus() % 6],
                     tank.getX(), tank.getY(), Const.blockSize, Const.blockSize, null);
         }
+        g2.setTransform(affineTransform);
     }
 }

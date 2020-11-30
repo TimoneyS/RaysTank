@@ -1,12 +1,11 @@
 package com.rays.tank.model;
 
 public class BaseObject {
-
-    private int id;
-    private int x;
-    private int y;
-    private int radius;
-    private int size;
+    protected int id;
+    protected int x;
+    protected int y;
+    protected int radius;
+    protected int size;
 
     public int getId() {
         return id;

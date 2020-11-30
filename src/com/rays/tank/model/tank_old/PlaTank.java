@@ -10,7 +10,7 @@ import com.rays.tank.common.Context;
 import com.rays.tank.model.base.Arrow;
 import com.rays.tank.model.base.crash.Collision;
 
-public class PlaTank extends Tank {
+public abstract class PlaTank extends Tank {
 
     private boolean fire = false;
 
@@ -79,7 +79,6 @@ public class PlaTank extends Tank {
         } else {
             // direction
             direction = arrow.toRadians();
-            super.move();
         }
         
 	}

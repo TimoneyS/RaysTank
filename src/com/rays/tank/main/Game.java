@@ -6,6 +6,8 @@ import com.rays.tank.model.BattleField;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -42,6 +44,15 @@ public class Game extends JFrame {
 }
 
 class GamePanel extends JPanel {
+    public GamePanel() {
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                System.out.println(e.getX() + ", " + e.getY());
+            }
+        });
+    }
     // 绘画方法
     @Override
     protected void paintComponent(Graphics g) {

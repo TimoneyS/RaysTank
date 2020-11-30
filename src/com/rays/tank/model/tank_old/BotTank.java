@@ -6,7 +6,7 @@ import com.rays.tank.common.Const;
 import com.rays.tank.model.base.Arrow;
 import com.rays.tank.model.base.crash.Collision;
 
-public class BotTank extends Tank {
+public abstract class BotTank extends Tank {
     
 	private double time = 30; //̹�˸��ķ����֡��
 	
@@ -27,7 +27,6 @@ public class BotTank extends Tank {
 	public void randomMove() {
 		if(time==1)
 		    chooseDirection();
-		move(); 
 		time ++;
 		time = time%30;
 	}
