@@ -40,6 +40,9 @@ public class Tank extends BaseObject {
     }
 
     public void move() {
+        if (speed <= 0) {
+            return;
+        }
         int[] dir = Context.DIRS[direction];
         int newX = this.x + dir[0] * speed;
         int newY = this.y + dir[1] * speed;
@@ -47,7 +50,6 @@ public class Tank extends BaseObject {
         if (newX >= 0 && newX <= Context.D_WIDTH && newY >= 0 && newY <= Context.D_HEIGTH) {
             this.x = newX;
             this.y = newY;
-            System.out.println(newX + ", " + newY);
         } else {
             direction = (direction + 2) % 4;
         }

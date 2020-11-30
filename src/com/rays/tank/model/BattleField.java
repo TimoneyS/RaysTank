@@ -96,8 +96,17 @@ public class BattleField {
     }
 
     public void update() {
+        tankMap.values().forEach(Tank::move);
+        bulletMap.values().forEach(Bullet::move);
+        boomMap.values().forEach(Boom::update);
 
+        bulletMap.values().stream().filter(Bullet::isNotActive).forEach(bullet -> {
+            Boom boom = new Boom();
+            boom.setId(Context.nextSeq());
+            boomMap.put(boom.getId(), boom);
+        });
 
-
+        bulletMap.entrySet().removeIf(e -> e.getValue().isNotActive());
+        boomMap.entrySet().removeIf(e -> e.getValue().isNotActive());
     }
 }

@@ -6,7 +6,7 @@ public class BaseObject {
     protected int y;
     protected int direction;
     protected int radius;
-    protected int size;
+    protected boolean active = true;
 
     public int getId() {
         return id;
@@ -48,11 +48,19 @@ public class BaseObject {
         this.radius = radius;
     }
 
-    public int getSize() {
-        return size;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public boolean isNotActive() {
+        return !active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void destroy() {
+        setActive(false);
     }
 }

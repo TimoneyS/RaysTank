@@ -10,4 +10,12 @@ public class Boom extends BaseObject {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public void update() {
+        if (status < 4) {
+            status ++;
+        } else {
+            destroy();
+        }
+    }
 }
