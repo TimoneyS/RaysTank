@@ -1,6 +1,6 @@
 package com.rays.tank.model.tank_old;
 
-import com.rays.tank.common.Const;
+import com.rays.tank.common.Context;
 import com.rays.tank.model.base.CollisionalItem;
 import com.rays.tank.model.base.Location;
 import com.rays.tank.model.base.crash.Collision;
@@ -72,7 +72,7 @@ public abstract class Tank extends CollisionalItem {
 
         @Override
         public double getRadius() {
-            return Const.size*5;
+            return Context.size*5;
         }
 
         @Override

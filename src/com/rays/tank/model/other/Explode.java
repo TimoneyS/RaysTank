@@ -3,7 +3,7 @@ package com.rays.tank.model.other;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-import com.rays.tank.common.Const;
+import com.rays.tank.common.Context;
 import com.rays.tank.model.base.BaseItem;
 import com.rays.tank.model.base.Location;
 
@@ -19,8 +19,8 @@ public class Explode extends BaseItem {
             Color.ORANGE,
             Color.RED,
     };
-    private static int     radius         = Const.MaxExplodRadius; // 爆炸持续帧数
-    private static int     EXPLOADE_SPEED = Const.explodSpeed;
+    private static int     radius         = Context.MaxExplodRadius; // 爆炸持续帧数
+    private static int     EXPLOADE_SPEED = Context.explodSpeed;
 
     private double         size;
     private int            state;                                  // 状态，描述动画进行到何种程度的标志
@@ -28,7 +28,7 @@ public class Explode extends BaseItem {
     private Explode(Location location) {
         this.location = location.clone();
         state = 0;
-        size = Const.size;
+        size = Context.size;
     }
     
     public static Explode get(Location location) {

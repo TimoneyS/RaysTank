@@ -1,6 +1,6 @@
 package com.rays.tank.model;
 
-import com.rays.tank.common.Const;
+import com.rays.tank.common.Context;
 import com.rays.tank.view.Images;
 
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BattleField {
-    private BufferedImage image = new BufferedImage(Const.D_WIDTH, Const.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
     private Graphics graphics = image.createGraphics();
     private Map<Integer, Tank> map = new HashMap<>();
 
@@ -80,13 +80,13 @@ public class BattleField {
     }
 
     private void drawGridLine() {
-        if (Const.debug) {
+        if (Context.debug) {
             graphics.setColor(Color.BLACK);
-            for (int i = 0; i < Const.D_WIDTH; i += Const.blockSize) {
-                graphics.drawLine(i, 0, i, Const.D_HEIGTH);
+            for (int i = 0; i < Context.D_WIDTH; i += Context.blockSize) {
+                graphics.drawLine(i, 0, i, Context.D_HEIGTH);
             }
-            for (int i = 0; i < Const.D_HEIGTH; i += Const.blockSize) {
-                graphics.drawLine(0, i, Const.D_WIDTH, i);
+            for (int i = 0; i < Context.D_HEIGTH; i += Context.blockSize) {
+                graphics.drawLine(0, i, Context.D_WIDTH, i);
             }
         }
     }
@@ -96,16 +96,16 @@ public class BattleField {
 
         AffineTransform affineTransform = g2.getTransform();
         g2.rotate(Math.PI * 2 * tank.getDirection() * 90 / 360,
-                tank.getX() + Const.blockSize / 2,
-                tank.getY() + Const.blockSize / 2);
+                tank.getX() + Context.blockSize / 2,
+                tank.getY() + Context.blockSize / 2);
         if (tank.isBot()) {
             graphics.drawImage(
                     Images.imgTankEmyArr[tank.getMoveStatus() % 6],
-                    tank.getX(), tank.getY(), Const.blockSize, Const.blockSize, null);
+                    tank.getX(), tank.getY(), Context.blockSize, Context.blockSize, null);
         } else {
             graphics.drawImage(
                     Images.imgTankPlaArr[tank.getMoveStatus() % 6],
-                    tank.getX(), tank.getY(), Const.blockSize, Const.blockSize, null);
+                    tank.getX(), tank.getY(), Context.blockSize, Context.blockSize, null);
         }
         g2.setTransform(affineTransform);
     }

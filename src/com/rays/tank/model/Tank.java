@@ -1,7 +1,7 @@
 package com.rays.tank.model;
 
 
-import com.rays.tank.common.Const;
+import com.rays.tank.common.Context;
 
 import java.awt.*;
 
@@ -45,11 +45,11 @@ public class Tank extends BaseObject {
     }
 
     public void move() {
-        int[] dir = Const.DIRS[direction];
+        int[] dir = Context.DIRS[direction];
         int newX = this.x + dir[0] * speed;
         int newY = this.y + dir[1] * speed;
 
-        if (newX >= 0 && newX <= Const.D_WIDTH && newY >= 0 && newY <= Const.D_HEIGTH) {
+        if (newX >= 0 && newX <= Context.D_WIDTH && newY >= 0 && newY <= Context.D_HEIGTH) {
             this.x = newX;
             this.y = newY;
             System.out.println(newX + ", " + newY);

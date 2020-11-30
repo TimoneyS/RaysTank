@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
-import com.rays.tank.common.Const;
+import com.rays.tank.common.Context;
 import com.rays.tank.common.DrawUtil;
 import com.rays.tank.model.base.CollisionalItem;
 import com.rays.tank.model.base.Location;
@@ -18,7 +18,7 @@ public class Bullet extends CollisionalItem {
     private double     direction;        // ����
     private Color      color;            // ��ɫ��־
     private Collision  bulletCollision;
-    private double     size = Const.size;
+    private double     size = Context.size;
     private BulletMove bulletMove;
 	
 	public Bullet(Tank tank, Location location, double direction, Color color) {
@@ -29,13 +29,13 @@ public class Bullet extends CollisionalItem {
         this.color = color;
         bulletMove = new BulletMove();
         bulletCollision = new BulletCollision();
-        bulletMove.setMoveSpeed(Const.bulletSpeed);
+        bulletMove.setMoveSpeed(Context.bulletSpeed);
     }
 	
     //���Ʒ���
 	public void draw(Graphics2D g2) {
 		Ellipse2D shape = //��״��Բ��
-				new Ellipse2D.Double(location.X()-Const.size, location.Y()-Const.size, 2.5*Const.size, 2.5*Const.size);
+				new Ellipse2D.Double(location.X()- Context.size, location.Y()- Context.size, 2.5* Context.size, 2.5* Context.size);
 		DrawUtil.drawShape(g2, color, shape);
 	}
 	
@@ -75,7 +75,7 @@ public class Bullet extends CollisionalItem {
 
         @Override
         public double getRadius() {
-            return Const.size*1.25;
+            return Context.size*1.25;
         }
 
         @Override

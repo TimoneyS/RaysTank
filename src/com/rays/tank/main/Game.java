@@ -1,6 +1,5 @@
 package com.rays.tank.main;
 
-import com.rays.tank.common.Const;
 import com.rays.tank.common.Context;
 import com.rays.tank.model.BattleField;
 
@@ -24,7 +23,7 @@ public class Game extends JFrame {
         setResizable(false);
 
         gamePanel = new GamePanel();
-        gamePanel.setPreferredSize(new Dimension(Const.D_WIDTH, Const.D_HEIGTH));
+        gamePanel.setPreferredSize(new Dimension(Context.D_WIDTH, Context.D_HEIGTH));
         setContentPane(gamePanel);
         scheduledExecutor = Executors.newScheduledThreadPool(1);
     }

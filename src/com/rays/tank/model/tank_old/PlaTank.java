@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.rays.tank.common.Const;
 import com.rays.tank.common.Context;
 import com.rays.tank.model.base.Arrow;
 import com.rays.tank.model.base.crash.Collision;
@@ -23,7 +22,7 @@ public abstract class PlaTank extends Tank {
 
     public PlaTank(double x, double y, double direction, Color teamColor, int group) {
         super(x, y, direction, teamColor, group);
-        tankMove.setMoveSpeed(Const.manmoveSpeed);
+        tankMove.setMoveSpeed(Context.manmoveSpeed);
         
         keyListner = new KeyAdapter() {
             @Override
@@ -58,7 +57,7 @@ public abstract class PlaTank extends Tank {
 	}
 	//�������ڽ���
 	public void lifeEnd() {
-		alive = !Const.canPlayerBeKill;
+		alive = !Context.canPlayerBeKill;
 //		Global.battleField.createExplode(location);
         if (!alive)
             Context.frame.removeKeyListener(keyListner);
