@@ -54,6 +54,8 @@ public class Game extends JFrame {
                 } else if (e.getKeyCode() == KeyEvent.VK_D) {
                     Context.plaTank.setDirection(1);
                     Context.plaTank.setSpeed(5);
+                } else if (e.getKeyCode() == KeyEvent.VK_J) {
+                    Context.plaTank.shoot();
                 }
             }
 

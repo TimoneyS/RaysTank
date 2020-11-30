@@ -1,6 +1,7 @@
 package com.rays.tank.model;
 
 public class Boom extends BaseObject {
+    int age = 0;
     int status = 0;
 
     public int getStatus() {
@@ -12,10 +13,11 @@ public class Boom extends BaseObject {
     }
 
     public void update() {
-        if (status < 4) {
-            status ++;
-        } else {
+        if (age / 2 > 4) {
             destroy();
+        } else {
+            status = age / 2;
+            age ++;
         }
     }
 }
