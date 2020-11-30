@@ -5,7 +5,6 @@ import com.rays.tank.model.base.CollisionalItem;
 import com.rays.tank.model.base.Location;
 import com.rays.tank.model.base.crash.Collision;
 import com.rays.tank.model.base.crash.CollisionalSupport;
-import com.rays.tank.model.base.move.MoveSupport;
 
 import java.awt.*;
 
@@ -88,11 +87,6 @@ public abstract class Tank extends CollisionalItem {
         @Override
         public int getCollosionalType() {
             return 0;
-        }
-
-        @Override
-        public boolean isAlive() {
-            return alive;
         }
 
         @Override

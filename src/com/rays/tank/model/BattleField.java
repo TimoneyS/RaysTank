@@ -49,8 +49,10 @@ public class BattleField {
                     }
                 } else if (tag == 3) {
                     Bullet bullet = parseBullet(line);
-                    bullet.setId(id++);
-                    bulletMap.put(bullet.getId(), bullet);
+                    if (bullet != null) {
+                        bullet.setId(id++);
+                        bulletMap.put(bullet.getId(), bullet);
+                    }
                 }
             }
         } catch (IOException e) {

@@ -48,15 +48,9 @@ public abstract class PlaTank extends Tank {
         
         Context.frame.addKeyListener(keyListner);
     }
-    
-	//�ύ���ݱ仯
-	public void update() {
-		move();
-//		tankCollision.crash(Global.battleField.getTanks());
-		fire();
-	}
-	//�������ڽ���
-	public void lifeEnd() {
+
+    //�������ڽ���
+    private void lifeEnd() {
 		alive = !Context.canPlayerBeKill;
 //		Global.battleField.createExplode(location);
         if (!alive)
