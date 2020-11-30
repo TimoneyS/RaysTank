@@ -41,7 +41,6 @@ public class Game extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println(e);
                 if (e.getKeyCode() == KeyEvent.VK_W) {
                     Context.plaTank.setDirection(0);
                     Context.plaTank.setSpeed(5);

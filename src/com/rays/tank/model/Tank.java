@@ -50,10 +50,7 @@ public class Tank extends BaseObject {
         if (newX >= 0 && newX <= Context.D_WIDTH && newY >= 0 && newY <= Context.D_HEIGTH) {
             this.x = newX;
             this.y = newY;
-        } else {
-            direction = (direction + 2) % 4;
         }
-
         moveStatus ++;
         moveStatus &= 1023;
     }
