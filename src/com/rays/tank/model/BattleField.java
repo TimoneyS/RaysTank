@@ -116,7 +116,7 @@ public class BattleField {
                     boom.setX(tank.getX());
                     boom.setY(tank.getY());
                     boomMap.put(boom.getId(), boom);
-                    tank.destroy();
+//                    tank.destroy();
                     bullet.destroy();
                 }
             });
