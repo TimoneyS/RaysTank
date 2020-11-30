@@ -20,6 +20,10 @@ public class BattleField {
     private Map<Integer, Bullet> bulletMap = new HashMap<>();
 
     public BattleField(InputStream inputStream) {
+        parse(inputStream);
+    }
+
+    private void parse(InputStream inputStream) {
         try(BufferedReader bis = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             int tag = 0;
@@ -33,6 +37,9 @@ public class BattleField {
                     continue;
                 } else if (line.contains("[BULLET]")) {
                     tag = 3;
+                    continue;
+                } else if (line.contains("[BOOM]")) {
+                    tag = 4;
                     continue;
                 }
                 if (tag == 1 || tag == 2) {
@@ -53,6 +60,10 @@ public class BattleField {
                         bullet.setId(id++);
                         bulletMap.put(bullet.getId(), bullet);
                     }
+                } else if (tag == 4) {
+
+
+
                 }
             }
         } catch (IOException e) {

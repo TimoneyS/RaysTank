@@ -9,6 +9,7 @@ public class Images {
     private static ClassLoader classLoader = Images.class.getClassLoader();
     public static Image[] imgTankPlaArr;
     public static Image[] imgTankEmyArr;
+    public static Image[] imgBoomArr;
     public static Image   imgBullet;
 
     static {
@@ -23,6 +24,11 @@ public class Images {
             for (int i = 0; i < imgTankEmyArr.length; i++) {
                 String name = "img/tank_emy_" + (i + 1) + ".png";
                 imgTankEmyArr[i] = loadImage(name);
+            }
+            imgBoomArr = new Image[5];
+            for (int i = 0; i < imgBoomArr.length; i++) {
+                String name = "img/boom" + (i + 1) + ".png";
+                imgBoomArr[i] = loadImage(name);
             }
         } catch (IOException e) {
             e.printStackTrace();
