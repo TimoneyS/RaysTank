@@ -4,6 +4,7 @@ public class BaseObject {
     protected int id;
     protected int x;
     protected int y;
+    protected int direction;
     protected int radius;
     protected int size;
 
@@ -29,6 +30,14 @@ public class BaseObject {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
     public int getRadius() {

@@ -17,7 +17,7 @@ public class BattleField {
     private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
     private Graphics graphics = image.createGraphics();
     private Map<Integer, Tank> tankMap = new HashMap<>();
-    private Map<Long, Tank> bulletMap = new HashMap<>();
+    private Map<Integer, Bullet> bulletMap = new HashMap<>();
 
     public BattleField(InputStream inputStream) {
         try(BufferedReader bis = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -31,26 +31,46 @@ public class BattleField {
                 } else if (line.contains("[PLA]")) {
                     tag = 2;
                     continue;
-                }
-                if (tag == 0) {
+                } else if (line.contains("[BULLET]")) {
+                    tag = 3;
                     continue;
                 }
-
-                Tank tank = parse(line);
-                if (tank != null) {
-                    if (tag == 1) {
-                        tank.setId(id ++);
-                        tankMap.put(tank.getId(), tank);
-                    } else {
-                        tank.setBot(false);
-                        tank.setId(0);
-                        tankMap.put(0, tank);
+                if (tag == 1 || tag == 2) {
+                    Tank tank = parse(line);
+                    if (tank != null) {
+                        if (tag == 1) {
+                            tank.setId(id ++);
+                            tankMap.put(tank.getId(), tank);
+                        } else {
+                            tank.setBot(false);
+                            tank.setId(0);
+                            tankMap.put(0, tank);
+                        }
                     }
+                } else if (tag == 3) {
+                    Bullet bullet = parseBullet(line);
+                    bullet.setId(id++);
+                    bulletMap.put(bullet.getId(), bullet);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Bullet parseBullet(String line) {
+        int start = line.indexOf('[');
+        int end = line.indexOf(']');
+        if (start >= end) {
+            return null;
+        }
+        String data = line.substring(start+1, end);
+        String[] arr = data.trim().split(",");
+        Bullet bullet = new Bullet();
+        bullet.setX(Integer.parseInt(arr[0].trim()));
+        bullet.setY(Integer.parseInt(arr[1].trim()));
+        bullet.setDirection(Integer.parseInt(arr[2].trim()));
+        return bullet;
     }
 
     private Tank parse(String line) {
@@ -71,12 +91,34 @@ public class BattleField {
     public synchronized Image getImage() {
         Color c = graphics.getColor();
         graphics.fillRect(0,0, image.getWidth(), image.getHeight());
-        for (Tank tank : tankMap.values()) {
-            drawTank(tank);
-        }
+        drawTanks();
+        drawBullets();
         drawGridLine();
         graphics.setColor(c);
         return image;
+    }
+
+    private void drawBullets() {
+        for (Bullet bullet : bulletMap.values()) {
+            drawBullet(bullet);
+        }
+    }
+
+    private void drawBullet(Bullet bullet) {
+        Graphics2D g2 = (Graphics2D) graphics;
+        AffineTransform affineTransform = g2.getTransform();
+        g2.rotate(Math.PI * 2 * bullet.getDirection() * 90 / 360, bullet.getX(), bullet.getY());
+        int diff = Context.blockSize / 2;
+            graphics.drawImage(
+                    Images.imgBullet,
+                    bullet.getX() - diff, bullet.getY() - diff, Context.blockSize, Context.blockSize, null);
+        g2.setTransform(affineTransform);
+    }
+
+    private void drawTanks() {
+        for (Tank tank : tankMap.values()) {
+            drawTank(tank);
+        }
     }
 
     private void drawGridLine() {

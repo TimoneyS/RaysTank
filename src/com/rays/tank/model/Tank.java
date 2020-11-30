@@ -6,7 +6,6 @@ import com.rays.tank.common.Context;
 import java.awt.*;
 
 public class Tank extends BaseObject {
-    private int direction;
     private int moveStatus;
     private int speed = 5;
     private boolean isBot = true;
