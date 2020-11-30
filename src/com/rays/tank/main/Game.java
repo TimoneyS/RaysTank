@@ -5,6 +5,8 @@ import com.rays.tank.model.BattleField;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.concurrent.Executors;
@@ -35,6 +37,39 @@ public class Game extends JFrame {
         BattleField battleField = new BattleField(
                 getClass().getClassLoader().getResourceAsStream("battleField_001.txt"));
         Context.regBattleField(battleField);
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println(e);
+                if (e.getKeyCode() == KeyEvent.VK_W) {
+                    Context.plaTank.setDirection(0);
+                    Context.plaTank.setSpeed(5);
+                } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                    Context.plaTank.setDirection(2);
+                    Context.plaTank.setSpeed(5);
+                } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                    Context.plaTank.setDirection(3);
+                    Context.plaTank.setSpeed(5);
+                } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                    Context.plaTank.setDirection(1);
+                    Context.plaTank.setSpeed(5);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_W) {
+                    Context.plaTank.setSpeed(0);
+                } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                    Context.plaTank.setSpeed(0);
+                } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                    Context.plaTank.setSpeed(0);
+                } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                    Context.plaTank.setSpeed(0);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -44,7 +79,6 @@ public class Game extends JFrame {
 
 class GamePanel extends JPanel {
     public GamePanel() {
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -61,6 +95,8 @@ class GamePanel extends JPanel {
                     0,
                     0,
                     null);
+
+            Context.battleField.update();
         }
     }
 }

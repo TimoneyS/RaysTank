@@ -1,15 +1,11 @@
 package com.rays.tank.model;
 
-
 import com.rays.tank.common.Context;
-
-import java.awt.*;
 
 public class Tank extends BaseObject {
     private int moveStatus;
     private int speed = 5;
     private boolean isBot = true;
-    private Color color;
 
     public int getDirection() {
         return direction;
@@ -27,12 +23,12 @@ public class Tank extends BaseObject {
         this.moveStatus = moveStatus;
     }
 
-    public Color getColor() {
-        return color;
+    public int getSpeed() {
+        return speed;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public boolean isBot() {

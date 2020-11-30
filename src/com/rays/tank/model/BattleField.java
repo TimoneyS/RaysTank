@@ -94,4 +94,10 @@ public class BattleField {
         }
         DrawUtil.drawImage(graphics, tankImage, tank.getDirection(), tank.getX(), tank.getY(), Context.blockSize);
     }
+
+    public void update() {
+
+
+
+    }
 }

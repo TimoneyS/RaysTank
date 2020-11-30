@@ -2,6 +2,7 @@ package com.rays.tank.common;
 
 import com.rays.tank.main.Game;
 import com.rays.tank.model.BattleField;
+import com.rays.tank.model.Tank;
 
 import javax.swing.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,6 +28,7 @@ public class Context {
 
     public static JFrame      frame = null;
     public static BattleField battleField = null;
+    public static Tank plaTank = null;
     public static AtomicInteger sequence = new AtomicInteger(2);
 
     public static void regFrame(Game tankFrame) {
@@ -35,6 +37,7 @@ public class Context {
     
     public static void regBattleField(BattleField bf) {
         battleField = bf;
+        plaTank = battleField.getTankMap().get(0);
     }
 
     public static int nextSeq() {
