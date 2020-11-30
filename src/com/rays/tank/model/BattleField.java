@@ -1,10 +1,10 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.DrawUtil;
 import com.rays.tank.view.Images;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -75,41 +75,23 @@ public class BattleField {
     }
 
     private void drawBoom(Boom boom) {
-        Graphics2D g2 = (Graphics2D) graphics;
-        AffineTransform affineTransform = g2.getTransform();
-        g2.rotate(Math.PI * 2 * boom.getDirection() * 90 / 360, boom.getX(), boom.getY());
-        int diff = Context.blockSize / 2;
-        graphics.drawImage(
+        DrawUtil.drawImage(
+                graphics,
                 Images.imgBoomArr[boom.getStatus() % Images.imgBoomArr.length],
-                boom.getX() - diff, boom.getY() - diff, Context.blockSize, Context.blockSize, null);
-        g2.setTransform(affineTransform);
+                boom.getDirection(), boom.getX(), boom.getY(), Context.blockSize);
     }
 
     private void drawBullet(Bullet bullet) {
-        Graphics2D g2 = (Graphics2D) graphics;
-        AffineTransform affineTransform = g2.getTransform();
-        g2.rotate(Math.PI * 2 * bullet.getDirection() * 90 / 360, bullet.getX(), bullet.getY());
-        int diff = Context.blockSize / 2;
-        graphics.drawImage(
-                Images.imgBullet,
-                bullet.getX() - diff, bullet.getY() - diff, Context.blockSize, Context.blockSize, null);
-        g2.setTransform(affineTransform);
+        DrawUtil.drawImage(graphics, Images.imgBullet, bullet.getDirection(), bullet.getX(), bullet.getY(), Context.blockSize);
     }
 
     private void drawTank(Tank tank) {
-        Graphics2D g2 = (Graphics2D) graphics;
-        AffineTransform affineTransform = g2.getTransform();
-        g2.rotate(Math.PI * 2 * tank.getDirection() * 90 / 360, tank.getX(), tank.getY());
-        int diff = Context.blockSize / 2;
+        Image tankImage;
         if (tank.isBot()) {
-            graphics.drawImage(
-                    Images.imgTankEmyArr[tank.getMoveStatus() % Images.imgTankEmyArr.length],
-                    tank.getX() - diff, tank.getY() - diff, Context.blockSize, Context.blockSize, null);
+            tankImage = Images.imgTankEmyArr[tank.getMoveStatus() % Images.imgTankEmyArr.length];
         } else {
-            graphics.drawImage(
-                    Images.imgTankPlaArr[tank.getMoveStatus() % Images.imgTankPlaArr.length],
-                    tank.getX() - diff, tank.getY() - diff, Context.blockSize, Context.blockSize, null);
+            tankImage = Images.imgTankPlaArr[tank.getMoveStatus() % Images.imgTankEmyArr.length];
         }
-        g2.setTransform(affineTransform);
+        DrawUtil.drawImage(graphics, tankImage, tank.getDirection(), tank.getX(), tank.getY(), Context.blockSize);
     }
 }
