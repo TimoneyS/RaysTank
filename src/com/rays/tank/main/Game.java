@@ -1,6 +1,7 @@
 package com.rays.tank.main;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.controller.TankControl;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.view.Draw;
 
@@ -35,7 +36,7 @@ public class Game extends JFrame {
     public void lunch() {
         pack();
         setVisible(true);
-        scheduledExecutor.scheduleWithFixedDelay(()-> gamePanel.repaint(), 0, 30, TimeUnit.MILLISECONDS);
+        scheduledExecutor.scheduleWithFixedDelay(() -> gamePanel.repaint(), 0, 30, TimeUnit.MILLISECONDS);
         BattleField battleField = new BattleField(
                 getClass().getClassLoader().getResourceAsStream("battleField_001.txt"));
         Context.regBattleField(battleField);
@@ -56,7 +57,7 @@ public class Game extends JFrame {
                     Context.plaTank.setDirection(1);
                     Context.plaTank.setSpeed(5);
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
-                    Context.plaTank.shoot();
+                    TankControl.shoot(Context.plaTank);
                 }
             }
 

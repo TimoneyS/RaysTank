@@ -8,6 +8,17 @@ public class BaseObject {
     protected int radius;
     protected boolean active = true;
 
+    public BaseObject(int x, int y, int direction) {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+    }
+
+    public BaseObject(int id, int x, int y, int direction) {
+        this(x, y, direction);
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

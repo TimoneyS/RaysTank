@@ -6,7 +6,15 @@ public class Tank extends BaseObject {
     private int moveStatus;
     private int speed = 0;
     private boolean isBot = true;
-    private long lastShootTime = System.currentTimeMillis();
+    private long nextShootTime = 0;
+
+    public Tank(int x, int y, int direction) {
+        super(x, y, direction);
+    }
+
+    public Tank(int id, int x, int y, int direction) {
+        super(id, x, y, direction);
+    }
 
     public int getDirection() {
         return direction;
@@ -40,6 +48,14 @@ public class Tank extends BaseObject {
         isBot = bot;
     }
 
+    public long getNextShootTime() {
+        return nextShootTime;
+    }
+
+    public void setNextShootTime(long nextShootTime) {
+        this.nextShootTime = nextShootTime;
+    }
+
     public void move() {
         if (speed <= 0) {
             return;
@@ -53,19 +69,5 @@ public class Tank extends BaseObject {
         }
         moveStatus ++;
         moveStatus &= 1023;
-    }
-
-    public void shoot() {
-        if (System.currentTimeMillis() -lastShootTime > 500) {
-            int[] dir = Context.DIRS[direction];
-            int newX = this.x + dir[0] * Context.blockSize / 2;
-            int newY = this.y + dir[1] * Context.blockSize / 2;
-            Bullet bullet = new Bullet();
-            bullet.setX(newX);
-            bullet.setY(newY);
-            bullet.setDirection(direction);
-            bullet.setId(Context.nextSeq());
-            Context.battleField.addBullet(bullet);
-        }
     }
 }

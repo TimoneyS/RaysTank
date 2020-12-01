@@ -3,15 +3,10 @@ package com.rays.tank.model;
 import com.rays.tank.common.Context;
 
 public class Bullet extends BaseObject {
-    private int direction;
     private int speed = Context.bulletSpeed;
 
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
+    public Bullet(int id, int x, int y, int direction) {
+        super(id, x, y, direction);
     }
 
     public void move() {

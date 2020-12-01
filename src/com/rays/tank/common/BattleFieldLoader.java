@@ -45,7 +45,6 @@ public class BattleFieldLoader {
                 } else if (tag == 3) {
                     Bullet bullet = parseBullet(line);
                     if (bullet != null) {
-                        bullet.setId(Context.nextSeq());
                         battleField.getBulletMap().put(bullet.getId(), bullet);
                     }
                 } else if (tag == 4) {
@@ -83,11 +82,11 @@ public class BattleFieldLoader {
         if (arr == null) {
             return null;
         }
-        Bullet bullet = new Bullet();
-        bullet.setX(Integer.parseInt(arr[0].trim()));
-        bullet.setY(Integer.parseInt(arr[1].trim()));
-        bullet.setDirection(Integer.parseInt(arr[2].trim()));
-        return bullet;
+        return new Bullet(
+                Context.nextSeq(),
+                Integer.parseInt(arr[0].trim()),
+                Integer.parseInt(arr[1].trim()),
+                Integer.parseInt(arr[2].trim()));
     }
 
     private static Tank parseTank(String line) {
@@ -96,11 +95,10 @@ public class BattleFieldLoader {
             return null;
         }
         try {
-            Tank t = new Tank();
-            t.setX(Integer.parseInt(arr[0].trim()));
-            t.setY(Integer.parseInt(arr[1].trim()));
-            t.setDirection(Integer.parseInt(arr[2].trim()));
-            return t;
+            return new Tank(
+                    Integer.parseInt(arr[0].trim()),
+                    Integer.parseInt(arr[1].trim()),
+                    Integer.parseInt(arr[2].trim()));
         } catch (Exception e) {
             return null;
         }
