@@ -2,11 +2,7 @@ package com.rays.tank.model;
 
 import com.rays.tank.common.BattleFieldLoader;
 import com.rays.tank.common.Context;
-import com.rays.tank.view.Draw;
-import com.rays.tank.view.Images;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.util.ArrayDeque;
 import java.util.HashMap;
@@ -14,12 +10,12 @@ import java.util.Map;
 import java.util.Queue;
 
 public class BattleField {
-    private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
-    private Graphics graphics = image.createGraphics();
     private Map<Integer, Tank> tankMap = new HashMap<>();
     private Map<Integer, Bullet> bulletMap = new HashMap<>();
     private Map<Integer, Boom>   boomMap = new HashMap<>();
-    private Queue<Bullet> bulletAddCache = new ArrayDeque<>();
+    private Queue<Bullet> bulletCache = new ArrayDeque<>();
+    private Queue<Tank> tankCache = new ArrayDeque<>();
+    private Queue<Boom> boomCache = new ArrayDeque<>();
 
     public BattleField(InputStream inputStream) {
         BattleFieldLoader.load(inputStream, this);
@@ -37,13 +33,8 @@ public class BattleField {
         return boomMap;
     }
 
-
-
     public void update() {
-        if (bulletAddCache.size() > 0) {
-            bulletAddCache.forEach(bullet -> bulletMap.put(bullet.getId(), bullet));
-            bulletAddCache.clear();
-        }
+        flush();
 
         tankMap.values().forEach(Tank::move);
         bulletMap.values().forEach(Bullet::move);
@@ -77,6 +68,29 @@ public class BattleField {
     }
 
     public void addBullet(Bullet bullet) {
-        bulletAddCache.add(bullet);
+        bulletCache.offer(bullet);
+    }
+
+    public void addTank(Tank tank) {
+        tankCache.offer(tank);
+    }
+
+    public void addBoom(Boom boom) {
+        boomCache.offer(boom);
+    }
+
+    public void flush() {
+        if (bulletCache.size() > 0) {
+            bulletCache.forEach(bullet -> bulletMap.put(bullet.getId(), bullet));
+            bulletCache.clear();
+        }
+        if (tankCache.size() > 0) {
+            tankCache.forEach(tank -> tankMap.put(tank.getId(), tank));
+            tankCache.clear();
+        }
+        if (boomCache.size() > 0) {
+            boomCache.forEach(boom -> boomMap.put(boom.getId(), boom));
+            boomCache.clear();
+        }
     }
 }
