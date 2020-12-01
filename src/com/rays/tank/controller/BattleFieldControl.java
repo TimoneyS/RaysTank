@@ -1,6 +1,5 @@
 package com.rays.tank.controller;
 
-import com.rays.tank.common.BulletControl;
 import com.rays.tank.common.Context;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;

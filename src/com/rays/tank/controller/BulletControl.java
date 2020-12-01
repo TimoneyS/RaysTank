@@ -1,5 +1,6 @@
-package com.rays.tank.common;
+package com.rays.tank.controller;
 
+import com.rays.tank.common.Context;
 import com.rays.tank.model.Bullet;
 
 public class BulletControl {
