@@ -44,34 +44,12 @@ public class Game extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_W) {
-                    Context.plaTank.setDirection(0);
-                    Context.plaTank.setSpeed(5);
-                } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                    Context.plaTank.setDirection(2);
-                    Context.plaTank.setSpeed(5);
-                } else if (e.getKeyCode() == KeyEvent.VK_A) {
-                    Context.plaTank.setDirection(3);
-                    Context.plaTank.setSpeed(5);
-                } else if (e.getKeyCode() == KeyEvent.VK_D) {
-                    Context.plaTank.setDirection(1);
-                    Context.plaTank.setSpeed(5);
-                } else if (e.getKeyCode() == KeyEvent.VK_J) {
-                    TankControl.shoot(Context.plaTank);
-                }
+                TankControl.handleKeyPress(e);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_W) {
-                    Context.plaTank.setSpeed(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                    Context.plaTank.setSpeed(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_A) {
-                    Context.plaTank.setSpeed(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_D) {
-                    Context.plaTank.setSpeed(0);
-                }
+                TankControl.handleKeyReleased(e);
             }
         });
     }
