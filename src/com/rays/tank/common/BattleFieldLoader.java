@@ -1,6 +1,5 @@
 package com.rays.tank.common;
 
-import com.rays.tank.common.Context;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;
 import com.rays.tank.model.Bullet;
@@ -12,7 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BattleFieldLoader {
-    public static void load(InputStream inputStream, BattleField battleField) {
+    public static void parseTank(InputStream inputStream, BattleField battleField) {
         try(BufferedReader bis = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             int tag = 0;
@@ -32,7 +31,7 @@ public class BattleFieldLoader {
                     continue;
                 }
                 if (tag == 1 || tag == 2) {
-                    Tank tank = load(line);
+                    Tank tank = parseTank(line);
                     if (tank != null) {
                         if (tag == 1) {
                             tank.setId(Context.nextSeq());
@@ -87,7 +86,7 @@ public class BattleFieldLoader {
         return bullet;
     }
 
-    private static Tank load(String line) {
+    private static Tank parseTank(String line) {
         String[] arr = lineToArray(line);
         if (arr == null) {
             return null;
