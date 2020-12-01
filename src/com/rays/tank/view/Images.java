@@ -11,10 +11,12 @@ public class Images {
     public static Image[] imgTankEmyArr;
     public static Image[] imgBoomArr;
     public static Image   imgBullet;
+    public static Image   imgWall;
 
     static {
         try {
             imgBullet = loadImage("img/bullet.png");
+            imgWall   = loadImage("img/wall.png");
             imgTankPlaArr = new Image[5];
             for (int i = 0; i < imgTankPlaArr.length; i++) {
                 String name = "img/tank_pla_" + (i + 1) + ".png";
