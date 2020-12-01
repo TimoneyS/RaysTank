@@ -46,7 +46,7 @@ public class BattleField {
                 if (tank.getId() > 1 && (Math.abs(tank.x - bullet.x) + Math.abs(tank.y - bullet.y) < 30)) {
                     Boom boom = new Boom(Context.nextSeq(), tank.getX(), tank.getY(), 0);
                     boomMap.put(boom.getId(), boom);
-//                    tank.destroy();
+                    tank.destroy();
                     bullet.destroy();
                 }
             });
