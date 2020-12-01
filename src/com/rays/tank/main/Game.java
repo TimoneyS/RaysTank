@@ -2,6 +2,7 @@ package com.rays.tank.main;
 
 import com.rays.tank.common.Context;
 import com.rays.tank.model.BattleField;
+import com.rays.tank.view.Draw;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,6 +80,8 @@ public class Game extends JFrame {
 }
 
 class GamePanel extends JPanel {
+    Draw draw = new Draw();
+
     public GamePanel() {
         addMouseListener(new MouseAdapter() {
             @Override
@@ -92,7 +95,7 @@ class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         if (Context.battleField != null) {
             g.drawImage(
-                    Context.battleField.getImage(),
+                    draw.getImage(Context.battleField),
                     0,
                     0,
                     null);
