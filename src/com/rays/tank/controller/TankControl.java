@@ -48,7 +48,7 @@ public class TankControl {
         } else {
             return;
         }
-        Context.plaTank.setSpeed(5);
+        Context.plaTank.setSpeed(Context.manMoveSpeed);
     }
 
     public static void handleKeyReleased(KeyEvent e) {
