@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BattleFieldLoader {
-    public static void parseTank(InputStream inputStream, BattleField battleField) {
+    public static void parseBattleField(InputStream inputStream, BattleField battleField) {
         try(BufferedReader bis = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             int tag = 0;
@@ -66,12 +66,16 @@ public class BattleFieldLoader {
         if (arr == null) {
             return null;
         }
-        Boom boom = new Boom();
-        boom.setX(Integer.parseInt(arr[0].trim()));
-        boom.setY(Integer.parseInt(arr[1].trim()));
-        boom.setDirection(Integer.parseInt(arr[2].trim()));
-        boom.setStatus(Integer.parseInt(arr[3].trim()));
-        return boom;
+        try {
+            Boom boom = new Boom();
+            boom.setX(Integer.parseInt(arr[0].trim()));
+            boom.setY(Integer.parseInt(arr[1].trim()));
+            boom.setDirection(Integer.parseInt(arr[2].trim()));
+            boom.setStatus(Integer.parseInt(arr[3].trim()));
+            return boom;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private static Bullet parseBullet(String line) {
@@ -88,14 +92,18 @@ public class BattleFieldLoader {
 
     private static Tank parseTank(String line) {
         String[] arr = lineToArray(line);
-        if (arr == null) {
+        if (arr == null || arr.length == 0) {
             return null;
         }
-        Tank t = new Tank();
-        t.setX(Integer.parseInt(arr[0].trim()));
-        t.setY(Integer.parseInt(arr[1].trim()));
-        t.setDirection(Integer.parseInt(arr[2].trim()));
-        return t;
+        try {
+            Tank t = new Tank();
+            t.setX(Integer.parseInt(arr[0].trim()));
+            t.setY(Integer.parseInt(arr[1].trim()));
+            t.setDirection(Integer.parseInt(arr[2].trim()));
+            return t;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private static String[] lineToArray(String line) {

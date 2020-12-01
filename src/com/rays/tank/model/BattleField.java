@@ -18,7 +18,7 @@ public class BattleField {
     private Queue<Boom> boomCache = new ArrayDeque<>();
 
     public BattleField(InputStream inputStream) {
-        BattleFieldLoader.parseTank(inputStream, this);
+        BattleFieldLoader.parseBattleField(inputStream, this);
     }
 
     public Map<Integer, Tank> getTankMap() {

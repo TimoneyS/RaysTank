@@ -15,8 +15,8 @@ public class Context {
             {-1,  0}
     };
 
-    public static final int     D_WIDTH         = 800;
-    public static final int     D_HEIGTH        = 600;
+    public static final int     D_WIDTH         = 1050;
+    public static final int     D_HEIGTH        = 700;
     public static final int     blockSize       = 50;         // 区块大小
     public static final int     bulletSpeed     = 15;         // 子弹速度
     public static final int     manMoveSpeed    = 8;          // 玩家移动速度

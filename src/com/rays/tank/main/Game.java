@@ -24,6 +24,7 @@ public class Game extends JFrame {
         setTitle("̹Tank War Ver 1.9");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        setLocationByPlatform(true);
 
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(Context.D_WIDTH, Context.D_HEIGTH));
