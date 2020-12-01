@@ -1,7 +1,5 @@
 package com.rays.tank.model;
 
-import com.rays.tank.common.Context;
-
 public class Tank extends BaseObject {
     private int moveStatus;
     private int speed = 0;
@@ -10,10 +8,6 @@ public class Tank extends BaseObject {
 
     public Tank(int x, int y, int direction) {
         super(x, y, direction);
-    }
-
-    public Tank(int id, int x, int y, int direction) {
-        super(id, x, y, direction);
     }
 
     public int getDirection() {
@@ -54,20 +48,5 @@ public class Tank extends BaseObject {
 
     public void setNextShootTime(long nextShootTime) {
         this.nextShootTime = nextShootTime;
-    }
-
-    public void move() {
-        if (speed <= 0) {
-            return;
-        }
-        int[] dir = Context.DIRS[direction];
-        int newX = this.x + dir[0] * speed;
-        int newY = this.y + dir[1] * speed;
-        if (newX >= 0 && newX <= Context.D_WIDTH && newY >= 0 && newY <= Context.D_HEIGTH) {
-            this.x = newX;
-            this.y = newY;
-        }
-        moveStatus ++;
-        moveStatus &= 1023;
     }
 }

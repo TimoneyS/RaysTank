@@ -2,6 +2,7 @@ package com.rays.tank.model;
 
 import com.rays.tank.common.BattleFieldLoader;
 import com.rays.tank.common.Context;
+import com.rays.tank.controller.TankControl;
 
 import java.io.InputStream;
 import java.util.ArrayDeque;
@@ -36,7 +37,7 @@ public class BattleField {
     public void update() {
         flush();
 
-        tankMap.values().forEach(Tank::move);
+        tankMap.values().forEach(TankControl::move);
         bulletMap.values().forEach(Bullet::move);
         boomMap.values().forEach(Boom::update);
 
