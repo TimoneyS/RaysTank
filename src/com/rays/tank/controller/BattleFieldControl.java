@@ -1,5 +1,6 @@
 package com.rays.tank.controller;
 
+import com.rays.tank.common.BulletControl;
 import com.rays.tank.common.Context;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;
@@ -10,7 +11,7 @@ public class BattleFieldControl {
         battleField.flush();
 
         battleField.getTankMap().values().forEach(TankControl::move);
-        battleField.getBulletMap().values().forEach(Bullet::move);
+        battleField.getBulletMap().values().forEach(BulletControl::move);
         battleField.getBoomMap().values().forEach(Boom::update);
 
         battleField.getBulletMap().values().forEach(bullet -> {
