@@ -35,31 +35,7 @@ public class BattleField {
     }
 
     public void update() {
-        flush();
 
-        tankMap.values().forEach(TankControl::move);
-        bulletMap.values().forEach(Bullet::move);
-        boomMap.values().forEach(Boom::update);
-
-        bulletMap.values().forEach(bullet -> {
-            tankMap.values().forEach(tank -> {
-                if (tank.getId() > 1 && (Math.abs(tank.x - bullet.x) + Math.abs(tank.y - bullet.y) < 30)) {
-                    Boom boom = new Boom(Context.nextSeq(), tank.getX(), tank.getY(), 0);
-                    boomMap.put(boom.getId(), boom);
-                    tank.destroy();
-                    bullet.destroy();
-                }
-            });
-        });
-
-        tankMap.entrySet().removeIf(e -> e.getValue().isNotActive());
-        bulletMap.values().stream().filter(Bullet::isNotActive).forEach(bullet -> {
-            Boom boom = new Boom(Context.nextSeq(), bullet.getX(), bullet.getY(), 0);
-            boomMap.put(boom.getId(), boom);
-        });
-
-        bulletMap.entrySet().removeIf(e -> e.getValue().isNotActive());
-        boomMap.entrySet().removeIf(e -> e.getValue().isNotActive());
     }
 
     public void addBullet(Bullet bullet) {
@@ -72,6 +48,12 @@ public class BattleField {
 
     public void addBoom(Boom boom) {
         boomCache.offer(boom);
+    }
+
+    public void clearNoActived() {
+        tankMap.entrySet().removeIf(e -> e.getValue().isNotActive());
+        bulletMap.entrySet().removeIf(e -> e.getValue().isNotActive());
+        boomMap.entrySet().removeIf(e -> e.getValue().isNotActive());
     }
 
     public void flush() {

@@ -1,6 +1,7 @@
 package com.rays.tank.main;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.controller.BattleFieldControl;
 import com.rays.tank.controller.TankControl;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.view.Draw;
@@ -80,7 +81,7 @@ class GamePanel extends JPanel {
                     0,
                     null);
 
-            Context.battleField.update();
+            BattleFieldControl.update(Context.battleField);
         }
     }
 }
