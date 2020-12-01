@@ -26,6 +26,7 @@ public class Draw {
     public Image getImage(BattleField battleField) {
         this.battleField = battleField;
         Color c = graphics.getColor();
+        graphics.setColor(Color.DARK_GRAY);
         graphics.fillRect(0,0, image.getWidth(), image.getHeight());
         drawTanks();
         drawBullets();
@@ -49,12 +50,20 @@ public class Draw {
 
     private void drawGridLine() {
         if (Context.debug) {
-            graphics.setColor(Color.BLACK);
-            for (int i = 0; i < Context.D_WIDTH; i += Context.blockSize) {
-                graphics.drawLine(i, 0, i, Context.D_HEIGTH);
+            graphics.setColor(Color.LIGHT_GRAY);
+//            for (int i = 0; i < Context.D_WIDTH; i += Context.blockSize) {
+//                graphics.drawLine(i, 0, i, Context.D_HEIGTH);
+//            }
+//            for (int i = 0; i < Context.D_HEIGTH; i += Context.blockSize) {
+//                graphics.drawLine(0, i, Context.D_WIDTH, i);
+//            }
+            for (int i = 25; i < Context.D_WIDTH; i += Context.blockSize) {
+                Draw.drawImage(graphics,Images.imgWall, 0, i, 25, Context.blockSize);
+                Draw.drawImage(graphics,Images.imgWall, 0, i, Context.D_HEIGTH - Context.blockSize/2, Context.blockSize);
             }
-            for (int i = 0; i < Context.D_HEIGTH; i += Context.blockSize) {
-                graphics.drawLine(0, i, Context.D_WIDTH, i);
+            for (int i = 25; i < Context.D_HEIGTH; i += Context.blockSize) {
+                Draw.drawImage(graphics,Images.imgWall, 0, 25, i, Context.blockSize);
+                Draw.drawImage(graphics,Images.imgWall, 0, Context.D_WIDTH - Context.blockSize / 2, i, Context.blockSize);
             }
         }
     }
