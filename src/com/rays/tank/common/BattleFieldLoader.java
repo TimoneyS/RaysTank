@@ -66,10 +66,11 @@ public class BattleFieldLoader {
             return null;
         }
         try {
-            Boom boom = new Boom();
-            boom.setX(Integer.parseInt(arr[0].trim()));
-            boom.setY(Integer.parseInt(arr[1].trim()));
-            boom.setDirection(Integer.parseInt(arr[2].trim()));
+            Boom boom = new Boom(
+                    Context.nextSeq(),
+                    Integer.parseInt(arr[0].trim()),
+                    Integer.parseInt(arr[1].trim()),
+                    Integer.parseInt(arr[2].trim()));
             boom.setStatus(Integer.parseInt(arr[3].trim()));
             return boom;
         } catch (Exception e) {
