@@ -1,5 +1,6 @@
 package com.rays.tank.model;
 
+import com.rays.tank.common.BattleFieldLoader;
 import com.rays.tank.common.Context;
 import com.rays.tank.view.DrawUtil;
 import com.rays.tank.view.Images;

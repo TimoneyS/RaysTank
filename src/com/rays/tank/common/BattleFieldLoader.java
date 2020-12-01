@@ -1,6 +1,10 @@
-package com.rays.tank.model;
+package com.rays.tank.common;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.model.BattleField;
+import com.rays.tank.model.Boom;
+import com.rays.tank.model.Bullet;
+import com.rays.tank.model.Tank;
 
 import java.io.BufferedReader;
 import java.io.IOException;
