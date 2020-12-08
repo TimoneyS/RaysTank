@@ -1,8 +1,6 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.BattleFieldLoader;
-import com.rays.tank.common.Context;
-import com.rays.tank.controller.TankControl;
 
 import java.io.InputStream;
 import java.util.ArrayDeque;
@@ -17,9 +15,14 @@ public class BattleField {
     private Queue<Bullet> bulletCache = new ArrayDeque<>();
     private Queue<Tank> tankCache = new ArrayDeque<>();
     private Queue<Boom> boomCache = new ArrayDeque<>();
+    private Grid[][] ground = new Grid[14][21];
 
     public BattleField(InputStream inputStream) {
         BattleFieldLoader.parseBattleField(inputStream, this);
+    }
+
+    public Grid[][] getGround() {
+        return ground;
     }
 
     public Map<Integer, Tank> getTankMap() {
@@ -34,10 +37,6 @@ public class BattleField {
         return boomMap;
     }
 
-    public void update() {
-
-    }
-
     public void addBullet(Bullet bullet) {
         bulletCache.offer(bullet);
     }
@@ -50,7 +49,7 @@ public class BattleField {
         boomCache.offer(boom);
     }
 
-    public void clearNoActived() {
+    public void clearNoActives() {
         tankMap.entrySet().removeIf(e -> e.getValue().isNotActive());
         bulletMap.entrySet().removeIf(e -> e.getValue().isNotActive());
         boomMap.entrySet().removeIf(e -> e.getValue().isNotActive());

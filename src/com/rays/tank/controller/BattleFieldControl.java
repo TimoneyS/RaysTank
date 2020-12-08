@@ -31,6 +31,6 @@ public class BattleFieldControl {
             Boom boom = new Boom(Context.nextSeq(), bullet.getX(), bullet.getY(), 0);
             battleField.addBoom(boom);
         });
-        battleField.clearNoActived();
+        battleField.clearNoActives();
     }
 }

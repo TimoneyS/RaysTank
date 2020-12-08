@@ -1,9 +1,6 @@
 package com.rays.tank.common;
 
-import com.rays.tank.model.BattleField;
-import com.rays.tank.model.Boom;
-import com.rays.tank.model.Bullet;
-import com.rays.tank.model.Tank;
+import com.rays.tank.model.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,19 +26,11 @@ public class BattleFieldLoader {
                 } else if (line.contains("[BOOM]")) {
                     tag = 4;
                     continue;
+                } else if (line.contains("[MAP]")) {
+                    tag = 5;
                 }
                 if (tag == 1 || tag == 2) {
-                    Tank tank = parseTank(line);
-                    if (tank != null) {
-                        if (tag == 1) {
-                            tank.setId(Context.nextSeq());
-                            battleField.getTankMap().put(tank.getId(), tank);
-                        } else {
-                            tank.setBot(false);
-                            tank.setId(0);
-                            battleField.getTankMap().put(0, tank);
-                        }
-                    }
+                    parseTank(battleField, line, tag);
                 } else if (tag == 3) {
                     Bullet bullet = parseBullet(line);
                     if (bullet != null) {
@@ -53,10 +42,33 @@ public class BattleFieldLoader {
                         boom.setId(Context.nextSeq());
                         battleField.getBoomMap().put(boom.getId(), boom);
                     }
+                } else if (tag == 5) {
+                    for (int row = 0;row < 14; row ++) {
+                        String tempLine = bis.readLine().trim();
+                        for (int col = 0; col < 21; col ++) {
+                            Grid g = new Grid();
+                            g.setType(tempLine.charAt(col) - '0');
+                            battleField.getGround()[row][col] = g;
+                        }
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void parseTank(BattleField battleField, String line, int tag) {
+        Tank tank = parseTank(line);
+        if (tank != null) {
+            if (tag == 1) {
+                tank.setId(Context.nextSeq());
+                battleField.getTankMap().put(tank.getId(), tank);
+            } else {
+                tank.setBot(false);
+                tank.setId(0);
+                battleField.getTankMap().put(0, tank);
+            }
         }
     }
 
