@@ -80,7 +80,6 @@ class GamePanel extends JPanel {
                     0,
                     0,
                     null);
-
             BattleFieldControl.update(Context.battleField);
         }
     }

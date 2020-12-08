@@ -14,6 +14,7 @@ public class Draw {
     private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
     private Graphics graphics = image.createGraphics();
     private BattleField battleField;
+    private Color BG_COLOR = Color.DARK_GRAY;
 
     public static void drawImage(Graphics graphics, Image image, int direction, int x, int y, int blockSize) {
         Graphics2D g2 = (Graphics2D) graphics;
@@ -26,14 +27,18 @@ public class Draw {
     public Image getImage(BattleField battleField) {
         this.battleField = battleField;
         Color c = graphics.getColor();
-        graphics.setColor(Color.DARK_GRAY);
-        graphics.fillRect(0,0, image.getWidth(), image.getHeight());
+        clear();
+        drawGridLine();
         drawTanks();
         drawBullets();
         drawBooms();
-        drawGridLine();
         graphics.setColor(c);
         return image;
+    }
+
+    private void clear() {
+        graphics.setColor(BG_COLOR);
+        graphics.fillRect(0,0, image.getWidth(), image.getHeight());
     }
 
     private void drawBooms() {
@@ -51,23 +56,14 @@ public class Draw {
     private void drawGridLine() {
         if (Context.debug) {
             graphics.setColor(Color.LIGHT_GRAY);
-//            for (int i = 0; i < Context.D_WIDTH; i += Context.blockSize) {
-//                graphics.drawLine(i, 0, i, Context.D_HEIGTH);
-//            }
-//            for (int i = 0; i < Context.D_HEIGTH; i += Context.blockSize) {
-//                graphics.drawLine(0, i, Context.D_WIDTH, i);
-//            }
-            for (int i = 25; i < Context.D_WIDTH; i += Context.blockSize) {
-                Draw.drawImage(graphics,Images.imgWall, 0, i, 25, Context.blockSize);
-                Draw.drawImage(graphics,Images.imgWall, 0, i, Context.D_HEIGTH - Context.blockSize/2, Context.blockSize);
+            for (int i = 0; i < Context.D_WIDTH; i += Context.blockSize) {
+                graphics.drawLine(i, 0, i, Context.D_HEIGTH);
             }
-            for (int i = 25; i < Context.D_HEIGTH; i += Context.blockSize) {
-                Draw.drawImage(graphics,Images.imgWall, 0, 25, i, Context.blockSize);
-                Draw.drawImage(graphics,Images.imgWall, 0, Context.D_WIDTH - Context.blockSize / 2, i, Context.blockSize);
+            for (int i = 0; i < Context.D_HEIGTH; i += Context.blockSize) {
+                graphics.drawLine(0, i, Context.D_WIDTH, i);
             }
         }
     }
-
     private void drawBoom(Boom boom) {
         Draw.drawImage(
                 graphics,
