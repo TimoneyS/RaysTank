@@ -13,8 +13,10 @@ public class BulletControl {
         int newY = bullet.getY() + dir[1] * bullet.getSpeed();
 
         if (newX >= 0 && newX <= Context.D_WIDTH && newY >= 0 && newY <= Context.D_HEIGTH) {
+            Context.battleField.removeCovered(bullet);
             bullet.setX(newX);
             bullet.setY(newY);
+            Context.battleField.addCovered(bullet);
         } else {
             bullet.destroy();
         }

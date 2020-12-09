@@ -69,4 +69,10 @@ public class BattleField {
             boomCache.clear();
         }
     }
+
+    public void removeCovered(BaseObject bullet) {
+    }
+
+    public void addCovered(BaseObject bullet) {
+    }
 }

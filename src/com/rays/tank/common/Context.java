@@ -35,6 +35,10 @@ public class Context {
     public static Tank plaTank = null;
     public static AtomicInteger sequence = new AtomicInteger(2);
 
+    public static int[] toRowAndCol(int xPix, int yPix) {
+        return new int[] {yPix / blockSize, xPix/ blockSize };
+    }
+
     public static void regFrame(Game tankFrame) {
        frame = tankFrame;
     }
