@@ -4,7 +4,7 @@ import com.rays.tank.common.Context;
 import com.rays.tank.controller.BattleFieldControl;
 import com.rays.tank.controller.TankControl;
 import com.rays.tank.model.BattleField;
-import com.rays.tank.view.Draw;
+import com.rays.tank.view.BattleFieldDrawer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,13 +61,16 @@ public class Game extends JFrame {
 }
 
 class GamePanel extends JPanel {
-    Draw draw = new Draw();
+    BattleFieldDrawer battleFieldDrawer = new BattleFieldDrawer();
 
     public GamePanel() {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                System.out.println(e.getX() + ", " + e.getY());
+                int row = e.getY() / Context.blockSize;
+                int col = e.getX() / Context.blockSize;
+
+                System.out.println(e.getX() + ", " + e.getY() + " -> " + row + ", " + col);
             }
         });
     }
@@ -76,7 +79,7 @@ class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         if (Context.battleField != null) {
             g.drawImage(
-                    draw.getImage(Context.battleField),
+                    battleFieldDrawer.getImage(Context.battleField),
                     0,
                     0,
                     null);
