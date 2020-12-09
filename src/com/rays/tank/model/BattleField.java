@@ -1,6 +1,7 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.BattleFieldLoader;
+import com.rays.tank.common.Context;
 
 import java.io.InputStream;
 import java.util.ArrayDeque;
@@ -70,9 +71,13 @@ public class BattleField {
         }
     }
 
-    public void removeCovered(BaseObject bullet) {
+    public void removeCovered(BaseObject baseObject) {
+        int[] rowAndCol = Context.toRowAndCol(baseObject.getX(), baseObject.getY());
+        ground[rowAndCol[0]][rowAndCol[1]].removeCovered(baseObject.id);
     }
 
-    public void addCovered(BaseObject bullet) {
+    public void addCovered(BaseObject baseObject) {
+        int[] rowAndCol = Context.toRowAndCol(baseObject.getX(), baseObject.getY());
+        ground[rowAndCol[0]][rowAndCol[1]].addCovered(baseObject.id);
     }
 }
