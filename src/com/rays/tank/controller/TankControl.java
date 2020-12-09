@@ -14,9 +14,14 @@ public class TankControl {
         int[] dir = Context.DIRS[tank.getDirection()];
         int newX = tank.getX() + dir[0] * tank.getSpeed();
         int newY = tank.getY() + dir[1] * tank.getSpeed();
-        if (newX >= 0 && newX <= Context.D_WIDTH && newY >= 0 && newY <= Context.D_HEIGTH) {
-            tank.setX(newX);
-            tank.setY(newY);
+        int newHeadX = tank.getX() + dir[0] * Context.blockSize / 2;
+        int newHeadY = tank.getY() + dir[1] * Context.blockSize / 2;
+        if (newHeadX >= 0 && newHeadX <= Context.D_WIDTH && newHeadY >= 0 && newHeadY <= Context.D_HEIGTH) {
+            int[] rc = Context.toRowAndCol(newHeadX, newHeadY);
+            if (Context.battleField.getGround()[rc[0]][rc[1]] == 0) {
+                tank.setX(newX);
+                tank.setY(newY);
+            }
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
     }
