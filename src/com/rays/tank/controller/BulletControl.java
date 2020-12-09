@@ -15,7 +15,7 @@ public class BulletControl {
 
         if (newX < 0 || newX > Context.D_WIDTH || newY < 0 || newY > Context.D_HEIGTH) {
             bullet.destroy();
-        } else if (Context.battleField.getGround()[rc[0]][rc[1]] > 0) {
+        } else if (Context.battleField.getGround(rc) > 0) {
             Context.battleField.getGround()[rc[0]][rc[1]] = Context.battleField.getGround()[rc[0]][rc[1]] + 1;
             if (Context.battleField.getGround()[rc[0]][rc[1]] > 3) {
                 Context.battleField.getGround()[rc[0]][rc[1]]= 0;

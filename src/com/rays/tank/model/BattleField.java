@@ -69,4 +69,11 @@ public class BattleField {
             boomCache.clear();
         }
     }
+
+    public int getGround(int[] rc) {
+        if (rc[0] < 0 || rc[0] >= getGround().length || rc[1] < 0 || rc[1] >= ground[0].length) {
+            return  -1;
+        }
+        return ground[rc[0]][rc[1]];
+    }
 }
