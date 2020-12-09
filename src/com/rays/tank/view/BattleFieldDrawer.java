@@ -35,10 +35,10 @@ public class BattleFieldDrawer {
     }
 
     private void drawGround() {
-        Grid[][] ground = battleField.getGround();
+        int[][] ground = battleField.getGround();
         for (int row = 0; row < ground.length; row ++) {
             for (int col = 0; col < ground[row].length; col ++) {
-                if (ground[row][col].getType() == 1) {
+                if (ground[row][col] == 1) {
                     drawImage(
                             graphics, Images.imgWall, 0,
                             col * Context.blockSize + Context.blockSize / 2,

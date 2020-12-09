@@ -1,7 +1,6 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.BattleFieldLoader;
-import com.rays.tank.common.Context;
 
 import java.io.InputStream;
 import java.util.ArrayDeque;
@@ -16,13 +15,13 @@ public class BattleField {
     private Queue<Bullet> bulletCache = new ArrayDeque<>();
     private Queue<Tank> tankCache = new ArrayDeque<>();
     private Queue<Boom> boomCache = new ArrayDeque<>();
-    private Grid[][] ground = new Grid[14][21];
+    private int[][] ground = new int[14][21];
 
     public BattleField(InputStream inputStream) {
         BattleFieldLoader.parseBattleField(inputStream, this);
     }
 
-    public Grid[][] getGround() {
+    public int[][] getGround() {
         return ground;
     }
 
@@ -69,15 +68,5 @@ public class BattleField {
             boomCache.forEach(boom -> boomMap.put(boom.getId(), boom));
             boomCache.clear();
         }
-    }
-
-    public void removeCovered(BaseObject baseObject) {
-        int[] rowAndCol = Context.toRowAndCol(baseObject.getX(), baseObject.getY());
-        ground[rowAndCol[0]][rowAndCol[1]].removeCovered(baseObject.id);
-    }
-
-    public void addCovered(BaseObject baseObject) {
-        int[] rowAndCol = Context.toRowAndCol(baseObject.getX(), baseObject.getY());
-        ground[rowAndCol[0]][rowAndCol[1]].addCovered(baseObject.id);
     }
 }
