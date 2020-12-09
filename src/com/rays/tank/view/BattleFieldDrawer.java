@@ -38,9 +38,22 @@ public class BattleFieldDrawer {
         int[][] ground = battleField.getGround();
         for (int row = 0; row < ground.length; row ++) {
             for (int col = 0; col < ground[row].length; col ++) {
+                if (ground[row][col] == 0) {
+                    continue;
+                }
+
+                Image image = null;
                 if (ground[row][col] == 1) {
+                    image = Images.imgWall;
+                } else if (ground[row][col] == 2) {
+                    image = Images.imgWall_2;
+                } else if (ground[row][col] == 3) {
+                    image = Images.imgWall_3;
+                }
+
+                if (image !=null) {
                     drawImage(
-                            graphics, Images.imgWall, 0,
+                            graphics, image, 0,
                             col * Context.blockSize + Context.blockSize / 2,
                             row * Context.blockSize + Context.blockSize / 2,
                             Context.blockSize);
