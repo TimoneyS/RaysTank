@@ -58,13 +58,13 @@ public class TankControl {
 
     public static void handleKeyReleased(KeyEvent e) {
         int releasedDir;
-        if (e.getKeyCode() == KeyEvent.VK_W) {
+        if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
             releasedDir = Context.UP;
-        } else if (e.getKeyCode() == KeyEvent.VK_S) {
+        } else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
             releasedDir = Context.DOWN;
-        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+        } else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
             releasedDir = Context.LEFT;
-        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+        } else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
             releasedDir = Context.RIGHT;
         } else {
             return;
