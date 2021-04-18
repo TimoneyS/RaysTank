@@ -11,7 +11,7 @@ public class BattleFieldDrawer {
     private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
     private Graphics graphics = image.createGraphics();
     private BattleField battleField;
-    private Color BG_COLOR = Color.DARK_GRAY;
+    private Color BG_COLOR = Color.LIGHT_GRAY;
 
     public static void drawImage(Graphics graphics, Image image, int direction, int x, int y, int blockSize) {
         Graphics2D g2 = (Graphics2D) graphics;
@@ -25,7 +25,7 @@ public class BattleFieldDrawer {
         this.battleField = battleField;
         Color c = graphics.getColor();
         clear();
-        drawGridLine();
+//        drawGridLine();
         drawTanks();
         drawBullets();
         drawBooms();
