@@ -26,7 +26,7 @@ public class Context {
     public static final int     manMoveSpeed    = 8;          // 玩家移动速度
     public static final int     botMoveSpeed    = 3;          // AI移动速度
     public static final boolean canPlayerBeKill = false;      // 玩家是否无敌
-    public static final boolean aiFire          = true;       // AI是否开火
+    public static final boolean aiFire          = false;       // AI是否开火
     public static final boolean aiMove          = true;      // AI是否移动
     public static final boolean debug = true;
 
