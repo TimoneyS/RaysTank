@@ -61,6 +61,7 @@ public class BattleFieldLoader {
         if (tank != null) {
             if (tag == 1) {
                 tank.setId(Context.nextSeq());
+                tank.setSpeed(Context.botMoveSpeed);
                 battleField.getTankMap().put(tank.getId(), tank);
             } else {
                 tank.setBot(false);
