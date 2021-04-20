@@ -29,7 +29,7 @@ public class Game extends JFrame {
         setLocationByPlatform(true);
 
         gamePanel = new GamePanel();
-        gamePanel.setPreferredSize(new Dimension(Context.D_WIDTH, Context.D_HEIGTH));
+        gamePanel.setPreferredSize(new Dimension(Context.D_WIDTH, Context.D_HEIGHT));
         setContentPane(gamePanel);
         scheduledExecutor = Executors.newScheduledThreadPool(1);
     }

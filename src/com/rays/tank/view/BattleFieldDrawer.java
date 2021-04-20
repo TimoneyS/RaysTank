@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class BattleFieldDrawer {
-    private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGTH, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage image = new BufferedImage(Context.D_WIDTH, Context.D_HEIGHT, BufferedImage.TYPE_INT_RGB);
     private Graphics graphics = image.createGraphics();
     private BattleField battleField;
     private Color BG_COLOR = Color.LIGHT_GRAY;
@@ -83,9 +83,9 @@ public class BattleFieldDrawer {
         if (Context.debug) {
             graphics.setColor(Color.LIGHT_GRAY);
             for (int i = 0; i < Context.D_WIDTH; i += Context.blockSize) {
-                graphics.drawLine(i, 0, i, Context.D_HEIGTH);
+                graphics.drawLine(i, 0, i, Context.D_HEIGHT);
             }
-            for (int i = 0; i < Context.D_HEIGTH; i += Context.blockSize) {
+            for (int i = 0; i < Context.D_HEIGHT; i += Context.blockSize) {
                 graphics.drawLine(0, i, Context.D_WIDTH, i);
             }
         }
