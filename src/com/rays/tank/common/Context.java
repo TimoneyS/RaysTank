@@ -52,4 +52,10 @@ public class Context {
     public static int nextSeq() {
         return sequence.getAndIncrement();
     }
+
+    public static boolean isValidRowCol(int[] rc) {
+        return rc[0] >= 0 && rc[1] >= 0
+                && rc[0] < battleField.getGround().length
+                && rc[1] < battleField.getGround()[0].length;
+    }
 }
