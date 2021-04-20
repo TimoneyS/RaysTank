@@ -103,10 +103,15 @@ public class BattleFieldDrawer {
 
     private void drawTank(Tank tank) {
         Image tankImage;
+
+        int slow = 3;
+
         if (tank.isBot()) {
-            tankImage = Images.imgTankEmyArr[tank.getMoveStatus() % Images.imgTankEmyArr.length];
+            int index = (tank.getMoveStatus() % (Images.imgTankEmyArr.length * slow)) / slow;
+            tankImage = Images.imgTankEmyArr[index];
         } else {
-            tankImage = Images.imgTankPlaArr[tank.getMoveStatus() % Images.imgTankEmyArr.length];
+            int index = (tank.getMoveStatus() % (Images.imgTankPlaArr.length * slow)) / slow;
+            tankImage = Images.imgTankPlaArr[index];
         }
         BattleFieldDrawer.drawImage(graphics, tankImage, tank.getDirection(), tank.getX(), tank.getY(), Context.blockSize);
     }
