@@ -18,7 +18,9 @@ public class BattleFieldControl {
                 if (tank.getId() > 1 && (Math.abs(tank.getX() - bullet.getX()) + Math.abs(tank.getY() - bullet.getY()) < 30)) {
                     Boom boom = new Boom(Context.nextSeq(), tank.getX(), tank.getY(), 0);
                     battleField.addBoom(boom);
-                    tank.destroy();
+                    if (Context.AI_COULD_DIE) {
+                        tank.destroy();
+                    }
                     bullet.destroy();
                 }
             });

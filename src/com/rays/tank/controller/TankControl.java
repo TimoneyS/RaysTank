@@ -5,7 +5,6 @@ import com.rays.tank.model.Bullet;
 import com.rays.tank.model.Tank;
 
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 public class TankControl {
     public static void move(Tank tank) {
@@ -27,9 +26,9 @@ public class TankControl {
             if (tank.getId() > 0) {
                 int dirLength = Context.DIRS.length;
                 tank.setDirection((tank.getDirection() + 1 + dirLength) % dirLength);
+                shoot(tank);
             }
         }
-
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
     }
 

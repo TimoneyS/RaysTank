@@ -29,6 +29,7 @@ public class Context {
     public static final boolean aiFire = false;       // AI是否开火
     public static final boolean aiMove = true;      // AI是否移动
     public static final boolean debug = true;
+    public static final boolean AI_COULD_DIE = false;
 
     public static JFrame frame = null;
     public static BattleField battleField = null;
