@@ -17,17 +17,25 @@ public class TankControl {
         int newHeadX = tank.getX() + dir[0] * Context.blockSize / 2;
         int newHeadY = tank.getY() + dir[1] * Context.blockSize / 2;
         int[] rc = Context.toRowAndCol(newHeadX, newHeadY);
-        if (newHeadX > 0 && newY > 0 && Context.isValidRowCol(rc) && Context.battleField.getGround()[rc[0]][rc[1]] == 0) {
+        if (newHeadX > 0 && newY > 0
+                && Context.battleField.getGround(rc) == 0
+                && willNotCrashWithOtherTanks(tank.getId(), newX, newY)
+        ) {
             tank.setX(newX);
             tank.setY(newY);
         } else {
-            if (tank.getId() > 0) {
-                int dirLength = Context.DIRS.length;
-                tank.setDirection((tank.getDirection() + 1 + dirLength) % dirLength);
-                shoot(tank);
+            if(tank.getId() > 0) {
+                tank.setDirection((int) (Math.random() * Context.DIRS.length));
             }
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
+    }
+
+    private static boolean willNotCrashWithOtherTanks(int id, int newHeadX, int newHeadY) {
+    return Context.battleField.getTankMap().values().stream()
+                .noneMatch(otherTank -> otherTank.getId() != id
+                        && Math.abs(otherTank.getY() - newHeadY) < Context.blockSize
+                        && Math.abs(otherTank.getX() - newHeadX) < Context.blockSize);
     }
 
     public static void shoot(Tank tank) {
