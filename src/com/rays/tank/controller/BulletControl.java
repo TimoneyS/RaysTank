@@ -1,6 +1,7 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.XYBuilder;
 import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.Bullet;
 import com.rays.tank.model.XY;
@@ -11,7 +12,7 @@ public class BulletControl {
             return;
         }
         int[] dir = Context.DIRS[bullet.getDirection()];
-        XY newXY = XYUtil.plus(bullet.getXy(), dir[0] * bullet.getSpeed(), dir[1] * bullet.getSpeed());
+        XY newXY = XYBuilder.of(dir).multiply(bullet.getSpeed()).plus(bullet.getXy()).get();
         XY rowAndCol = Context.toRowAndCol(newXY);
         if (XYUtil.noMoreThen(newXY, 0)
                 || newXY.getX() > Context.D_WIDTH

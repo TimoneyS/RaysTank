@@ -1,6 +1,7 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.XYBuilder;
 import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.Bullet;
 import com.rays.tank.model.Tank;
@@ -14,10 +15,9 @@ public class TankControl {
             return;
         }
         int[] dir = Context.DIRS[tank.getDirection()];
-        XY newXY = XYUtil.plus(
-                tank.getXy(), dir[0] * tank.getSpeed(), dir[1] * tank.getSpeed());
-        XY headXY = XYUtil.plus(
-                tank.getXy(), dir[0] * Context.blockSize / 2, dir[1] * Context.blockSize / 2);
+
+        XY newXY = XYBuilder.of(dir).multiply(tank.getSpeed()).plus(tank.getXy()).get();
+        XY headXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
         XY rowAndCol = Context.toRowAndCol(headXY);
         if (newXY.getX() > 0 && newXY.getY() > 0
                 && Context.battleField.getGround(rowAndCol) == 0
@@ -46,7 +46,7 @@ public class TankControl {
     }
 
     private static void addBullet(Tank tank, int[] dir) {
-        XY newXY = XYUtil.plus(tank.getXy(), dir[0] * Context.blockSize / 2, dir[1] * Context.blockSize / 2);
+        XY newXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
         Bullet bullet = new Bullet(Context.nextSeq(), newXY.getX(), newXY.getY(), tank.getDirection());
         Context.battleField.addBullet(bullet);
     }

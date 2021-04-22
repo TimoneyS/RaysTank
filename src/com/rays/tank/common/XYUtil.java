@@ -11,10 +11,6 @@ public class XYUtil {
         return create(xy.getX() + dx, xy.getY() + dy);
     }
 
-    public static XY multiply(XY xy, int diff) {
-        return create(xy.getX() * diff, xy.getY() + diff);
-    }
-
     public static int maxDist(XY xy, XY newXY) {
         return Math.max(
                 Math.abs(xy.getX() - newXY.getX()),
