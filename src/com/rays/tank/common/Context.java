@@ -3,6 +3,7 @@ package com.rays.tank.common;
 import com.rays.tank.main.Game;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Tank;
+import com.rays.tank.model.XY;
 
 import javax.swing.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -36,8 +37,8 @@ public class Context {
     public static Tank plaTank = null;
     public static AtomicInteger sequence = new AtomicInteger(2);
 
-    public static int[] toRowAndCol(int xPix, int yPix) {
-        return new int[]{yPix / blockSize, xPix / blockSize};
+    public static XY toRowAndCol(XY xy) {
+        return XYUtil.create(xy.getY() / blockSize, xy.getX() / blockSize);
     }
 
     public static void regFrame(Game tankFrame) {

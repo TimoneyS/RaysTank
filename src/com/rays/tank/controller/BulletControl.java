@@ -1,7 +1,9 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.Bullet;
+import com.rays.tank.model.XY;
 
 public class BulletControl {
     public static void move(Bullet bullet) {
@@ -9,21 +11,20 @@ public class BulletControl {
             return;
         }
         int[] dir = Context.DIRS[bullet.getDirection()];
-        int newX = bullet.getX() + dir[0] * bullet.getSpeed();
-        int newY = bullet.getY() + dir[1] * bullet.getSpeed();
-        int[] rc = Context.toRowAndCol(newX, newY);
-
-        if (newX < 0 || newX > Context.D_WIDTH || newY < 0 || newY > Context.D_HEIGHT) {
+        XY newXY = XYUtil.plus(bullet.getXy(), dir[0] * bullet.getSpeed(), dir[1] * bullet.getSpeed());
+        XY rowAndCol = Context.toRowAndCol(newXY);
+        if (XYUtil.noMoreThen(newXY, 0)
+                || newXY.getX() > Context.D_WIDTH
+                || newXY.getY() > Context.D_HEIGHT) {
             bullet.destroy();
-        } else if (Context.battleField.getGround(rc) > 0) {
-            Context.battleField.getGround()[rc[0]][rc[1]] = Context.battleField.getGround()[rc[0]][rc[1]] + 1;
-            if (Context.battleField.getGround()[rc[0]][rc[1]] > 3) {
-                Context.battleField.getGround()[rc[0]][rc[1]]= 0;
+        } else if (Context.battleField.getGround(rowAndCol) > 0) {
+            Context.battleField.incGround(rowAndCol, 1);
+            if (Context.battleField.getGround(rowAndCol) > 3) {
+                Context.battleField.setGround(rowAndCol, 0);
             }
             bullet.destroy();
         } else {
-            bullet.setX(newX);
-            bullet.setY(newY);
+            bullet.setXy(newXY);
         }
     }
 }

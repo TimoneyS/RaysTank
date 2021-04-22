@@ -1,8 +1,10 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.Bullet;
 import com.rays.tank.model.Tank;
+import com.rays.tank.model.XY;
 
 import java.awt.event.KeyEvent;
 
@@ -12,17 +14,16 @@ public class TankControl {
             return;
         }
         int[] dir = Context.DIRS[tank.getDirection()];
-        int newX = tank.getX() + dir[0] * tank.getSpeed();
-        int newY = tank.getY() + dir[1] * tank.getSpeed();
-        int newHeadX = tank.getX() + dir[0] * Context.blockSize / 2;
-        int newHeadY = tank.getY() + dir[1] * Context.blockSize / 2;
-        int[] rc = Context.toRowAndCol(newHeadX, newHeadY);
-        if (newHeadX > 0 && newY > 0
-                && Context.battleField.getGround(rc) == 0
-                && willNotCrashWithOtherTanks(tank.getId(), newX, newY)
+        XY newXY = XYUtil.plus(
+                tank.getXy(), dir[0] * tank.getSpeed(), dir[1] * tank.getSpeed());
+        XY headXY = XYUtil.plus(
+                tank.getXy(), dir[0] * Context.blockSize / 2, dir[1] * Context.blockSize / 2);
+        XY rowAndCol = Context.toRowAndCol(headXY);
+        if (newXY.getX() > 0 && newXY.getY() > 0
+                && Context.battleField.getGround(rowAndCol) == 0
+                && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
-            tank.setX(newX);
-            tank.setY(newY);
+            tank.setXy(newXY);
         } else {
             if(tank.getId() > 0) {
                 tank.setDirection((int) (Math.random() * Context.DIRS.length));
@@ -31,22 +32,23 @@ public class TankControl {
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
     }
 
-    private static boolean willNotCrashWithOtherTanks(int id, int newHeadX, int newHeadY) {
+    private static boolean willNotCrashWithOtherTanks(int id, XY newXY) {
     return Context.battleField.getTankMap().values().stream()
                 .noneMatch(otherTank -> otherTank.getId() != id
-                        && Math.abs(otherTank.getY() - newHeadY) < Context.blockSize
-                        && Math.abs(otherTank.getX() - newHeadX) < Context.blockSize);
+                        && (XYUtil.maxDist(otherTank.getXy(), newXY) < Context.blockSize));
     }
 
     public static void shoot(Tank tank) {
         if (System.currentTimeMillis() >= tank.getNextShootTime()) {
-            int[] dir = Context.DIRS[tank.getDirection()];
-            int newX = tank.getX() + dir[0] * Context.blockSize / 2;
-            int newY = tank.getY() + dir[1] * Context.blockSize / 2;
-            Bullet bullet = new Bullet(Context.nextSeq(), newX, newY, tank.getDirection());
-            Context.battleField.addBullet(bullet);
-            tank.setNextShootTime(System.currentTimeMillis() + 500);
+            addBullet(tank, Context.DIRS[tank.getDirection()]);
+             tank.setNextShootTime(System.currentTimeMillis() + 100);
         }
+    }
+
+    private static void addBullet(Tank tank, int[] dir) {
+        XY newXY = XYUtil.plus(tank.getXy(), dir[0] * Context.blockSize / 2, dir[1] * Context.blockSize / 2);
+        Bullet bullet = new Bullet(Context.nextSeq(), newXY.getX(), newXY.getY(), tank.getDirection());
+        Context.battleField.addBullet(bullet);
     }
 
     public static void handleKeyPress(KeyEvent e) {

@@ -70,10 +70,21 @@ public class BattleField {
         }
     }
 
-    public int getGround(int[] rc) {
-        if (rc[0] < 0 || rc[0] >= getGround().length || rc[1] < 0 || rc[1] >= ground[0].length) {
+    public int getGround(XY xy) {
+        if (xy.getX() < 0
+                || xy.getX() >= getGround().length
+                || xy.getY() < 0
+                || xy.getY() >= ground[0].length) {
             return  -1;
         }
-        return ground[rc[0]][rc[1]];
+        return ground[xy.getX()][xy.getY()];
+    }
+
+    public void incGround(XY xy, int i) {
+        ground[xy.getX()][xy.getY()] += i;
+    }
+
+    public void setGround(XY xy, int i) {
+        ground[xy.getX()][xy.getY()] = i;
     }
 }
