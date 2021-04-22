@@ -1,6 +1,7 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;
 import com.rays.tank.model.Bullet;
@@ -15,8 +16,8 @@ public class BattleFieldControl {
 
         battleField.getBulletMap().values().forEach(bullet -> {
             battleField.getTankMap().values().forEach(tank -> {
-                if (tank.getId() > 1 && (Math.abs(tank.getX() - bullet.getX()) + Math.abs(tank.getY() - bullet.getY()) < 30)) {
-                    Boom boom = new Boom(Context.nextSeq(), tank.getX(), tank.getY(), 0);
+                if (tank.getId() > 1 && (XYUtil.maxDist(tank.getXy(), bullet.getXy()) < 30)) {
+                    Boom boom = new Boom(Context.nextSeq(), tank.getXy().getX(), tank.getXy().getY(), 0);
                     battleField.addBoom(boom);
                     if (Context.AI_COULD_DIE) {
                         tank.destroy();
@@ -30,7 +31,7 @@ public class BattleFieldControl {
                 .stream()
                 .filter(Bullet::isNotActive)
                 .forEach(bullet -> {
-            Boom boom = new Boom(Context.nextSeq(), bullet.getX(), bullet.getY(), 0);
+            Boom boom = new Boom(Context.nextSeq(), bullet.getXy().getX(), bullet.getXy().getY(), 0);
             battleField.addBoom(boom);
         });
         battleField.clearNoActives();

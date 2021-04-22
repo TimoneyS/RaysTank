@@ -4,6 +4,8 @@ public class Boom extends BaseObject {
     int age = 0;
     int status = 0;
 
+
+
     public Boom(int id, int x, int y, int direction) {
         super(id, x, y, direction);
     }

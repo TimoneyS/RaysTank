@@ -35,6 +35,14 @@ public class BaseObject {
         this.xy = xy;
     }
 
+    public int getX() {
+        return xy.getX();
+    }
+
+    public int getY() {
+        return xy.getY();
+    }
+
     public int getDirection() {
         return direction;
     }
