@@ -19,7 +19,7 @@ public class TankControl {
         XY newXY = XYBuilder.of(dir).multiply(tank.getSpeed()).plus(tank.getXy()).get();
         XY headXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
         XY rowAndCol = Context.toRowAndCol(headXY);
-        if (newXY.getX() > 0 && newXY.getY() > 0
+        if (headXY.getX() > 0 && headXY.getY() > 0
                 && Context.battleField.getGround(rowAndCol) == 0
                 && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
