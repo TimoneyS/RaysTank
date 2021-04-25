@@ -23,7 +23,11 @@ public class BulletControl {
             if (Context.battleField.getGround(rowAndCol) > 3) {
                 Context.battleField.setGround(rowAndCol, 0);
             }
-            bullet.destroy();
+            if (Context.battleField.getBulletMap().size() > 10) {
+                bullet.destroy();
+            } else {
+                bullet.setDirection((int) (Math.random() * Context.DIRS.length));
+            }
         } else {
             bullet.setXy(newXY);
         }
