@@ -8,6 +8,7 @@ public class BaseObject {
     protected int direction;
     protected int radius;
     protected boolean active = true;
+    private int life = 1;
 
     public BaseObject(int x, int y, int direction) {
         this.xy= XYUtil.create(x, y);
@@ -67,11 +68,19 @@ public class BaseObject {
         return !active;
     }
 
+    public void setLife(int life) {
+        this.life = life;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }
 
-    public void destroy() {
-        setActive(false);
+    public void growUp() {
+        if (life < 0) {
+            setActive(false);
+        } else {
+            life --;
+        }
     }
 }

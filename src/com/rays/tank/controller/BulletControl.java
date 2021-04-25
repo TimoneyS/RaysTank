@@ -17,17 +17,15 @@ public class BulletControl {
         if (XYUtil.noMoreThen(newXY, 0)
                 || newXY.getX() > Context.D_WIDTH
                 || newXY.getY() > Context.D_HEIGHT) {
-            bullet.destroy();
+            bullet.setDirection((int) (Math.random() * Context.DIRS.length));
+            bullet.growUp();
         } else if (Context.battleField.getGround(rowAndCol) > 0) {
             Context.battleField.incGround(rowAndCol, 1);
             if (Context.battleField.getGround(rowAndCol) > 3) {
                 Context.battleField.setGround(rowAndCol, 0);
             }
-            if (Context.battleField.getBulletMap().size() > 10) {
-                bullet.destroy();
-            } else {
-                bullet.setDirection((int) (Math.random() * Context.DIRS.length));
-            }
+            bullet.setDirection((int) (Math.random() * Context.DIRS.length));
+            bullet.growUp();
         } else {
             bullet.setXy(newXY);
         }

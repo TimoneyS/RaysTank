@@ -20,9 +20,9 @@ public class BattleFieldControl {
                     Boom boom = new Boom(Context.nextSeq(), tank.getXy().getX(), tank.getXy().getY(), 0);
                     battleField.addBoom(boom);
                     if (Context.AI_COULD_DIE) {
-                        tank.destroy();
+                        tank.growUp();
                     }
-                    bullet.destroy();
+                    bullet.growUp();
                 }
             });
         });

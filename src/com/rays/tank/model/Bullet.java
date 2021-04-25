@@ -7,6 +7,7 @@ public class Bullet extends BaseObject {
 
     public Bullet(int id, int x, int y, int direction) {
         super(id, x, y, direction);
+        setLife(5);
     }
 
     public int getSpeed() {

@@ -8,6 +8,7 @@ public class Tank extends BaseObject {
 
     public Tank(int x, int y, int direction) {
         super(x, y, direction);
+        setLife(3);
     }
 
     public int getDirection() {

@@ -20,7 +20,7 @@ public class Boom extends BaseObject {
 
     public void update() {
         if (age / 2 > 4) {
-            destroy();
+            growUp();
         } else {
             status = age / 2;
             age ++;
