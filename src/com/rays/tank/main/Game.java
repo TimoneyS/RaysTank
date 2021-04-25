@@ -43,7 +43,7 @@ public class Game extends JFrame {
         };
         gamePanel.setPreferredSize(new Dimension(Context.D_WIDTH, Context.D_HEIGHT));
         setContentPane(gamePanel);
-        scheduledExecutor = Executors.newScheduledThreadPool(1);
+        scheduledExecutor = Executors.newScheduledThreadPool(2);
     }
 
     public void lunch() {
