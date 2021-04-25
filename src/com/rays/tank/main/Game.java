@@ -43,6 +43,18 @@ public class Game extends JFrame {
         Context.regBattleField(battleField);
 
         addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_F5) {
+                    if (Context.battleField.getTankMap().size() == 1) {
+                        BattleField battleField = new BattleField(
+                                getClass().getClassLoader().getResourceAsStream("battleField_001.txt"));
+                        Context.regBattleField(battleField);
+                    }
+                }
+            }
+
             @Override
             public void keyPressed(KeyEvent e) {
                 TankControl.handleKeyPress(e);
