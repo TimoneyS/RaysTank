@@ -72,6 +72,10 @@ public class BaseObject {
         this.life = life;
     }
 
+    public int getLife() {
+        return life;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }

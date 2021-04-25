@@ -4,7 +4,6 @@ import com.rays.tank.common.Context;
 import com.rays.tank.model.*;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class BattleFieldDrawer {
@@ -13,19 +12,10 @@ public class BattleFieldDrawer {
     private BattleField battleField;
     private Color BG_COLOR = Color.LIGHT_GRAY;
 
-    public static void drawImage(Graphics graphics, Image image, int direction, int x, int y, int blockSize) {
-        Graphics2D g2 = (Graphics2D) graphics;
-        AffineTransform affineTransform = g2.getTransform();
-        g2.rotate(Math.PI * 2 * direction * 90 / 360, x, y);
-        graphics.drawImage(image, x - blockSize / 2, y - blockSize / 2, blockSize, blockSize, null);
-        g2.setTransform(affineTransform);
-    }
-
     public Image getImage(BattleField battleField) {
         this.battleField = battleField;
         Color c = graphics.getColor();
         clear();
-//        drawGridLine();
         drawTanks();
         drawBullets();
         drawBooms();
@@ -52,7 +42,7 @@ public class BattleFieldDrawer {
                 }
 
                 if (image !=null) {
-                    drawImage(
+                    DrawUtil.drawImage(
                             graphics, image, 0,
                             col * Context.blockSize + Context.blockSize / 2,
                             row * Context.blockSize + Context.blockSize / 2,
@@ -91,14 +81,14 @@ public class BattleFieldDrawer {
         }
     }
     private void drawBoom(Boom boom) {
-        BattleFieldDrawer.drawImage(
+        DrawUtil.drawImage(
                 graphics,
                 Images.imgBoomArr[boom.getStatus() % Images.imgBoomArr.length],
                 boom.getDirection(), boom.getX(), boom.getY(), Context.blockSize);
     }
 
     private void drawBullet(Bullet bullet) {
-        BattleFieldDrawer.drawImage(graphics, Images.imgBullet, bullet.getDirection(), bullet.getX(), bullet.getY(), Context.blockSize);
+        DrawUtil.drawImage(graphics, Images.imgBullet, bullet.getDirection(), bullet.getX(), bullet.getY(), Context.blockSize);
     }
 
     private void drawTank(Tank tank) {
@@ -113,6 +103,6 @@ public class BattleFieldDrawer {
             int index = (tank.getMoveStatus() / slow) % (Images.imgTankPlaArr.length);
             tankImage = Images.imgTankPlaArr[index];
         }
-        BattleFieldDrawer.drawImage(graphics, tankImage, tank.getDirection(), tank.getX(), tank.getY(), Context.blockSize);
+        DrawUtil.drawImage(graphics, tankImage, tank.getDirection(), tank.getX(), tank.getY(), Context.blockSize);
     }
 }
