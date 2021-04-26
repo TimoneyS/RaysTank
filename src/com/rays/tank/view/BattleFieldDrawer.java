@@ -1,6 +1,7 @@
 package com.rays.tank.view;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.FieldType;
 import com.rays.tank.model.*;
 
 import java.awt.*;
@@ -28,16 +29,16 @@ public class BattleFieldDrawer {
         int[][] ground = battleField.getFields();
         for (int row = 0; row < ground.length; row ++) {
             for (int col = 0; col < ground[row].length; col ++) {
-                if (ground[row][col] == 0) {
+                if (ground[row][col] == FieldType.ground) {
                     continue;
                 }
 
                 Image image = null;
-                if (ground[row][col] == 1) {
+                if (ground[row][col] == FieldType.WALL_1) {
                     image = Images.imgWall;
-                } else if (ground[row][col] == 2) {
+                } else if (ground[row][col] == FieldType.WALL_2) {
                     image = Images.imgWall_2;
-                } else if (ground[row][col] == 3) {
+                } else if (ground[row][col] == FieldType.WALL_3) {
                     image = Images.imgWall_3;
                 }
 
