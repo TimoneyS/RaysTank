@@ -16,14 +16,14 @@ public class BattleField {
     private Queue<Bullet> bulletCache = new ArrayDeque<>();
     private Queue<Tank> tankCache = new ArrayDeque<>();
     private Queue<Boom> boomCache = new ArrayDeque<>();
-    private int[][] ground = new int[14][21];
+    private int[][] fields = new int[14][21];
 
     public BattleField(InputStream inputStream) {
         BattleFieldLoader.parseBattleField(inputStream, this);
     }
 
-    public int[][] getGround() {
-        return ground;
+    public int[][] getFields() {
+        return fields;
     }
 
     public Map<Integer, Tank> getTankMap() {
@@ -71,22 +71,30 @@ public class BattleField {
         }
     }
 
-    public int getGround(XY xy) {
-        if (xy.getX() < 0
-                || xy.getX() >= getGround().length
-                || xy.getY() < 0
-                || xy.getY() >= ground[0].length) {
+    public int getField(XY xy) {
+        return getField(xy.getX(), xy.getY());
+    }
+
+    public int getField(int x, int y) {
+        if (x < 0
+                || x >= getFields().length
+                || y < 0
+                || y >= fields[0].length) {
             return  -1;
         }
-        return ground[xy.getX()][xy.getY()];
+        return fields[x][y];
     }
 
     public void incGround(XY xy, int i) {
-        ground[xy.getX()][xy.getY()] += i;
+        fields[xy.getX()][xy.getY()] += i;
     }
 
-    public void setGround(XY xy, int i) {
-        ground[xy.getX()][xy.getY()] = i;
+    public void setField(XY xy, int i) {
+        setField(xy.getX(), xy.getY(), i);
+    }
+
+    public void setField(int row, int col, int i) {
+        fields[row][col] = i;
     }
 
     public void boom() {

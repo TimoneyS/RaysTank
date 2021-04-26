@@ -25,7 +25,7 @@ public class BattleFieldDrawer {
     }
 
     private void drawGround() {
-        int[][] ground = battleField.getGround();
+        int[][] ground = battleField.getFields();
         for (int row = 0; row < ground.length; row ++) {
             for (int col = 0; col < ground[row].length; col ++) {
                 if (ground[row][col] == 0) {

@@ -20,10 +20,10 @@ public class BulletControl {
                 || newXY.getY() > Context.D_HEIGHT) {
             bullet.setDirection((int) (Math.random() * Dirs.size()));
             bullet.growUp();
-        } else if (Context.battleField.getGround(rowAndCol) > 0) {
+        } else if (Context.battleField.getField(rowAndCol) > 0) {
             Context.battleField.incGround(rowAndCol, 1);
-            if (Context.battleField.getGround(rowAndCol) > 3) {
-                Context.battleField.setGround(rowAndCol, 0);
+            if (Context.battleField.getField(rowAndCol) > 3) {
+                Context.battleField.setField(rowAndCol, 0);
             }
             bullet.setDirection((int) (Math.random() * Dirs.size()));
             bullet.growUp();

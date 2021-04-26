@@ -46,7 +46,7 @@ public class BattleFieldLoader {
                     for (int row = 0;row < 14; row ++) {
                         String tempLine = bis.readLine().trim();
                         for (int col = 0; col < 21; col ++) {
-                            battleField.getGround()[row][col] = tempLine.charAt(col) - '0';
+                            battleField.setField(row, col, tempLine.charAt(col) - '0');
                         }
                     }
                 }

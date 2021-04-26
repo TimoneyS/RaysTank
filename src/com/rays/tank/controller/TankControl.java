@@ -21,7 +21,7 @@ public class TankControl {
         XY headXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
         XY rowAndCol = Context.toRowAndCol(headXY);
         if (headXY.getX() > 0 && headXY.getY() > 0
-                && Context.battleField.getGround(rowAndCol) == 0
+                && Context.battleField.getField(rowAndCol) == 0
                 && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
             tank.setXy(newXY);

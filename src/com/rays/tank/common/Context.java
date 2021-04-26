@@ -38,7 +38,7 @@ public class Context {
 
     public static boolean isValidRowCol(int[] rc) {
         return rc[0] >= 0 && rc[1] >= 0
-                && rc[0] < battleField.getGround().length
-                && rc[1] < battleField.getGround()[0].length;
+                && rc[0] < battleField.getFields().length
+                && rc[1] < battleField.getFields()[0].length;
     }
 }
