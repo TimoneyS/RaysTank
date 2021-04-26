@@ -1,15 +1,12 @@
 package com.rays.tank.common;
 
-import com.rays.tank.main.Game;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Tank;
 import com.rays.tank.model.XY;
 
-import javax.swing.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Context {
-
     public static final int D_WIDTH = 1050;
     public static final int D_HEIGHT = 700;
     public static final int blockSize = 50;         // 区块大小
@@ -22,17 +19,12 @@ public class Context {
     public static final boolean debug = true;
     public static final boolean AI_COULD_DIE = true;
 
-    public static JFrame frame = null;
     public static BattleField battleField = null;
     public static Tank plaTank = null;
     public static AtomicInteger sequence = new AtomicInteger(2);
 
     public static XY toRowAndCol(XY xy) {
         return XYUtil.create(xy.getY() / blockSize, xy.getX() / blockSize);
-    }
-
-    public static void regFrame(Game tankFrame) {
-        frame = tankFrame;
     }
 
     public static void regBattleField(BattleField bf) {

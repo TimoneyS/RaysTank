@@ -22,7 +22,6 @@ public class Game extends JFrame {
     private BattleKeyListener battleKeyListener = new BattleKeyListener();
 
     public Game() {
-    	Context.regFrame(this);
         setIconImage(new ImageIcon("tank/icon.png").getImage());
         setTitle("̹Tank War Ver 1.9");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
