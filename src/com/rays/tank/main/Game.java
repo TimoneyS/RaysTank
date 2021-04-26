@@ -9,6 +9,8 @@ import com.rays.tank.view.BattleKeyListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -53,6 +55,17 @@ public class Game extends JFrame {
         BattleField battleField = new BattleField(ResourceLoader.getClassPathResource("battleField_001.txt"));
         Context.regBattleField(battleField);
         addKeyListener(battleKeyListener);
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_F5) {
+                    if (Context.battleField.getTankMap().size() == 1) {
+                        BattleField battleField = new BattleField(ResourceLoader.getClassPathResource("battleField_001.txt"));
+                        Context.regBattleField(battleField);
+                    }
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {

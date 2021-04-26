@@ -25,7 +25,7 @@ public class Context {
     public static final int blockSize = 50;         // 区块大小
     public static final int bulletSpeed = 14;         // 子弹速度
     public static final int manMoveSpeed = 4;          // 玩家移动速度
-    public static final int botMoveSpeed = 0;          // AI移动速度
+    public static final int botMoveSpeed = 3;          // AI移动速度
     public static final boolean canPlayerBeKill = false;      // 玩家是否无敌
     public static final boolean aiFire = false;       // AI是否开火
     public static final boolean aiMove = false;      // AI是否移动
