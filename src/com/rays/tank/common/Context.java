@@ -9,16 +9,6 @@ import javax.swing.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Context {
-    public static final int UP = 0;
-    public static final int DOWN = 2;
-    public static final int LEFT = 3;
-    public static final int RIGHT = 1;
-    public static final int[][] DIRS = new int[][]{
-            {0, -1},
-            {1, 0},
-            {0, 1},
-            {-1, 0}
-    };
 
     public static final int D_WIDTH = 1050;
     public static final int D_HEIGHT = 700;

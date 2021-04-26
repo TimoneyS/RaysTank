@@ -1,6 +1,7 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.Dirs;
 import com.rays.tank.common.XYBuilder;
 import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.Bullet;
@@ -14,7 +15,7 @@ public class TankControl {
         if (tank.getSpeed() <= 0) {
             return;
         }
-        int[] dir = Context.DIRS[tank.getDirection()];
+        int[] dir = Dirs.get(tank.getDirection());
 
         XY newXY = XYBuilder.of(dir).multiply(tank.getSpeed()).plus(tank.getXy()).get();
         XY headXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
@@ -26,7 +27,7 @@ public class TankControl {
             tank.setXy(newXY);
         } else {
             if(tank.getId() > 0) {
-                tank.setDirection((int) (Math.random() * Context.DIRS.length));
+                tank.setDirection((int) (Math.random() * Dirs.size()));
             }
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
@@ -40,7 +41,7 @@ public class TankControl {
 
     public static void shoot(Tank tank) {
         if (System.currentTimeMillis() >= tank.getNextShootTime()) {
-            addBullet(tank, Context.DIRS[tank.getDirection()]);
+            addBullet(tank, Dirs.get(tank.getDirection()));
              tank.setNextShootTime(System.currentTimeMillis() + 100);
         }
     }
@@ -57,13 +58,13 @@ public class TankControl {
             return;
         }
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-            Context.plaTank.setDirection(Context.UP);
+            Context.plaTank.setDirection(Dirs.UP);
         } else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-            Context.plaTank.setDirection(Context.DOWN);
+            Context.plaTank.setDirection(Dirs.DOWN);
         } else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-            Context.plaTank.setDirection(Context.LEFT);
+            Context.plaTank.setDirection(Dirs.LEFT);
         } else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            Context.plaTank.setDirection(Context.RIGHT);
+            Context.plaTank.setDirection(Dirs.RIGHT);
         } else {
             return;
         }
@@ -73,13 +74,13 @@ public class TankControl {
     public static void handleKeyReleased(KeyEvent e) {
         int releasedDir;
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-            releasedDir = Context.UP;
+            releasedDir = Dirs.UP;
         } else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-            releasedDir = Context.DOWN;
+            releasedDir = Dirs.DOWN;
         } else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-            releasedDir = Context.LEFT;
+            releasedDir = Dirs.LEFT;
         } else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            releasedDir = Context.RIGHT;
+            releasedDir = Dirs.RIGHT;
         } else {
             return;
         }
