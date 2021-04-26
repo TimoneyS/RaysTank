@@ -1,6 +1,7 @@
 package com.rays.tank.model;
 
 import com.rays.tank.common.BattleFieldLoader;
+import com.rays.tank.common.Context;
 
 import java.io.InputStream;
 import java.util.ArrayDeque;
@@ -86,5 +87,12 @@ public class BattleField {
 
     public void setGround(XY xy, int i) {
         ground[xy.getX()][xy.getY()] = i;
+    }
+
+    public void boom() {
+        for (int i = 0; i < Context.D_WIDTH;i += 50) {
+            addBullet(new Bullet(Context.nextSeq(), i, 10, 0));
+            addBullet(new Bullet(Context.nextSeq(), i, Context.D_HEIGHT - 10, 2));
+        }
     }
 }
