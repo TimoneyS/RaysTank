@@ -81,10 +81,12 @@ public class BaseObject {
     }
 
     public void growUp() {
-        if (life < 0) {
+        if (!isActive()) {
+            return;
+        }
+        life --;
+        if (life <= 0) {
             setActive(false);
-        } else {
-            life --;
         }
     }
 }

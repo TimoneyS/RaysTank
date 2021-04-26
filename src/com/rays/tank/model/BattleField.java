@@ -90,9 +90,9 @@ public class BattleField {
     }
 
     public void boom() {
-        for (int i = 0; i < Context.D_WIDTH;i += 50) {
-            addBullet(new Bullet(Context.nextSeq(), i, 10, 0));
-            addBullet(new Bullet(Context.nextSeq(), i, Context.D_HEIGHT - 10, 2));
+        for (int i = 10; i < Context.D_WIDTH;i += 20) {
+            addBullet(new Bullet(Context.nextSeq(), i, 10, 2));
+            addBullet(new Bullet(Context.nextSeq(), i, Context.D_HEIGHT - 10, 0));
         }
     }
 }
