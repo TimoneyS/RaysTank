@@ -22,6 +22,15 @@ public class Game extends JFrame {
     private BattleKeyListener battleKeyListener = new BattleKeyListener();
 
     public Game() {
+        JMenuBar jMenuBar = new JMenuBar();
+        setJMenuBar(jMenuBar);
+
+        JMenu jMenu = new JMenu("菜单");
+        JMenuItem menuItem = new JMenuItem("重置");
+
+        jMenu.add(menuItem);
+        jMenuBar.add(jMenu);
+
         setIconImage(new ImageIcon("tank/icon.png").getImage());
         setTitle("̹Tank War Ver 1.9");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
