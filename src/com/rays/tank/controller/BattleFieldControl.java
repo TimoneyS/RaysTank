@@ -1,12 +1,20 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
+import com.rays.tank.common.ResourceLoader;
 import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;
 import com.rays.tank.model.Bullet;
 
 public class BattleFieldControl {
+
+    public static void loadMap(String resourceName) {
+        BattleField battleField = BattleFieldLoader
+                .parseBattleField(ResourceLoader.getClassPathResource(resourceName));
+        Context.regBattleField(battleField);
+    }
+
     public static void update(BattleField battleField) {
         battleField.flush();
 
@@ -36,7 +44,4 @@ public class BattleFieldControl {
         });
         battleField.clearNoActives();
     }
-
-
-
 }

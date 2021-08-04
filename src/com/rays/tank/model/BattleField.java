@@ -1,6 +1,6 @@
 package com.rays.tank.model;
 
-import com.rays.tank.common.BattleFieldLoader;
+import com.rays.tank.controller.BattleFieldLoader;
 import com.rays.tank.common.Context;
 
 import java.io.InputStream;
@@ -17,10 +17,6 @@ public class BattleField {
     private Queue<Tank> tankCache = new ArrayDeque<>();
     private Queue<Boom> boomCache = new ArrayDeque<>();
     private int[][] fields = new int[14][21];
-
-    public BattleField(InputStream inputStream) {
-        BattleFieldLoader.parseBattleField(inputStream, this);
-    }
 
     public int[][] getFields() {
         return fields;

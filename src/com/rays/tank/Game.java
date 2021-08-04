@@ -1,4 +1,4 @@
-package com.rays.tank.main;
+package com.rays.tank;
 
 import com.rays.tank.common.Context;
 import com.rays.tank.common.ResourceLoader;
@@ -60,16 +60,15 @@ public class Game extends JFrame {
         pack();
         setVisible(true);
         scheduledExecutor.scheduleWithFixedDelay(() -> gamePanel.repaint(), 0, 30, TimeUnit.MILLISECONDS);
-        BattleField battleField = new BattleField(ResourceLoader.getClassPathResource("battleField_001.txt"));
-        Context.regBattleField(battleField);
+        BattleFieldControl.loadMap("battleField_001.txt");
+
         addKeyListener(battleKeyListener);
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_F5) {
                     if (Context.battleField.getTankMap().size() == 1) {
-                        BattleField battleField = new BattleField(ResourceLoader.getClassPathResource("battleField_001.txt"));
-                        Context.regBattleField(battleField);
+                        BattleFieldControl.loadMap("battleField_001.txt");
                     }
                 }
             }

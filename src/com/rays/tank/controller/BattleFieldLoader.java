@@ -1,5 +1,6 @@
-package com.rays.tank.common;
+package com.rays.tank.controller;
 
+import com.rays.tank.common.Context;
 import com.rays.tank.model.*;
 
 import java.io.BufferedReader;
@@ -8,7 +9,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BattleFieldLoader {
-    public static void parseBattleField(InputStream inputStream, BattleField battleField) {
+    public static BattleField parseBattleField(InputStream inputStream) {
+        BattleField battleField = new BattleField();
         try(BufferedReader bis = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             int tag = 0;
@@ -54,6 +56,7 @@ public class BattleFieldLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return battleField;
     }
 
     private static void parseTank(BattleField battleField, String line, int tag) {
