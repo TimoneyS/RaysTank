@@ -17,12 +17,24 @@ public class BattleFieldDrawer {
         this.battleField = battleField;
         Color c = graphics.getColor();
         clear();
-        drawTanks();
-        drawBullets();
-        drawBooms();
-        drawGround();
+        if (battleField.isGameOver()) {
+            graphics.setColor(Color.RED);
+            graphics.drawString("你赢了", 100, 100);
+
+        } else {
+            drawInfo();
+            drawTanks();
+            drawBullets();
+            drawBooms();
+            drawGround();
+        }
         graphics.setColor(c);
         return image;
+    }
+
+    private void drawInfo() {
+        graphics.setColor(Color.RED);
+        graphics.drawString("剩余敌人: " + battleField.enemyLeft, 50, 50);
     }
 
     private void drawGround() {

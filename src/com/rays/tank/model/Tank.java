@@ -11,6 +11,10 @@ public class Tank extends BaseObject {
         setLife(1);
     }
 
+    public Tank(XY playerStarter, int direction) {
+        this(playerStarter.getX(), playerStarter.getY(), 0);
+    }
+
     public int getDirection() {
         return direction;
     }

@@ -31,6 +31,9 @@ public class TankControl {
             }
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
+        if ( (int)(Math.random() * 100) <= 1) {
+            TankControl.shoot(tank);
+        }
     }
 
     private static boolean willNotCrashWithOtherTanks(int id, XY newXY) {
@@ -41,7 +44,7 @@ public class TankControl {
 
     public static void shoot(Tank tank) {
         if (System.currentTimeMillis() >= tank.getNextShootTime()) {
-            addBullet(tank, Dirs.get(tank.getDirection()));
+             addBullet(tank, Dirs.get(tank.getDirection()));
              tank.setNextShootTime(System.currentTimeMillis() + 100);
         }
     }
@@ -54,21 +57,21 @@ public class TankControl {
 
     public static void handleKeyPress(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_J || e.getKeyCode() == KeyEvent.VK_SPACE) {
-            TankControl.shoot(Context.plaTank);
+            TankControl.shoot(Context.getPlaTank());
             return;
         }
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-            Context.plaTank.setDirection(Dirs.UP);
+            Context.getPlaTank().setDirection(Dirs.UP);
         } else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-            Context.plaTank.setDirection(Dirs.DOWN);
+            Context.getPlaTank().setDirection(Dirs.DOWN);
         } else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-            Context.plaTank.setDirection(Dirs.LEFT);
+            Context.getPlaTank().setDirection(Dirs.LEFT);
         } else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            Context.plaTank.setDirection(Dirs.RIGHT);
+            Context.getPlaTank().setDirection(Dirs.RIGHT);
         } else {
             return;
         }
-        Context.plaTank.setSpeed(Context.manMoveSpeed);
+        Context.getPlaTank().setSpeed(Context.manMoveSpeed);
     }
 
     public static void handleKeyReleased(KeyEvent e) {
@@ -84,8 +87,8 @@ public class TankControl {
         } else {
             return;
         }
-        if (releasedDir == Context.plaTank.getDirection()) {
-            Context.plaTank.setSpeed(0);
+        if (releasedDir == Context.getPlaTank().getDirection()) {
+            Context.getPlaTank().setSpeed(0);
         }
     }
 }

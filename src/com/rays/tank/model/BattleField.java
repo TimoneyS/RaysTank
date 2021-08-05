@@ -1,22 +1,33 @@
 package com.rays.tank.model;
 
-import com.rays.tank.controller.BattleFieldLoader;
 import com.rays.tank.common.Context;
 
-import java.io.InputStream;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
 public class BattleField {
+    private int row;
+    private int column;
+    public int enemyLeft = 10;
+    private int[][] fields;
+    public XY playerStarter;
+    public List<XY> enemyStarter = new ArrayList<>();
     private Map<Integer, Tank> tankMap = new HashMap<>();
     private Map<Integer, Bullet> bulletMap = new HashMap<>();
     private Map<Integer, Boom>   boomMap = new HashMap<>();
     private Queue<Bullet> bulletCache = new ArrayDeque<>();
     private Queue<Tank> tankCache = new ArrayDeque<>();
     private Queue<Boom> boomCache = new ArrayDeque<>();
-    private int[][] fields = new int[14][21];
+
+    public BattleField(int row, int column) {
+        this.row = row;
+        this.column = column;
+        this.fields = new int[row][column];
+    }
 
     public int[][] getFields() {
         return fields;
@@ -98,5 +109,17 @@ public class BattleField {
             addBullet(new Bullet(Context.nextSeq(), i, 10, 2));
             addBullet(new Bullet(Context.nextSeq(), i, Context.D_HEIGHT - 10, 0));
         }
+    }
+
+    public void setPlayerStarter(XY xy) {
+        playerStarter = xy;
+    }
+
+    public XY getPlayerStarter() {
+        return playerStarter;
+    }
+
+    public boolean isGameOver() {
+        return enemyLeft <= 0;
     }
 }
