@@ -1,9 +1,7 @@
 package com.rays.tank;
 
 import com.rays.tank.common.Context;
-import com.rays.tank.common.ResourceLoader;
 import com.rays.tank.controller.BattleFieldControl;
-import com.rays.tank.model.BattleField;
 import com.rays.tank.view.BattleFieldDrawer;
 import com.rays.tank.view.BattleKeyListener;
 

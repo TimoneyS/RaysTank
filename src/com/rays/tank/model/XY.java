@@ -1,7 +1,5 @@
 package com.rays.tank.model;
 
-import java.util.List;
-
 public class XY {
     private int x;
     private int y;

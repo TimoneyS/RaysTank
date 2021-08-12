@@ -1,7 +1,6 @@
 package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
-import com.rays.tank.common.ResourceLoader;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;
 import com.rays.tank.model.Bullet;
@@ -14,7 +13,7 @@ import java.util.Scanner;
 public class BattleFieldControl {
 
     public static void loadMap(String resourceName) {
-        BattleField battleField = parseBattleField(ResourceLoader.getClassPathResource(resourceName));
+        BattleField battleField = parseBattleField(BattleFieldControl.class.getClassLoader().getResourceAsStream(resourceName));
         Context.regBattleField(battleField);
     }
 
