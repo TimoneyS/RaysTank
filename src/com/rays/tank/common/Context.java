@@ -23,7 +23,7 @@ public class Context {
     public static AtomicInteger sequence = new AtomicInteger(2);
 
     public static XY toRowAndCol(XY xy) {
-        return XYUtil.create(xy.getY() / blockSize, xy.getX() / blockSize);
+        return XY.of(xy.getY() / blockSize, xy.getX() / blockSize);
     }
 
     public static void regBattleField(BattleField bf) {

@@ -1,7 +1,5 @@
 package com.rays.tank.model;
 
-import com.rays.tank.common.XYUtil;
-
 public class BaseObject {
     protected int id;
     protected XY xy;
@@ -11,7 +9,7 @@ public class BaseObject {
     private int life = 1;
 
     public BaseObject(int x, int y, int direction) {
-        this.xy= XYUtil.create(x, y);
+        this.xy= XY.of(x, y);
         this.direction = direction;
     }
 

@@ -2,7 +2,6 @@ package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
 import com.rays.tank.common.ResourceLoader;
-import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.BattleField;
 import com.rays.tank.model.Boom;
 import com.rays.tank.model.Bullet;
@@ -39,7 +38,7 @@ public class BattleFieldControl {
         battleField.getBoomMap().values().forEach(Boom::update);
         battleField.getBulletMap().values().forEach(bullet -> {
             battleField.getTankMap().values().forEach(tank -> {
-                if ((XYUtil.maxDist(tank.getXy(), bullet.getXy()) < 30)) {
+                if (tank.getXy().maxDist(bullet.getXy()) < 30) {
                     Boom boom = new Boom(Context.nextSeq(), tank.getXy().getX(), tank.getXy().getY(), 0);
                     battleField.addBoom(boom);
                     if (Context.AI_COULD_DIE) {

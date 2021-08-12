@@ -2,8 +2,6 @@ package com.rays.tank.controller;
 
 import com.rays.tank.common.Context;
 import com.rays.tank.common.Dirs;
-import com.rays.tank.common.XYBuilder;
-import com.rays.tank.common.XYUtil;
 import com.rays.tank.model.Bullet;
 import com.rays.tank.model.Tank;
 import com.rays.tank.model.XY;
@@ -17,8 +15,8 @@ public class TankControl {
         }
         int[] dir = Dirs.get(tank.getDirection());
 
-        XY newXY = XYBuilder.of(dir).multiply(tank.getSpeed()).plus(tank.getXy()).get();
-        XY headXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
+        XY newXY = XY.of(dir).multiply(tank.getSpeed()).plus(tank.getXy());
+        XY headXY = XY.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy());
         XY rowAndCol = Context.toRowAndCol(headXY);
         if (headXY.getX() > 0 && headXY.getY() > 0
                 && Context.battleField.getField(rowAndCol) == 0
@@ -39,7 +37,7 @@ public class TankControl {
     private static boolean willNotCrashWithOtherTanks(int id, XY newXY) {
     return Context.battleField.getTankMap().values().stream()
                 .noneMatch(otherTank -> otherTank.getId() != id
-                        && (XYUtil.maxDist(otherTank.getXy(), newXY) < Context.blockSize));
+                        && (otherTank.getXy().maxDist(newXY) < Context.blockSize));
     }
 
     public static void shoot(Tank tank) {
@@ -50,7 +48,7 @@ public class TankControl {
     }
 
     private static void addBullet(Tank tank, int[] dir) {
-        XY newXY = XYBuilder.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy()).get();
+        XY newXY = XY.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy());
         Bullet bullet = new Bullet(Context.nextSeq(), newXY.getX(), newXY.getY(), tank.getDirection());
         Context.battleField.addBullet(bullet);
     }
