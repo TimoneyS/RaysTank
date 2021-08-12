@@ -120,6 +120,6 @@ public class BattleField {
     }
 
     public boolean isGameOver() {
-        return enemyLeft <= 0;
+        return enemyLeft <= 0 && tankMap.size() <= 1;
     }
 }
