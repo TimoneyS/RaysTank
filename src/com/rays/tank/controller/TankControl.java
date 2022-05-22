@@ -20,7 +20,7 @@ public class TankControl {
         XY rowAndCol = Context.toRowAndCol(headXY);
         if (headXY.getX() > 0 && headXY.getY() > 0
                 && Context.battleField.getField(rowAndCol) == 0
-                && willNotCrashWithOtherTanks(tank.getId(), newXY)
+//                && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
             tank.setXy(newXY);
         } else {
@@ -29,13 +29,13 @@ public class TankControl {
             }
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
-        if ( (int)(Math.random() * 100) <= 1) {
+        if ((int)(Math.random() * 100) <= 1 && tank.getId() != Context.PLAYER_TEAM) {
             TankControl.shoot(tank);
         }
     }
 
     private static boolean willNotCrashWithOtherTanks(int id, XY newXY) {
-    return Context.battleField.getTankMap().values().stream()
+        return Context.battleField.getTankMap().values().stream()
                 .noneMatch(otherTank -> otherTank.getId() != id
                         && (otherTank.getXy().maxDist(newXY) < Context.blockSize));
     }

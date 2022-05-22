@@ -14,6 +14,7 @@ public class Tank extends BaseObject {
 
     public Tank(XY playerStarter, int direction, int team) {
         this(playerStarter.getX(), playerStarter.getY(), 0);
+        this.team = team;
     }
 
     public int getDirection() {

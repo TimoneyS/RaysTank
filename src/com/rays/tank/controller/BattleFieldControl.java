@@ -47,7 +47,6 @@ public class BattleFieldControl {
                 if (tank.getTeam() == bullet.getTeam()) {
                     continue;
                 }
-
                 Boom boom = new Boom(Context.nextSeq(), tank.getXy().getX(), tank.getXy().getY(), 0);
                 battleField.addBoom(boom);
                 if (Context.AI_COULD_DIE) {
