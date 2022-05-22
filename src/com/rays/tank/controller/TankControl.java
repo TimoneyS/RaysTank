@@ -49,7 +49,7 @@ public class TankControl {
 
     private static void addBullet(Tank tank, int[] dir) {
         XY newXY = XY.of(dir).multiply(Context.blockSize / 2).plus(tank.getXy());
-        Bullet bullet = new Bullet(Context.nextSeq(), newXY.getX(), newXY.getY(), tank.getDirection());
+        Bullet bullet = new Bullet(tank.getId(), tank.getTeam(), newXY.getX(), newXY.getY(), tank.getDirection());
         Context.battleField.addBullet(bullet);
     }
 

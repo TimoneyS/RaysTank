@@ -106,8 +106,8 @@ public class BattleField {
 
     public void boom() {
         for (int i = 10; i < Context.D_WIDTH;i += 20) {
-            addBullet(new Bullet(Context.nextSeq(), i, 10, 2));
-            addBullet(new Bullet(Context.nextSeq(), i, Context.D_HEIGHT - 10, 0));
+            addBullet(new Bullet(-1, -1, i, 10, 2));
+            addBullet(new Bullet(-1, -1, i, Context.D_HEIGHT - 10, 0));
         }
     }
 
@@ -121,5 +121,9 @@ public class BattleField {
 
     public boolean isGameOver() {
         return enemyLeft <= 0 && tankMap.size() <= 1;
+    }
+
+    public Tank getTank(int id) {
+        return getTankMap().get(id);
     }
 }

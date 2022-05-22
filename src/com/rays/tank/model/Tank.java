@@ -5,13 +5,14 @@ public class Tank extends BaseObject {
     private int speed = 0;
     private boolean isBot = true;
     private long nextShootTime = 0;
+    private int team;
 
     public Tank(int x, int y, int direction) {
         super(x, y, direction);
         setLife(1);
     }
 
-    public Tank(XY playerStarter, int direction) {
+    public Tank(XY playerStarter, int direction, int team) {
         this(playerStarter.getX(), playerStarter.getY(), 0);
     }
 
@@ -53,5 +54,13 @@ public class Tank extends BaseObject {
 
     public void setNextShootTime(long nextShootTime) {
         this.nextShootTime = nextShootTime;
+    }
+
+    public int getTeam() {
+        return team;
+    }
+
+    public void setTeam(int team) {
+        this.team = team;
     }
 }

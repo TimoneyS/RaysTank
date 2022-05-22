@@ -17,6 +17,9 @@ public class Context {
     public static final boolean aiMove = false;      // AI是否移动
     public static final boolean debug = true;
     public static final boolean AI_COULD_DIE = true;
+    public static final int PLAYER_ID = 0;
+    public static final int PLAYER_TEAM = 1;
+    public static final int ENEMY_TEAM = 2;
     public static int blockSize = 50;         // 区块大小
 
     public static BattleField battleField = null;

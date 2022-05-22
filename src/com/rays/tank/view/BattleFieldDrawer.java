@@ -18,13 +18,13 @@ public class BattleFieldDrawer {
         Color c = graphics.getColor();
         clear();
         if (battleField.isGameOver()) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            graphics.setColor(Color.RED);
-            graphics.drawString("你赢了", 100, 100);
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            graphics.setColor(Color.RED);
+//            graphics.drawString("你赢了", 100, 100);
         } else {
             drawInfo();
             drawTanks();

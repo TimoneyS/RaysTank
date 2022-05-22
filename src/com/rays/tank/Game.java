@@ -41,11 +41,11 @@ public class Game extends JFrame {
             protected void paintComponent(Graphics g) {
                 if (Context.battleField != null) {
                     g.drawImage(
-                            battleFieldDrawer.getImage(Context.battleField),
+                            battleFieldDrawer.getImage(Context.battleField), // 当前画面
                             0,
                             0,
                             null);
-                    BattleFieldControl.update(Context.battleField);
+                    BattleFieldControl.update(Context.battleField); // 更新状态
                 }
             }
         };
@@ -57,7 +57,9 @@ public class Game extends JFrame {
     public void lunch() {
         pack();
         setVisible(true);
-        scheduledExecutor.scheduleWithFixedDelay(() -> gamePanel.repaint(), 0, 30, TimeUnit.MILLISECONDS);
+        scheduledExecutor.scheduleWithFixedDelay(
+                () -> gamePanel.repaint(), 0, 30, TimeUnit.MILLISECONDS
+        );
         BattleFieldControl.loadMap("battleField_001.txt");
 
         addKeyListener(battleKeyListener);
