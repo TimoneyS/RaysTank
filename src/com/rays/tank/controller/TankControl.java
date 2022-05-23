@@ -23,13 +23,13 @@ public class TankControl {
 //                && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
             tank.setXy(newXY);
-        } else {
-            if(tank.getId() > 0) {
-                tank.setDirection((int) (Math.random() * Dirs.size()));
-            }
+        }
+        if ((int)(Math.random() * 100) <= 1 && tank.getId() != Context.PLAYER_ID) {
+            TankControl.shoot(tank);
+            tank.setDirection((int) (Math.random() * Dirs.size()));
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);
-        if ((int)(Math.random() * 100) <= 1 && tank.getId() != Context.PLAYER_TEAM) {
+        if ((int)(Math.random() * 100) <= 1 && tank.getId() != Context.PLAYER_ID) {
             TankControl.shoot(tank);
         }
     }

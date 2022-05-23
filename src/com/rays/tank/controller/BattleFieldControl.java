@@ -69,7 +69,7 @@ public class BattleFieldControl {
         if (Math.random() * 10 > 3) {
             return;
         }
-        if (battleField.getTankMap().size() >= 4 || battleField.enemyLeft <= 0) {
+        if (battleField.getTankMap().size() >= Context.MAX_ENEMY || battleField.enemyLeft <= 0) {
             return;
         }
         XY enemyStart = battleField.enemyStarter.get((int) (Math.random() * battleField.enemyStarter.size()));
@@ -84,6 +84,7 @@ public class BattleFieldControl {
     private static void reCreatePlayerTank(BattleField battleField, Tank playerTank) {
         if (playerTank == null || playerTank.isNotActive()) {
             playerTank = new Tank(battleField.getPlayerStarter(), 0, Context.PLAYER_TEAM);
+            playerTank.setBot(false);
             battleField.getTankMap().put(0, playerTank);
         }
     }
