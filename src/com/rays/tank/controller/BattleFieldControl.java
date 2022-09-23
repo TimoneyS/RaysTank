@@ -69,7 +69,7 @@ public class BattleFieldControl {
         if (Math.random() * 10 > 3) {
             return;
         }
-        if (battleField.getTankMap().size() >= Context.MAX_ENEMY || battleField.enemyLeft <= 0) {
+        if (battleField.getTankMap().size() >= Context.MAX_ENEMY_ONE_TIME || battleField.enemyLeft <= 0) {
             return;
         }
         XY enemyStart = battleField.enemyStarter.get((int) (Math.random() * battleField.enemyStarter.size()));

@@ -23,9 +23,10 @@ public class TankControl {
 //                && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
             tank.setXy(newXY);
+        } else {
+            tank.setDirection((int) (Math.random() * Dirs.size()));
         }
         if ((int)(Math.random() * 100) <= 1 && tank.getId() != Context.PLAYER_ID) {
-            TankControl.shoot(tank);
             tank.setDirection((int) (Math.random() * Dirs.size()));
         }
         tank.setMoveStatus((tank.getMoveStatus() + 1) & 1023);

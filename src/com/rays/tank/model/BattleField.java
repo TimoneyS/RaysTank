@@ -12,7 +12,7 @@ import java.util.Queue;
 public class BattleField {
     private int row;
     private int column;
-    public int enemyLeft = 10;
+    public int enemyLeft = Context.MAX_ENEMY;
     private int[][] fields;
     public XY playerStarter;
     public List<XY> enemyStarter = new ArrayList<>();

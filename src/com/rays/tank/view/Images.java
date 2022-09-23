@@ -14,6 +14,7 @@ public class Images {
     public static Image   imgWall;
     public static Image   imgWall_2;
     public static Image   imgWall_3;
+    public static Image   imgWin;
 
     static {
         try {
@@ -21,6 +22,7 @@ public class Images {
             imgWall   = loadImage("img/wall.png");
             imgWall_2   = loadImage("img/wall_2.png");
             imgWall_3   = loadImage("img/wall_3.png");
+            imgWin   = loadImage("img/win.png");
             imgTankPlaArr = new Image[5];
             for (int i = 0; i < imgTankPlaArr.length; i++) {
                 String name = "img/tank_pla_" + (i + 1) + ".png";
