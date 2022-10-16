@@ -21,7 +21,7 @@ public class Context {
     public static final int PLAYER_TEAM = 1;
     public static final int ENEMY_TEAM = 2;
     public static final int MAX_ENEMY = 100;
-    public static final int MAX_ENEMY_ONE_TIME = 100;
+    public static final int MAX_ENEMY_ONE_TIME = 6;
     public static int blockSize = 50;         // 区块大小
 
     public static BattleField battleField = null;
