@@ -40,6 +40,13 @@ public class Context {
     }
 
     public static Tank getPlaTank() {
-        return battleField.getTankMap().get(0);
+        return battleField.getTankMap().get(Context.PLAYER_ID);
+    }
+
+    public static void setPlaTankDir(int direction) {
+        Tank tank = getPlaTank();
+        if (tank != null) {
+            tank.setDirection(direction);
+        }
     }
 }

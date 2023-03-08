@@ -23,7 +23,7 @@ public class TankControl {
 //                && willNotCrashWithOtherTanks(tank.getId(), newXY)
         ) {
             tank.setXy(newXY);
-        } else {
+        } else if (tank.getId() != Context.PLAYER_ID) {
             tank.setDirection((int) (Math.random() * Dirs.size()));
         }
         if ((int)(Math.random() * 100) <= 1 && tank.getId() != Context.PLAYER_ID) {
@@ -60,13 +60,13 @@ public class TankControl {
             return;
         }
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-            Context.getPlaTank().setDirection(Dirs.UP);
+            Context.setPlaTankDir(Dirs.UP);
         } else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-            Context.getPlaTank().setDirection(Dirs.DOWN);
+            Context.setPlaTankDir(Dirs.DOWN);
         } else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-            Context.getPlaTank().setDirection(Dirs.LEFT);
+            Context.setPlaTankDir(Dirs.LEFT);
         } else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            Context.getPlaTank().setDirection(Dirs.RIGHT);
+            Context.setPlaTankDir(Dirs.RIGHT);
         } else {
             return;
         }
